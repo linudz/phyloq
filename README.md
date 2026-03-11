@@ -22,12 +22,12 @@ This repository distributes the code and data associated with **PhyloQ**, accomp
 
 Specifically, the repository contains:
 
-1. **Source code of PhyloQ**, including the scripts used to run the test and generate null distributions under different evolutionary models.
+1. **Source code of PhyloQ**, (./ folder) including the scripts used to run the test and generate null distributions under different evolutionary models.
 
-2. **A convergence test on real data**, using phenotypic traits obtained from the **Primate Genome-Phenome Archive (PGA)**  
+2. **A convergence test on real data**, using phenotypic traits obtained from the **Primate Genome-Phenome Archive (PGA)**  (./supplementary/convergence.test folder)
    https://pgarchive.github.io
 
-3. **A validation framework**, including excess tests and **over-representation analyses** used to evaluate the biological signal detected by PhyloQ.
+3. **A validation framework**, (./bootstrap folder) including excess tests and **over-representation analyses** used to evaluate the biological signal detected by PhyloQ.
 
 Together, these materials provide the full computational workflow necessary to reproduce the analyses presented in the manuscript.
 
