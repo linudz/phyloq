@@ -1,4 +1,6 @@
 
+This is derived from https://github.com/linudz/caastools
+
 # CAAStools 1.0 - Software documentation.
 # 1. Introduction to CAAStools
 
