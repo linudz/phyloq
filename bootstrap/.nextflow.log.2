@@ -1,0 +1,163 @@
+may-18 19:10:43.210 [main] DEBUG nextflow.cli.Launcher - $> nextflow run launch_pipeline.nf
+may-18 19:10:43.289 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.04.2
+may-18 19:10:43.305 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/Users/fabio/.nextflow/plugins; core-plugins: nf-amazon@2.5.2,nf-azure@1.6.0,nf-cloudcache@0.4.1,nf-codecommit@0.2.0,nf-console@1.1.3,nf-ga4gh@1.3.0,nf-google@1.13.2,nf-tower@1.9.1,nf-wave@1.4.2
+may-18 19:10:43.313 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+may-18 19:10:43.314 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+may-18 19:10:43.316 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.10.0 in 'deployment' mode
+may-18 19:10:43.326 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+may-18 19:10:43.365 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+may-18 19:10:43.378 [main] DEBUG nextflow.cli.CmdRun - Launching `launch_pipeline.nf` [sharp_saha] DSL2 - revision: 28d27dd8db
+may-18 19:10:43.380 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+may-18 19:10:43.380 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+may-18 19:10:43.425 [main] DEBUG nextflow.Session - Session UUID: 34068dc5-afd8-4419-b764-491321bff582
+may-18 19:10:43.426 [main] DEBUG nextflow.Session - Run name: sharp_saha
+may-18 19:10:43.426 [main] DEBUG nextflow.Session - Executor pool size: 8
+may-18 19:10:43.433 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+may-18 19:10:43.437 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=24; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+may-18 19:10:43.467 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 24.04.2 build 5914
+  Created: 29-05-2024 06:19 UTC (08:19 CEST)
+  System: Mac OS X 26.1
+  Runtime: Groovy 4.0.21 on Java HotSpot(TM) 64-Bit Server VM 17.0.6+9-LTS-190
+  Encoding: UTF-8 (UTF-8)
+  Process: 50214@McClintock.local [172.33.2.224]
+  CPUs: 8 - Mem: 8 GB (137.3 MB) - Swap: 5 GB (1 GB)
+may-18 19:10:43.489 [main] DEBUG nextflow.Session - Work-dir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work [Mac OS X]
+may-18 19:10:43.490 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/bin
+may-18 19:10:43.499 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+may-18 19:10:43.505 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+may-18 19:10:43.521 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+may-18 19:10:43.527 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 9; maxThreads: 1000
+may-18 19:10:43.625 [main] DEBUG nextflow.Session - Session start
+may-18 19:10:44.016 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+may-18 19:10:44.024 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /Users/fabio/.nextflow/secrets/store.json
+may-18 19:10:44.028 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@29f38091] - activable => nextflow.secret.LocalSecretsProvider@29f38091
+may-18 19:10:44.132 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+may-18 19:10:44.132 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+may-18 19:10:44.137 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+may-18 19:10:44.140 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=8 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
+may-18 19:10:44.142 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+may-18 19:10:44.183 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: CAASTOOLS_DISCOVERY
+may-18 19:10:44.183 [main] DEBUG nextflow.Session - Igniting dataflow network (3)
+may-18 19:10:44.187 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CAASTOOLS_DISCOVERY
+may-18 19:10:44.187 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_ac936eb94479c265: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/launch_pipeline.nf
+may-18 19:10:44.188 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+may-18 19:10:44.188 [main] DEBUG nextflow.Session - Session await
+may-18 19:10:44.188 [PathVisitor-2] DEBUG nextflow.file.PathVisitor - files for syntax: glob; folder: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/cfg.files/; pattern: *; options: [checkIfExists:true]
+may-18 19:10:44.188 [PathVisitor-1] DEBUG nextflow.file.PathVisitor - files for syntax: glob; folder: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/alignments/; pattern: *; options: [checkIfExists:true]
+may-18 19:10:44.412 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:10:44.417 [Task submitter] INFO  nextflow.Session - [4a/b56e0f] Submitted process > CAASTOOLS_DISCOVERY (ali3 | b_1)
+may-18 19:10:44.465 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:10:44.466 [Task submitter] INFO  nextflow.Session - [a3/e7743b] Submitted process > CAASTOOLS_DISCOVERY (ali2 | b_10)
+may-18 19:10:44.479 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:10:44.480 [Task submitter] INFO  nextflow.Session - [68/0bfd62] Submitted process > CAASTOOLS_DISCOVERY (ali1 | b_10)
+may-18 19:10:44.495 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:10:44.496 [Task submitter] INFO  nextflow.Session - [09/ecc9da] Submitted process > CAASTOOLS_DISCOVERY (ali2 | b_1)
+may-18 19:10:44.512 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:10:44.513 [Task submitter] INFO  nextflow.Session - [fd/f45839] Submitted process > CAASTOOLS_DISCOVERY (ali3 | b_10)
+may-18 19:10:44.526 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:10:44.528 [Task submitter] INFO  nextflow.Session - [a1/5c426f] Submitted process > CAASTOOLS_DISCOVERY (ali2 | b_2)
+may-18 19:10:44.542 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:10:44.543 [Task submitter] INFO  nextflow.Session - [79/38117c] Submitted process > CAASTOOLS_DISCOVERY (ali1 | b_1)
+may-18 19:10:44.559 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:10:44.561 [Task submitter] INFO  nextflow.Session - [ec/1994f6] Submitted process > CAASTOOLS_DISCOVERY (ali1 | b_2)
+may-18 19:11:24.685 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 7; name: CAASTOOLS_DISCOVERY (ali3 | b_1); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/4a/b56e0f12116d0e5807b539d5783366]
+may-18 19:11:24.707 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=24; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+may-18 19:11:24.714 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: CAASTOOLS_DISCOVERY (ali2 | b_10); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/a3/e7743b5375d48050e9b2b0ecc8177b]
+may-18 19:11:24.714 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: CAASTOOLS_DISCOVERY (ali1 | b_10); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/68/0bfd62452fc6bf66546afb6e7342be]
+may-18 19:11:24.715 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: CAASTOOLS_DISCOVERY (ali2 | b_1); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/09/ecc9da65d5df6f83829ff9c2b3bd48]
+may-18 19:11:24.715 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 8; name: CAASTOOLS_DISCOVERY (ali3 | b_10); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/fd/f458394e58f5f01325f0274043b146]
+may-18 19:11:24.715 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6; name: CAASTOOLS_DISCOVERY (ali2 | b_2); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/a1/5c426f2b78b4c3ad992e2f50a06bd7]
+may-18 19:11:24.716 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: CAASTOOLS_DISCOVERY (ali1 | b_1); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/79/38117ca8e93c4bc2984e05bf32732f]
+may-18 19:11:24.716 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5; name: CAASTOOLS_DISCOVERY (ali1 | b_2); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/ec/1994f67ba7df8a430d536fe23309a4]
+may-18 19:11:24.718 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:11:24.719 [Task submitter] INFO  nextflow.Session - [02/8a6f50] Submitted process > CAASTOOLS_DISCOVERY (ali3 | b_2)
+may-18 19:11:24.725 [TaskFinalizer-7] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali1 | b_1)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/79/38117ca8e93c4bc2984e05bf32732f/ali1.b_1.caas` (pattern: `ali1.b_1.caas`)
+may-18 19:11:24.725 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali2 | b_10)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/a3/e7743b5375d48050e9b2b0ecc8177b/ali2.b_10.caas` (pattern: `ali2.b_10.caas`)
+may-18 19:11:24.725 [TaskFinalizer-8] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali1 | b_2)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/ec/1994f67ba7df8a430d536fe23309a4/ali1.b_2.caas` (pattern: `ali1.b_2.caas`)
+may-18 19:11:24.725 [TaskFinalizer-4] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali2 | b_1)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/09/ecc9da65d5df6f83829ff9c2b3bd48/ali2.b_1.caas` (pattern: `ali2.b_1.caas`)
+may-18 19:11:24.726 [TaskFinalizer-6] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali2 | b_2)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/a1/5c426f2b78b4c3ad992e2f50a06bd7/ali2.b_2.caas` (pattern: `ali2.b_2.caas`)
+may-18 19:11:24.727 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali3 | b_1)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/4a/b56e0f12116d0e5807b539d5783366/ali3.b_1.caas` (pattern: `ali3.b_1.caas`)
+may-18 19:11:24.727 [TaskFinalizer-3] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali1 | b_10)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/68/0bfd62452fc6bf66546afb6e7342be/ali1.b_10.caas` (pattern: `ali1.b_10.caas`)
+may-18 19:11:24.727 [TaskFinalizer-5] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali3 | b_10)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/fd/f458394e58f5f01325f0274043b146/ali3.b_10.caas` (pattern: `ali3.b_10.caas`)
+may-18 19:11:24.732 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:11:24.733 [Task submitter] INFO  nextflow.Session - [29/d4be91] Submitted process > CAASTOOLS_DISCOVERY (ali1 | b_3)
+may-18 19:11:24.733 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=CAASTOOLS_DISCOVERY (ali2 | b_10); work-dir=/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/a3/e7743b5375d48050e9b2b0ecc8177b
+  error [nextflow.exception.MissingFileException]: Missing output file(s) `ali2.b_10.caas` expected by process `CAASTOOLS_DISCOVERY (ali2 | b_10)`
+may-18 19:11:24.742 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:11:24.742 [Task submitter] INFO  nextflow.Session - [6b/65f220] Submitted process > CAASTOOLS_DISCOVERY (ali3 | b_3)
+may-18 19:11:24.752 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:11:24.753 [Task submitter] INFO  nextflow.Session - [45/f5ef30] Submitted process > CAASTOOLS_DISCOVERY (ali2 | b_3)
+may-18 19:11:24.778 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:11:24.778 [Task submitter] INFO  nextflow.Session - [64/a3c60f] Submitted process > CAASTOOLS_DISCOVERY (ali4 | b_1)
+may-18 19:11:24.789 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:11:24.789 [Task submitter] INFO  nextflow.Session - [f8/9c96d5] Submitted process > CAASTOOLS_DISCOVERY (ali4 | b_2)
+may-18 19:11:24.798 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:11:24.799 [Task submitter] INFO  nextflow.Session - [a5/953dac] Submitted process > CAASTOOLS_DISCOVERY (ali4 | b_10)
+may-18 19:11:24.801 [TaskFinalizer-2] ERROR nextflow.processor.TaskProcessor - Error executing process > 'CAASTOOLS_DISCOVERY (ali2 | b_10)'
+
+Caused by:
+  Missing output file(s) `ali2.b_10.caas` expected by process `CAASTOOLS_DISCOVERY (ali2 | b_10)`
+
+
+Command executed:
+
+  python "/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/caastools/ct" discovery \
+      -a "ali2.fasta" \
+      -t "b_10.txt" \
+      -o "ali2.b_10.caas" \
+      --fmt fasta
+
+Command exit status:
+  0
+
+Command output:
+  
+  CAASTOOLS version 0.9 (beta)
+  Convergent Amino Acid Substitution detection and analysis TOOLbox
+  
+  
+  [DISCOVERY TOOL] - Scanning ali2.fasta with phenotype information from b_10.txt
+  
+  
+  
+  
+  Warning: No CAAS Found, CAAStools generated no output file.
+
+Work dir:
+  /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/a3/e7743b5375d48050e9b2b0ecc8177b
+
+Tip: when you have fixed the problem you can continue the execution adding the option `-resume` to the run command line
+may-18 19:11:24.809 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:11:24.809 [Task submitter] INFO  nextflow.Session - [ea/3c07d5] Submitted process > CAASTOOLS_DISCOVERY (ali4 | b_3)
+may-18 19:11:24.812 [TaskFinalizer-5] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=CAASTOOLS_DISCOVERY (ali3 | b_10); work-dir=/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/fd/f458394e58f5f01325f0274043b146
+  error [nextflow.exception.MissingFileException]: Missing output file(s) `ali3.b_10.caas` expected by process `CAASTOOLS_DISCOVERY (ali3 | b_10)`
+may-18 19:11:24.824 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=CAASTOOLS_DISCOVERY (ali3 | b_1); work-dir=/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/4a/b56e0f12116d0e5807b539d5783366
+  error [nextflow.exception.MissingFileException]: Missing output file(s) `ali3.b_1.caas` expected by process `CAASTOOLS_DISCOVERY (ali3 | b_1)`
+may-18 19:11:24.829 [TaskFinalizer-3] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=CAASTOOLS_DISCOVERY (ali1 | b_10); work-dir=/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/68/0bfd62452fc6bf66546afb6e7342be
+  error [nextflow.exception.MissingFileException]: Missing output file(s) `ali1.b_10.caas` expected by process `CAASTOOLS_DISCOVERY (ali1 | b_10)`
+may-18 19:11:24.832 [TaskFinalizer-2] DEBUG nextflow.Session - Session aborted -- Cause: Missing output file(s) `ali2.b_10.caas` expected by process `CAASTOOLS_DISCOVERY (ali2 | b_10)`
+may-18 19:11:24.834 [TaskFinalizer-6] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=CAASTOOLS_DISCOVERY (ali2 | b_2); work-dir=/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/a1/5c426f2b78b4c3ad992e2f50a06bd7
+  error [nextflow.exception.MissingFileException]: Missing output file(s) `ali2.b_2.caas` expected by process `CAASTOOLS_DISCOVERY (ali2 | b_2)`
+may-18 19:11:24.837 [TaskFinalizer-4] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=CAASTOOLS_DISCOVERY (ali2 | b_1); work-dir=/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/09/ecc9da65d5df6f83829ff9c2b3bd48
+  error [nextflow.exception.MissingFileException]: Missing output file(s) `ali2.b_1.caas` expected by process `CAASTOOLS_DISCOVERY (ali2 | b_1)`
+may-18 19:11:24.842 [TaskFinalizer-8] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=CAASTOOLS_DISCOVERY (ali1 | b_2); work-dir=/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/ec/1994f67ba7df8a430d536fe23309a4
+  error [nextflow.exception.MissingFileException]: Missing output file(s) `ali1.b_2.caas` expected by process `CAASTOOLS_DISCOVERY (ali1 | b_2)`
+may-18 19:11:24.843 [TaskFinalizer-7] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=CAASTOOLS_DISCOVERY (ali1 | b_1); work-dir=/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/79/38117ca8e93c4bc2984e05bf32732f
+  error [nextflow.exception.MissingFileException]: Missing output file(s) `ali1.b_1.caas` expected by process `CAASTOOLS_DISCOVERY (ali1 | b_1)`
+may-18 19:11:24.877 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+may-18 19:11:24.878 [main] DEBUG nextflow.Session - Session await > all processes finished
+may-18 19:11:24.879 [main] DEBUG nextflow.Session - Session await > all barriers passed
+may-18 19:11:24.895 [main] WARN  n.processor.TaskPollingMonitor - Killing running tasks (8)
+may-18 19:11:25.000 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=8; ignoredCount=0; cachedCount=0; pendingCount=24; submittedCount=4; runningCount=-4; retriesCount=0; abortedCount=8; succeedDuration=0ms; failedDuration=5m 21s; cachedDuration=0ms;loadCpus=-4; loadMemory=0; peakRunning=12; peakCpus=12; peakMemory=0; ]
+may-18 19:11:25.037 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+may-18 19:11:25.058 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

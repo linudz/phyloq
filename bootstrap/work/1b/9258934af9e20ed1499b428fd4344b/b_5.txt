@@ -1,0 +1,12 @@
+speTri2	0
+micOch1	0
+jacJac1	0
+hetGla2	0
+ochPri3	0
+orcOrc1	0
+echTel2	1
+pteVam1	1
+dasNov3	1
+conCri1	1
+pteAle1	1
+eriEur2	1

@@ -1,0 +1,12 @@
+monDom5	0
+rn6	0
+octDeg1	0
+hetGla2	0
+chiLan1	0
+macEug2	0
+pteAle1	1
+loxAfr3	1
+oviAri3	1
+oryAfe1	1
+dasNov3	1
+capHir1	1

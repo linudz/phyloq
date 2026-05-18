@@ -1,0 +1,257 @@
+may-18 19:12:50.741 [main] DEBUG nextflow.cli.Launcher - $> nextflow run launch_pipeline.nf
+may-18 19:12:50.822 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.04.2
+may-18 19:12:50.837 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/Users/fabio/.nextflow/plugins; core-plugins: nf-amazon@2.5.2,nf-azure@1.6.0,nf-cloudcache@0.4.1,nf-codecommit@0.2.0,nf-console@1.1.3,nf-ga4gh@1.3.0,nf-google@1.13.2,nf-tower@1.9.1,nf-wave@1.4.2
+may-18 19:12:50.845 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+may-18 19:12:50.846 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+may-18 19:12:50.848 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.10.0 in 'deployment' mode
+may-18 19:12:50.859 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+may-18 19:12:50.898 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+may-18 19:12:50.911 [main] DEBUG nextflow.cli.CmdRun - Launching `launch_pipeline.nf` [desperate_fermat] DSL2 - revision: 8f47ab1b54
+may-18 19:12:50.912 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+may-18 19:12:50.912 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+may-18 19:12:50.969 [main] DEBUG nextflow.Session - Session UUID: 65e5a197-e212-47e8-baab-9cf9b1794c67
+may-18 19:12:50.988 [main] DEBUG nextflow.Session - Run name: desperate_fermat
+may-18 19:12:50.988 [main] DEBUG nextflow.Session - Executor pool size: 8
+may-18 19:12:50.996 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+may-18 19:12:51.001 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=24; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+may-18 19:12:51.036 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 24.04.2 build 5914
+  Created: 29-05-2024 06:19 UTC (08:19 CEST)
+  System: Mac OS X 26.1
+  Runtime: Groovy 4.0.21 on Java HotSpot(TM) 64-Bit Server VM 17.0.6+9-LTS-190
+  Encoding: UTF-8 (UTF-8)
+  Process: 50670@McClintock.local [172.33.2.224]
+  CPUs: 8 - Mem: 8 GB (201.6 MB) - Swap: 5 GB (511.2 MB)
+may-18 19:12:51.059 [main] DEBUG nextflow.Session - Work-dir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work [Mac OS X]
+may-18 19:12:51.060 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/bin
+may-18 19:12:51.075 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+may-18 19:12:51.084 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+may-18 19:12:51.108 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+may-18 19:12:51.121 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 9; maxThreads: 1000
+may-18 19:12:51.218 [main] DEBUG nextflow.Session - Session start
+may-18 19:12:51.803 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+may-18 19:12:51.812 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /Users/fabio/.nextflow/secrets/store.json
+may-18 19:12:51.817 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@61bb1e4d] - activable => nextflow.secret.LocalSecretsProvider@61bb1e4d
+may-18 19:12:51.926 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+may-18 19:12:51.926 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+may-18 19:12:51.930 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+may-18 19:12:51.934 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=8 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
+may-18 19:12:51.936 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+may-18 19:12:51.974 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: CAASTOOLS_DISCOVERY
+may-18 19:12:51.975 [main] DEBUG nextflow.Session - Igniting dataflow network (3)
+may-18 19:12:51.979 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CAASTOOLS_DISCOVERY
+may-18 19:12:51.980 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_713254d8d10de1b7: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/launch_pipeline.nf
+may-18 19:12:51.980 [PathVisitor-2] DEBUG nextflow.file.PathVisitor - files for syntax: glob; folder: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/cfg.files/; pattern: *; options: [checkIfExists:true]
+may-18 19:12:51.980 [PathVisitor-1] DEBUG nextflow.file.PathVisitor - files for syntax: glob; folder: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/alignments/; pattern: *; options: [checkIfExists:true]
+may-18 19:12:51.980 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+may-18 19:12:51.981 [main] DEBUG nextflow.Session - Session await
+may-18 19:12:52.198 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:12:52.204 [Task submitter] INFO  nextflow.Session - [9a/82a03c] Submitted process > CAASTOOLS_DISCOVERY (ali1 | b_10)
+may-18 19:12:52.227 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:12:52.229 [Task submitter] INFO  nextflow.Session - [f5/bd013c] Submitted process > CAASTOOLS_DISCOVERY (ali1 | b_2)
+may-18 19:12:52.247 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:12:52.248 [Task submitter] INFO  nextflow.Session - [7f/59d1e5] Submitted process > CAASTOOLS_DISCOVERY (ali3 | b_1)
+may-18 19:12:52.263 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:12:52.264 [Task submitter] INFO  nextflow.Session - [5f/1162fe] Submitted process > CAASTOOLS_DISCOVERY (ali2 | b_10)
+may-18 19:12:52.276 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:12:52.277 [Task submitter] INFO  nextflow.Session - [99/6460c1] Submitted process > CAASTOOLS_DISCOVERY (ali3 | b_10)
+may-18 19:12:52.292 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:12:52.293 [Task submitter] INFO  nextflow.Session - [2c/7f977e] Submitted process > CAASTOOLS_DISCOVERY (ali2 | b_2)
+may-18 19:12:52.309 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:12:52.310 [Task submitter] INFO  nextflow.Session - [1b/f1da0e] Submitted process > CAASTOOLS_DISCOVERY (ali2 | b_1)
+may-18 19:12:52.326 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:12:52.327 [Task submitter] INFO  nextflow.Session - [1b/c2ae3c] Submitted process > CAASTOOLS_DISCOVERY (ali1 | b_1)
+may-18 19:12:56.904 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5; name: CAASTOOLS_DISCOVERY (ali1 | b_2); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/f5/bd013caebf2ecbbfd27c4943b8719b]
+may-18 19:12:56.908 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=24; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+may-18 19:12:56.914 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: CAASTOOLS_DISCOVERY (ali2 | b_1); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/1b/f1da0e9d81030ca45413c5b46f4e77]
+may-18 19:12:56.918 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: CAASTOOLS_DISCOVERY (ali2 | b_10); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/5f/1162fe5aac96d13148d055a43ccf48]
+may-18 19:12:56.924 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:12:56.924 [Task submitter] INFO  nextflow.Session - [f5/1ad3c5] Submitted process > CAASTOOLS_DISCOVERY (ali2 | b_3)
+may-18 19:12:56.927 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali1 | b_2)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/f5/bd013caebf2ecbbfd27c4943b8719b/ali1.b_2.caas` (pattern: `ali1.b_2.caas`)
+may-18 19:12:56.943 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali2 | b_1)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/1b/f1da0e9d81030ca45413c5b46f4e77/ali2.b_1.caas` (pattern: `ali2.b_1.caas`)
+may-18 19:12:56.943 [TaskFinalizer-3] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali2 | b_10)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/5f/1162fe5aac96d13148d055a43ccf48/ali2.b_10.caas` (pattern: `ali2.b_10.caas`)
+may-18 19:12:56.959 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:12:56.960 [Task submitter] INFO  nextflow.Session - [d7/fc60c7] Submitted process > CAASTOOLS_DISCOVERY (ali1 | b_3)
+may-18 19:12:56.976 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:12:56.977 [Task submitter] INFO  nextflow.Session - [67/3b67e1] Submitted process > CAASTOOLS_DISCOVERY (ali3 | b_2)
+may-18 19:12:57.030 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 7; name: CAASTOOLS_DISCOVERY (ali3 | b_1); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/7f/59d1e537e64459edfc5443a97cd494]
+may-18 19:12:57.033 [TaskFinalizer-4] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali3 | b_1)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/7f/59d1e537e64459edfc5443a97cd494/ali3.b_1.caas` (pattern: `ali3.b_1.caas`)
+may-18 19:12:57.038 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:12:57.038 [Task submitter] INFO  nextflow.Session - [d4/1f18bf] Submitted process > CAASTOOLS_DISCOVERY (ali4 | b_2)
+may-18 19:12:57.050 [TaskFinalizer-3] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:12:57.051 [TaskFinalizer-4] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:12:57.053 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:12:57.053 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:12:57.141 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: CAASTOOLS_DISCOVERY (ali1 | b_10); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/9a/82a03ca457fb53a2759c0695adda06]
+may-18 19:12:57.143 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 8; name: CAASTOOLS_DISCOVERY (ali3 | b_10); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/99/6460c186ec8c65a1aac8359754ecac]
+may-18 19:12:57.143 [TaskFinalizer-5] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali1 | b_10)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/9a/82a03ca457fb53a2759c0695adda06/ali1.b_10.caas` (pattern: `ali1.b_10.caas`)
+may-18 19:12:57.143 [TaskFinalizer-5] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:12:57.144 [TaskFinalizer-6] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali3 | b_10)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/99/6460c186ec8c65a1aac8359754ecac/ali3.b_10.caas` (pattern: `ali3.b_10.caas`)
+may-18 19:12:57.144 [TaskFinalizer-6] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:12:57.148 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:12:57.148 [Task submitter] INFO  nextflow.Session - [2b/71d90a] Submitted process > CAASTOOLS_DISCOVERY (ali4 | b_1)
+may-18 19:12:57.154 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:12:57.155 [Task submitter] INFO  nextflow.Session - [dc/762e76] Submitted process > CAASTOOLS_DISCOVERY (ali4 | b_10)
+may-18 19:12:57.221 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: CAASTOOLS_DISCOVERY (ali1 | b_1); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/1b/c2ae3c3aa5396a219d68dfd7b79fb8]
+may-18 19:12:57.225 [TaskFinalizer-7] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali1 | b_1)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/1b/c2ae3c3aa5396a219d68dfd7b79fb8/ali1.b_1.caas` (pattern: `ali1.b_1.caas`)
+may-18 19:12:57.225 [TaskFinalizer-7] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:12:57.230 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:12:57.231 [Task submitter] INFO  nextflow.Session - [4a/33975d] Submitted process > CAASTOOLS_DISCOVERY (ali3 | b_3)
+may-18 19:12:57.247 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6; name: CAASTOOLS_DISCOVERY (ali2 | b_2); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/2c/7f977eafec2a94d550af4a60b698d2]
+may-18 19:12:57.250 [TaskFinalizer-8] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali2 | b_2)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/2c/7f977eafec2a94d550af4a60b698d2/ali2.b_2.caas` (pattern: `ali2.b_2.caas`)
+may-18 19:12:57.251 [TaskFinalizer-8] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:12:57.258 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:12:57.258 [Task submitter] INFO  nextflow.Session - [f0/56d843] Submitted process > CAASTOOLS_DISCOVERY (ali4 | b_3)
+may-18 19:13:01.017 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 10; name: CAASTOOLS_DISCOVERY (ali1 | b_3); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/d7/fc60c73c36fb09ab72ed0a5f661d80]
+may-18 19:13:01.019 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 9; name: CAASTOOLS_DISCOVERY (ali3 | b_2); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/67/3b67e1bde0281952fbbf4dc0044e9f]
+may-18 19:13:01.021 [TaskFinalizer-9] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali1 | b_3)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/d7/fc60c73c36fb09ab72ed0a5f661d80/ali1.b_3.caas` (pattern: `ali1.b_3.caas`)
+may-18 19:13:01.022 [TaskFinalizer-10] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali3 | b_2)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/67/3b67e1bde0281952fbbf4dc0044e9f/ali3.b_2.caas` (pattern: `ali3.b_2.caas`)
+may-18 19:13:01.023 [TaskFinalizer-10] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:01.026 [TaskFinalizer-9] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:01.039 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:01.040 [Task submitter] INFO  nextflow.Session - [45/9f8446] Submitted process > CAASTOOLS_DISCOVERY (ali1 | b_4)
+may-18 19:13:01.052 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:01.052 [Task submitter] INFO  nextflow.Session - [9b/c5af88] Submitted process > CAASTOOLS_DISCOVERY (ali3 | b_4)
+may-18 19:13:01.111 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 14; name: CAASTOOLS_DISCOVERY (ali4 | b_10); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/dc/762e767e5799df4a7e435087a9f6e0]
+may-18 19:13:01.112 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali4 | b_10)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/dc/762e767e5799df4a7e435087a9f6e0/ali4.b_10.caas` (pattern: `ali4.b_10.caas`)
+may-18 19:13:01.113 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:01.121 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:01.121 [Task submitter] INFO  nextflow.Session - [0c/fc1755] Submitted process > CAASTOOLS_DISCOVERY (ali2 | b_4)
+may-18 19:13:01.164 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 11; name: CAASTOOLS_DISCOVERY (ali2 | b_3); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/f5/1ad3c586b79583fa9b1a7db36d97d7]
+may-18 19:13:01.165 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 15; name: CAASTOOLS_DISCOVERY (ali4 | b_2); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/d4/1f18bfcb90f1a40e2c0627b2accc0b]
+may-18 19:13:01.166 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali2 | b_3)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/f5/1ad3c586b79583fa9b1a7db36d97d7/ali2.b_3.caas` (pattern: `ali2.b_3.caas`)
+may-18 19:13:01.166 [TaskFinalizer-4] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali4 | b_2)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/d4/1f18bfcb90f1a40e2c0627b2accc0b/ali4.b_2.caas` (pattern: `ali4.b_2.caas`)
+may-18 19:13:01.167 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:01.168 [TaskFinalizer-4] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:01.171 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:01.171 [Task submitter] INFO  nextflow.Session - [f0/48dafb] Submitted process > CAASTOOLS_DISCOVERY (ali4 | b_4)
+may-18 19:13:01.176 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:01.176 [Task submitter] INFO  nextflow.Session - [0e/0ceed4] Submitted process > CAASTOOLS_DISCOVERY (ali1 | b_5)
+may-18 19:13:01.249 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 12; name: CAASTOOLS_DISCOVERY (ali3 | b_3); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/4a/33975d5b758fbba7ee0e9ce53c5e3b]
+may-18 19:13:01.254 [TaskFinalizer-3] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali3 | b_3)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/4a/33975d5b758fbba7ee0e9ce53c5e3b/ali3.b_3.caas` (pattern: `ali3.b_3.caas`)
+may-18 19:13:01.254 [TaskFinalizer-3] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:01.256 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:01.256 [Task submitter] INFO  nextflow.Session - [1b/925893] Submitted process > CAASTOOLS_DISCOVERY (ali2 | b_5)
+may-18 19:13:01.319 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 13; name: CAASTOOLS_DISCOVERY (ali4 | b_1); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/2b/71d90a0da4f44afeecb017fb007f6b]
+may-18 19:13:01.326 [TaskFinalizer-5] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali4 | b_1)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/2b/71d90a0da4f44afeecb017fb007f6b/ali4.b_1.caas` (pattern: `ali4.b_1.caas`)
+may-18 19:13:01.329 [TaskFinalizer-5] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:01.333 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:01.334 [Task submitter] INFO  nextflow.Session - [1c/0c3a51] Submitted process > CAASTOOLS_DISCOVERY (ali4 | b_5)
+may-18 19:13:01.384 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 16; name: CAASTOOLS_DISCOVERY (ali4 | b_3); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/f0/56d843ff192115537b03b191d49abc]
+may-18 19:13:01.387 [TaskFinalizer-6] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali4 | b_3)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/f0/56d843ff192115537b03b191d49abc/ali4.b_3.caas` (pattern: `ali4.b_3.caas`)
+may-18 19:13:01.390 [TaskFinalizer-6] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:01.390 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:01.391 [Task submitter] INFO  nextflow.Session - [bf/ef6c0f] Submitted process > CAASTOOLS_DISCOVERY (ali3 | b_5)
+may-18 19:13:04.943 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 19; name: CAASTOOLS_DISCOVERY (ali3 | b_4); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/9b/c5af88e3390419326b62cf9a829b37]
+may-18 19:13:04.946 [TaskFinalizer-7] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali3 | b_4)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/9b/c5af88e3390419326b62cf9a829b37/ali3.b_4.caas` (pattern: `ali3.b_4.caas`)
+may-18 19:13:04.947 [TaskFinalizer-7] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:04.948 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 17; name: CAASTOOLS_DISCOVERY (ali1 | b_4); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/45/9f8446e9dbebb5f28563b108ead417]
+may-18 19:13:04.957 [TaskFinalizer-8] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali1 | b_4)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/45/9f8446e9dbebb5f28563b108ead417/ali1.b_4.caas` (pattern: `ali1.b_4.caas`)
+may-18 19:13:04.960 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:04.960 [Task submitter] INFO  nextflow.Session - [60/0103d3] Submitted process > CAASTOOLS_DISCOVERY (ali1 | b_6)
+may-18 19:13:04.965 [TaskFinalizer-8] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:04.974 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:04.974 [Task submitter] INFO  nextflow.Session - [fc/4e38df] Submitted process > CAASTOOLS_DISCOVERY (ali2 | b_6)
+may-18 19:13:04.989 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 20; name: CAASTOOLS_DISCOVERY (ali4 | b_4); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/f0/48dafb47905b5acae41bf78915e39a]
+may-18 19:13:04.991 [TaskFinalizer-10] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali4 | b_4)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/f0/48dafb47905b5acae41bf78915e39a/ali4.b_4.caas` (pattern: `ali4.b_4.caas`)
+may-18 19:13:04.992 [TaskFinalizer-10] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:04.999 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:05.000 [Task submitter] INFO  nextflow.Session - [de/e824ea] Submitted process > CAASTOOLS_DISCOVERY (ali4 | b_6)
+may-18 19:13:05.014 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 21; name: CAASTOOLS_DISCOVERY (ali1 | b_5); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/0e/0ceed403dcb05a3e788cd7e58c0dfa]
+may-18 19:13:05.016 [TaskFinalizer-9] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali1 | b_5)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/0e/0ceed403dcb05a3e788cd7e58c0dfa/ali1.b_5.caas` (pattern: `ali1.b_5.caas`)
+may-18 19:13:05.018 [TaskFinalizer-9] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:05.026 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 22; name: CAASTOOLS_DISCOVERY (ali2 | b_5); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/1b/9258934af9e20ed1499b428fd4344b]
+may-18 19:13:05.026 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:05.027 [Task submitter] INFO  nextflow.Session - [63/0315ee] Submitted process > CAASTOOLS_DISCOVERY (ali3 | b_6)
+may-18 19:13:05.027 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali2 | b_5)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/1b/9258934af9e20ed1499b428fd4344b/ali2.b_5.caas` (pattern: `ali2.b_5.caas`)
+may-18 19:13:05.045 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:05.053 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:05.054 [Task submitter] INFO  nextflow.Session - [ce/02d29f] Submitted process > CAASTOOLS_DISCOVERY (ali1 | b_7)
+may-18 19:13:05.105 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 18; name: CAASTOOLS_DISCOVERY (ali2 | b_4); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/0c/fc175584e932fd38d9d6fee020ae84]
+may-18 19:13:05.107 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali2 | b_4)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/0c/fc175584e932fd38d9d6fee020ae84/ali2.b_4.caas` (pattern: `ali2.b_4.caas`)
+may-18 19:13:05.108 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:05.112 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:05.112 [Task submitter] INFO  nextflow.Session - [45/baf31a] Submitted process > CAASTOOLS_DISCOVERY (ali2 | b_7)
+may-18 19:13:05.216 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 23; name: CAASTOOLS_DISCOVERY (ali3 | b_5); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/bf/ef6c0f265beb8d316b21acf4f32b4b]
+may-18 19:13:05.217 [TaskFinalizer-4] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali3 | b_5)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/bf/ef6c0f265beb8d316b21acf4f32b4b/ali3.b_5.caas` (pattern: `ali3.b_5.caas`)
+may-18 19:13:05.218 [TaskFinalizer-4] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:05.222 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 24; name: CAASTOOLS_DISCOVERY (ali4 | b_5); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/1c/0c3a5172397933fe202b23056d260a]
+may-18 19:13:05.223 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:05.223 [Task submitter] INFO  nextflow.Session - [90/3abd22] Submitted process > CAASTOOLS_DISCOVERY (ali3 | b_7)
+may-18 19:13:05.225 [TaskFinalizer-3] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali4 | b_5)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/1c/0c3a5172397933fe202b23056d260a/ali4.b_5.caas` (pattern: `ali4.b_5.caas`)
+may-18 19:13:05.225 [TaskFinalizer-3] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:05.229 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:05.230 [Task submitter] INFO  nextflow.Session - [a8/4e63cf] Submitted process > CAASTOOLS_DISCOVERY (ali4 | b_7)
+may-18 19:13:08.813 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 27; name: CAASTOOLS_DISCOVERY (ali3 | b_6); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/63/0315ee44ac59799baeb136969a6dc2]
+may-18 19:13:08.815 [TaskFinalizer-5] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali3 | b_6)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/63/0315ee44ac59799baeb136969a6dc2/ali3.b_6.caas` (pattern: `ali3.b_6.caas`)
+may-18 19:13:08.816 [TaskFinalizer-5] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:08.822 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:08.823 [Task submitter] INFO  nextflow.Session - [8e/255ee6] Submitted process > CAASTOOLS_DISCOVERY (ali1 | b_8)
+may-18 19:13:08.825 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 29; name: CAASTOOLS_DISCOVERY (ali1 | b_7); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/ce/02d29fff40fdaac3c160e04b73fda7]
+may-18 19:13:08.827 [TaskFinalizer-6] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali1 | b_7)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/ce/02d29fff40fdaac3c160e04b73fda7/ali1.b_7.caas` (pattern: `ali1.b_7.caas`)
+may-18 19:13:08.828 [TaskFinalizer-6] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:08.834 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:08.834 [Task submitter] INFO  nextflow.Session - [48/e1f1b2] Submitted process > CAASTOOLS_DISCOVERY (ali4 | b_8)
+may-18 19:13:08.891 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 25; name: CAASTOOLS_DISCOVERY (ali1 | b_6); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/60/0103d33d9aa1cf25746ad85bce2ac5]
+may-18 19:13:08.893 [TaskFinalizer-7] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali1 | b_6)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/60/0103d33d9aa1cf25746ad85bce2ac5/ali1.b_6.caas` (pattern: `ali1.b_6.caas`)
+may-18 19:13:08.894 [TaskFinalizer-7] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:08.901 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:08.902 [Task submitter] INFO  nextflow.Session - [c3/c3cba2] Submitted process > CAASTOOLS_DISCOVERY (ali2 | b_8)
+may-18 19:13:09.042 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 26; name: CAASTOOLS_DISCOVERY (ali2 | b_6); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/fc/4e38df7dc2af7b9821b8ac25631364]
+may-18 19:13:09.044 [TaskFinalizer-8] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali2 | b_6)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/fc/4e38df7dc2af7b9821b8ac25631364/ali2.b_6.caas` (pattern: `ali2.b_6.caas`)
+may-18 19:13:09.044 [TaskFinalizer-8] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:09.054 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:09.055 [Task submitter] INFO  nextflow.Session - [8d/240f28] Submitted process > CAASTOOLS_DISCOVERY (ali3 | b_8)
+may-18 19:13:09.079 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 30; name: CAASTOOLS_DISCOVERY (ali2 | b_7); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/45/baf31a59ed25a1d21672f168ab80fb]
+may-18 19:13:09.080 [TaskFinalizer-10] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali2 | b_7)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/45/baf31a59ed25a1d21672f168ab80fb/ali2.b_7.caas` (pattern: `ali2.b_7.caas`)
+may-18 19:13:09.081 [TaskFinalizer-10] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:09.085 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:09.086 [Task submitter] INFO  nextflow.Session - [8e/00d93f] Submitted process > CAASTOOLS_DISCOVERY (ali1 | b_9)
+may-18 19:13:09.109 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 28; name: CAASTOOLS_DISCOVERY (ali4 | b_6); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/de/e824ea46a857fa5a78fb7afc233b82]
+may-18 19:13:09.110 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 32; name: CAASTOOLS_DISCOVERY (ali4 | b_7); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/a8/4e63cf1b0252a15168d95aecc285a7]
+may-18 19:13:09.112 [TaskFinalizer-9] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali4 | b_6)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/de/e824ea46a857fa5a78fb7afc233b82/ali4.b_6.caas` (pattern: `ali4.b_6.caas`)
+may-18 19:13:09.112 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali4 | b_7)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/a8/4e63cf1b0252a15168d95aecc285a7/ali4.b_7.caas` (pattern: `ali4.b_7.caas`)
+may-18 19:13:09.113 [TaskFinalizer-9] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:09.114 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:09.118 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:09.119 [Task submitter] INFO  nextflow.Session - [24/b10c51] Submitted process > CAASTOOLS_DISCOVERY (ali2 | b_9)
+may-18 19:13:09.135 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:09.136 [Task submitter] INFO  nextflow.Session - [0f/c52449] Submitted process > CAASTOOLS_DISCOVERY (ali3 | b_9)
+may-18 19:13:09.255 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 31; name: CAASTOOLS_DISCOVERY (ali3 | b_7); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/90/3abd224b9452714538b07814e7d09a]
+may-18 19:13:09.259 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali3 | b_7)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/90/3abd224b9452714538b07814e7d09a/ali3.b_7.caas` (pattern: `ali3.b_7.caas`)
+may-18 19:13:09.260 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:09.265 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:13:09.267 [Task submitter] INFO  nextflow.Session - [93/2516ae] Submitted process > CAASTOOLS_DISCOVERY (ali4 | b_9)
+may-18 19:13:12.673 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 34; name: CAASTOOLS_DISCOVERY (ali2 | b_8); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/c3/c3cba20be3531f5cac7d22947843a4]
+may-18 19:13:12.675 [TaskFinalizer-4] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali2 | b_8)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/c3/c3cba20be3531f5cac7d22947843a4/ali2.b_8.caas` (pattern: `ali2.b_8.caas`)
+may-18 19:13:12.675 [TaskFinalizer-4] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:12.675 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 33; name: CAASTOOLS_DISCOVERY (ali1 | b_8); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/8e/255ee62b67c9a1905880655a014581]
+may-18 19:13:12.676 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 36; name: CAASTOOLS_DISCOVERY (ali4 | b_8); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/48/e1f1b2907323982189e6cb97b7f498]
+may-18 19:13:12.677 [TaskFinalizer-3] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali1 | b_8)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/8e/255ee62b67c9a1905880655a014581/ali1.b_8.caas` (pattern: `ali1.b_8.caas`)
+may-18 19:13:12.677 [TaskFinalizer-5] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali4 | b_8)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/48/e1f1b2907323982189e6cb97b7f498/ali4.b_8.caas` (pattern: `ali4.b_8.caas`)
+may-18 19:13:12.678 [TaskFinalizer-3] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:12.678 [TaskFinalizer-5] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:12.881 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 37; name: CAASTOOLS_DISCOVERY (ali1 | b_9); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/8e/00d93fb85ebccfaf375fbcdb5d1e76]
+may-18 19:13:12.882 [TaskFinalizer-6] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali1 | b_9)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/8e/00d93fb85ebccfaf375fbcdb5d1e76/ali1.b_9.caas` (pattern: `ali1.b_9.caas`)
+may-18 19:13:12.883 [TaskFinalizer-6] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:12.885 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 35; name: CAASTOOLS_DISCOVERY (ali3 | b_8); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/8d/240f28e88fd2a83e2a0b834ffc440b]
+may-18 19:13:12.888 [TaskFinalizer-7] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali3 | b_8)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/8d/240f28e88fd2a83e2a0b834ffc440b/ali3.b_8.caas` (pattern: `ali3.b_8.caas`)
+may-18 19:13:12.888 [TaskFinalizer-7] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:12.923 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 39; name: CAASTOOLS_DISCOVERY (ali3 | b_9); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/0f/c52449c1292b19c32164491fc2edd6]
+may-18 19:13:12.924 [TaskFinalizer-8] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali3 | b_9)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/0f/c52449c1292b19c32164491fc2edd6/ali3.b_9.caas` (pattern: `ali3.b_9.caas`)
+may-18 19:13:12.925 [TaskFinalizer-8] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:12.929 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 38; name: CAASTOOLS_DISCOVERY (ali2 | b_9); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/24/b10c514906f42d4264491acc019468]
+may-18 19:13:12.930 [TaskFinalizer-10] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali2 | b_9)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/24/b10c514906f42d4264491acc019468/ali2.b_9.caas` (pattern: `ali2.b_9.caas`)
+may-18 19:13:12.930 [TaskFinalizer-10] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:13.024 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 40; name: CAASTOOLS_DISCOVERY (ali4 | b_9); status: COMPLETED; exit: 0; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/93/2516aee527ab9650ccae63eee1818b]
+may-18 19:13:13.026 [TaskFinalizer-9] DEBUG nextflow.processor.TaskProcessor - Process `CAASTOOLS_DISCOVERY (ali4 | b_9)` is unable to find [UnixPath]: `/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/93/2516aee527ab9650ccae63eee1818b/ali4.b_9.caas` (pattern: `ali4.b_9.caas`)
+may-18 19:13:13.026 [TaskFinalizer-9] DEBUG nextflow.processor.TaskProcessor - Process CAASTOOLS_DISCOVERY > Skipping output binding because one or more optional files are missing: fileoutparam<0>
+may-18 19:13:13.029 [main] DEBUG nextflow.Session - Session await > all processes finished
+may-18 19:13:13.129 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+may-18 19:13:13.130 [main] DEBUG nextflow.Session - Session await > all barriers passed
+may-18 19:13:13.133 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+may-18 19:13:13.137 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=40; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=2m 41s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=11; peakCpus=11; peakMemory=0; ]
+may-18 19:13:13.283 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+may-18 19:13:13.297 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+may-18 19:13:13.298 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

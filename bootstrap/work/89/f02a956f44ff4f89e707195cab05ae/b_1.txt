@@ -1,0 +1,12 @@
+triMan1	0
+echTel2	0
+ornAna1	0
+loxAfr3	0
+oryAfe1	0
+dasNov3	0
+susScr3	1
+myoLuc2	1
+hetGla2	1
+calJac3	1
+chiLan1	1
+sarHar1	1

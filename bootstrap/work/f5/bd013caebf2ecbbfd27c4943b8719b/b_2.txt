@@ -1,0 +1,12 @@
+mm10	0
+hetGla2	0
+capHir1	0
+jacJac1	0
+eriEur2	0
+mesAur1	0
+ornAna1	1
+sarHar1	1
+panTro4	1
+echTel2	1
+macEug2	1
+monDom5	1

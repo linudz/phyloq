@@ -1,0 +1,12 @@
+macEug2	0
+monDom5	0
+echTel2	0
+panHod1	0
+oryAfe1	0
+sarHar1	0
+eptFus1	1
+bosTau8	1
+eriEur2	1
+cerSim1	1
+equCab2	1
+tupChi1	1

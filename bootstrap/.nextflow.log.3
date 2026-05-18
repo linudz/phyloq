@@ -1,0 +1,159 @@
+may-18 19:08:35.138 [main] DEBUG nextflow.cli.Launcher - $> nextflow run launch_pipeline.nf
+may-18 19:08:35.216 [main] DEBUG nextflow.cli.CmdRun - N E X T F L O W  ~  version 24.04.2
+may-18 19:08:35.232 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/Users/fabio/.nextflow/plugins; core-plugins: nf-amazon@2.5.2,nf-azure@1.6.0,nf-cloudcache@0.4.1,nf-codecommit@0.2.0,nf-console@1.1.3,nf-ga4gh@1.3.0,nf-google@1.13.2,nf-tower@1.9.1,nf-wave@1.4.2
+may-18 19:08:35.240 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+may-18 19:08:35.242 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+may-18 19:08:35.244 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.10.0 in 'deployment' mode
+may-18 19:08:35.253 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+may-18 19:08:35.294 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 from script declaration
+may-18 19:08:35.308 [main] DEBUG nextflow.cli.CmdRun - Launching `launch_pipeline.nf` [mad_pike] DSL2 - revision: 9a62c99d18
+may-18 19:08:35.309 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+may-18 19:08:35.309 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[]
+may-18 19:08:35.353 [main] DEBUG nextflow.Session - Session UUID: dff0b0f4-abb3-4de0-b9a9-05039b137396
+may-18 19:08:35.353 [main] DEBUG nextflow.Session - Run name: mad_pike
+may-18 19:08:35.354 [main] DEBUG nextflow.Session - Executor pool size: 8
+may-18 19:08:35.361 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+may-18 19:08:35.365 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=24; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+may-18 19:08:35.404 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 24.04.2 build 5914
+  Created: 29-05-2024 06:19 UTC (08:19 CEST)
+  System: Mac OS X 26.1
+  Runtime: Groovy 4.0.21 on Java HotSpot(TM) 64-Bit Server VM 17.0.6+9-LTS-190
+  Encoding: UTF-8 (UTF-8)
+  Process: 50048@McClintock.local [172.33.2.224]
+  CPUs: 8 - Mem: 8 GB (143.2 MB) - Swap: 5 GB (1 GB)
+may-18 19:08:35.429 [main] DEBUG nextflow.Session - Work-dir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work [Mac OS X]
+may-18 19:08:35.430 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/bin
+may-18 19:08:35.440 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+may-18 19:08:35.446 [main] DEBUG nextflow.Session - Observer factory: DefaultObserverFactory
+may-18 19:08:35.462 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+may-18 19:08:35.468 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 9; maxThreads: 1000
+may-18 19:08:35.562 [main] DEBUG nextflow.Session - Session start
+may-18 19:08:35.996 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+may-18 19:08:36.006 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /Users/fabio/.nextflow/secrets/store.json
+may-18 19:08:36.010 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@79e7188e] - activable => nextflow.secret.LocalSecretsProvider@79e7188e
+may-18 19:08:36.108 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+may-18 19:08:36.108 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+may-18 19:08:36.112 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+may-18 19:08:36.115 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=8; memory=8 GB; capacity=8; pollInterval=100ms; dumpInterval=5m
+may-18 19:08:36.117 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+may-18 19:08:36.156 [main] DEBUG nextflow.Session - Workflow process names [dsl2]: CAASTOOLS_DISCOVERY
+may-18 19:08:36.157 [main] DEBUG nextflow.Session - Igniting dataflow network (3)
+may-18 19:08:36.161 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > CAASTOOLS_DISCOVERY
+may-18 19:08:36.169 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_baa4efc5c4a9352c: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/launch_pipeline.nf
+may-18 19:08:36.169 [PathVisitor-2] DEBUG nextflow.file.PathVisitor - files for syntax: glob; folder: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/cfg.files/; pattern: *; options: [checkIfExists:true]
+may-18 19:08:36.169 [PathVisitor-1] DEBUG nextflow.file.PathVisitor - files for syntax: glob; folder: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/alignments/; pattern: *; options: [checkIfExists:true]
+may-18 19:08:36.169 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+may-18 19:08:36.170 [main] DEBUG nextflow.Session - Session await
+may-18 19:08:36.393 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:08:36.400 [Task submitter] INFO  nextflow.Session - [a3/937d80] Submitted process > CAASTOOLS_DISCOVERY (ali1 | b_10)
+may-18 19:08:36.421 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:08:36.423 [Task submitter] INFO  nextflow.Session - [5e/a42245] Submitted process > CAASTOOLS_DISCOVERY (ali1 | b_3)
+may-18 19:08:36.443 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:08:36.445 [Task submitter] INFO  nextflow.Session - [7e/ee7ade] Submitted process > CAASTOOLS_DISCOVERY (ali2 | b_3)
+may-18 19:08:36.459 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:08:36.460 [Task submitter] INFO  nextflow.Session - [a4/a907c2] Submitted process > CAASTOOLS_DISCOVERY (ali2 | b_10)
+may-18 19:08:36.469 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:08:36.470 [Task submitter] INFO  nextflow.Session - [15/3e955b] Submitted process > CAASTOOLS_DISCOVERY (ali2 | b_2)
+may-18 19:08:36.478 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:08:36.478 [Task submitter] INFO  nextflow.Session - [b0/60f171] Submitted process > CAASTOOLS_DISCOVERY (ali2 | b_1)
+may-18 19:08:36.487 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:08:36.488 [Task submitter] INFO  nextflow.Session - [35/dcb703] Submitted process > CAASTOOLS_DISCOVERY (ali1 | b_1)
+may-18 19:08:36.496 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: CAASTOOLS_DISCOVERY (ali1 | b_10); status: COMPLETED; exit: 1; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/a3/937d806bfa348940dc401aa56155c9]
+may-18 19:08:36.497 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=24; workQueue=LinkedBlockingQueue[10000]; allowCoreThreadTimeout=false
+may-18 19:08:36.497 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:08:36.499 [Task submitter] INFO  nextflow.Session - [e0/6cf7f8] Submitted process > CAASTOOLS_DISCOVERY (ali1 | b_2)
+may-18 19:08:36.503 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 7; name: CAASTOOLS_DISCOVERY (ali1 | b_3); status: COMPLETED; exit: 1; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/5e/a42245cceb6bd2e4fb5f6e57095df9]
+may-18 19:08:36.509 [TaskFinalizer-1] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=CAASTOOLS_DISCOVERY (ali1 | b_10); work-dir=/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/a3/937d806bfa348940dc401aa56155c9
+  error [nextflow.exception.ProcessFailedException]: Process `CAASTOOLS_DISCOVERY (ali1 | b_10)` terminated with an error exit status (1)
+may-18 19:08:36.509 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 8; name: CAASTOOLS_DISCOVERY (ali2 | b_3); status: COMPLETED; exit: 1; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/7e/ee7ade95fb98445e44c0bb83660145]
+may-18 19:08:36.510 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:08:36.511 [Task submitter] INFO  nextflow.Session - [aa/a9adf1] Submitted process > CAASTOOLS_DISCOVERY (ali3 | b_10)
+may-18 19:08:36.520 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:08:36.521 [Task submitter] INFO  nextflow.Session - [1c/1dc4dc] Submitted process > CAASTOOLS_DISCOVERY (ali3 | b_1)
+may-18 19:08:36.522 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: CAASTOOLS_DISCOVERY (ali2 | b_10); status: COMPLETED; exit: 1; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/a4/a907c29ad0243e0f3951283a34b2ce]
+may-18 19:08:36.539 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 6; name: CAASTOOLS_DISCOVERY (ali2 | b_2); status: COMPLETED; exit: 1; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/15/3e955b706ec6fbf70ab4286e487b80]
+may-18 19:08:36.542 [TaskFinalizer-1] DEBUG nextflow.processor.TaskRun - Unable to dump output of process 'CAASTOOLS_DISCOVERY (ali1 | b_10)' -- Cause: java.nio.file.NoSuchFileException: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/a3/937d806bfa348940dc401aa56155c9/.command.out
+may-18 19:08:36.545 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: CAASTOOLS_DISCOVERY (ali2 | b_1); status: COMPLETED; exit: 1; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/b0/60f171ac7e382ed71d120f160e558f]
+may-18 19:08:36.545 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:08:36.546 [Task submitter] INFO  nextflow.Session - [71/5d6877] Submitted process > CAASTOOLS_DISCOVERY (ali3 | b_2)
+may-18 19:08:36.547 [TaskFinalizer-1] ERROR nextflow.processor.TaskProcessor - Error executing process > 'CAASTOOLS_DISCOVERY (ali1 | b_10)'
+
+Caused by:
+  Process `CAASTOOLS_DISCOVERY (ali1 | b_10)` terminated with an error exit status (1)
+
+
+Command executed:
+
+  python /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/caastools/ct discovery \
+      -a ali1.fasta \
+      -t b_10.txt \
+      -o ali1.b_10.caas \
+      --fmt fasta
+
+Command exit status:
+  1
+
+Command output:
+  (empty)
+
+Command error:
+  ln: b_10.txt: Function not implemented
+
+Work dir:
+  /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/a3/937d806bfa348940dc401aa56155c9
+
+Tip: when you have fixed the problem you can continue the execution adding the option `-resume` to the run command line
+may-18 19:08:36.550 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: CAASTOOLS_DISCOVERY (ali1 | b_1); status: COMPLETED; exit: 1; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/35/dcb703634e1ce22f77d04c307dadad]
+may-18 19:08:36.551 [TaskFinalizer-6] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=CAASTOOLS_DISCOVERY (ali2 | b_1); work-dir=/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/b0/60f171ac7e382ed71d120f160e558f
+  error [nextflow.exception.ProcessFailedException]: Process `CAASTOOLS_DISCOVERY (ali2 | b_1)` terminated with an error exit status (1)
+may-18 19:08:36.553 [TaskFinalizer-5] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=CAASTOOLS_DISCOVERY (ali2 | b_2); work-dir=/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/15/3e955b706ec6fbf70ab4286e487b80
+  error [nextflow.exception.ProcessFailedException]: Process `CAASTOOLS_DISCOVERY (ali2 | b_2)` terminated with an error exit status (1)
+may-18 19:08:36.554 [TaskFinalizer-4] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=CAASTOOLS_DISCOVERY (ali2 | b_10); work-dir=/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/a4/a907c29ad0243e0f3951283a34b2ce
+  error [nextflow.exception.ProcessFailedException]: Process `CAASTOOLS_DISCOVERY (ali2 | b_10)` terminated with an error exit status (1)
+may-18 19:08:36.554 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:08:36.554 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5; name: CAASTOOLS_DISCOVERY (ali1 | b_2); status: COMPLETED; exit: 1; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/e0/6cf7f8f8d7389e4abba3be95e0128d]
+may-18 19:08:36.555 [Task submitter] INFO  nextflow.Session - [80/9a702d] Submitted process > CAASTOOLS_DISCOVERY (ali3 | b_3)
+may-18 19:08:36.555 [TaskFinalizer-3] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=CAASTOOLS_DISCOVERY (ali2 | b_3); work-dir=/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/7e/ee7ade95fb98445e44c0bb83660145
+  error [nextflow.exception.ProcessFailedException]: Process `CAASTOOLS_DISCOVERY (ali2 | b_3)` terminated with an error exit status (1)
+may-18 19:08:36.556 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=CAASTOOLS_DISCOVERY (ali1 | b_3); work-dir=/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/5e/a42245cceb6bd2e4fb5f6e57095df9
+  error [nextflow.exception.ProcessFailedException]: Process `CAASTOOLS_DISCOVERY (ali1 | b_3)` terminated with an error exit status (1)
+may-18 19:08:36.557 [TaskFinalizer-8] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=CAASTOOLS_DISCOVERY (ali1 | b_2); work-dir=/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/e0/6cf7f8f8d7389e4abba3be95e0128d
+  error [nextflow.exception.ProcessFailedException]: Process `CAASTOOLS_DISCOVERY (ali1 | b_2)` terminated with an error exit status (1)
+may-18 19:08:36.559 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 10; name: CAASTOOLS_DISCOVERY (ali3 | b_10); status: COMPLETED; exit: 1; error: -; workDir: /Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/aa/a9adf1c0bb39a703b01e1bcba937c2]
+may-18 19:08:36.561 [TaskFinalizer-1] DEBUG nextflow.Session - Session aborted -- Cause: Process `CAASTOOLS_DISCOVERY (ali1 | b_10)` terminated with an error exit status (1)
+may-18 19:08:36.561 [TaskFinalizer-7] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=CAASTOOLS_DISCOVERY (ali1 | b_1); work-dir=/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/35/dcb703634e1ce22f77d04c307dadad
+  error [nextflow.exception.ProcessFailedException]: Process `CAASTOOLS_DISCOVERY (ali1 | b_1)` terminated with an error exit status (1)
+may-18 19:08:36.564 [TaskFinalizer-9] DEBUG nextflow.processor.TaskProcessor - Handling unexpected condition for
+  task: name=CAASTOOLS_DISCOVERY (ali3 | b_10); work-dir=/Users/fabio/pCloud Drive/Bio/Projects/active.research/traits.evolution.omar/phyloq/bootstrap/work/aa/a9adf1c0bb39a703b01e1bcba937c2
+  error [nextflow.exception.ProcessFailedException]: Process `CAASTOOLS_DISCOVERY (ali3 | b_10)` terminated with an error exit status (1)
+may-18 19:08:36.566 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+may-18 19:08:36.567 [Task submitter] INFO  nextflow.Session - [33/fd0111] Submitted process > CAASTOOLS_DISCOVERY (ali4 | b_1)
+may-18 19:08:36.576 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+may-18 19:08:36.588 [main] DEBUG nextflow.Session - Session await > all processes finished
+may-18 19:08:36.591 [main] DEBUG nextflow.Session - Session await > all barriers passed
+may-18 19:08:36.602 [main] WARN  n.processor.TaskPollingMonitor - Killing running tasks (4)
+may-18 19:08:36.617 [main] DEBUG n.executor.local.LocalTaskHandler - Unable to kill CAASTOOLS_DISCOVERY (ali3 | b_1) -- command: kill -TERM 50127; exit: 1 
+ bash: line 0: kill: (50127) - No such process
+
+may-18 19:08:36.625 [main] DEBUG n.executor.local.LocalTaskHandler - Unable to kill CAASTOOLS_DISCOVERY (ali3 | b_2) -- command: kill -TERM 50133; exit: 1 
+ bash: line 0: kill: (50133) - No such process
+
+may-18 19:08:36.632 [main] DEBUG n.executor.local.LocalTaskHandler - Unable to kill CAASTOOLS_DISCOVERY (ali3 | b_3) -- command: kill -TERM 50136; exit: 1 
+ bash: line 0: kill: (50136) - No such process
+
+may-18 19:08:36.638 [main] DEBUG n.executor.local.LocalTaskHandler - Unable to kill CAASTOOLS_DISCOVERY (ali4 | b_1) -- command: kill -TERM 50143; exit: 1 
+ bash: line 0: kill: (50143) - No such process
+
+may-18 19:08:36.639 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=0; failedCount=9; ignoredCount=0; cachedCount=0; pendingCount=27; submittedCount=4; runningCount=-4; retriesCount=0; abortedCount=4; succeedDuration=0ms; failedDuration=160ms; cachedDuration=0ms;loadCpus=-4; loadMemory=0; peakRunning=9; peakCpus=9; peakMemory=0; ]
+may-18 19:08:36.759 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+may-18 19:08:36.770 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye
