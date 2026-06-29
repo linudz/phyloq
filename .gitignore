@@ -1,0 +1,7 @@
+*.DS_Store
+.DS_Store
+bootstrap/.nextflow/
+bootstrap/.nextflow.log*
+bootstrap/.nextflow/history
+bootstrap/work
+bootstrap/pipeline.results

@@ -2,7 +2,7 @@ nextflow.enable.dsl=2
 
 params.caastools  = "${baseDir}/caastools/ct"
 params.alignments = "${baseDir}/alignments/*"
-params.configs    = "${baseDir}/cfg.files/*"
+params.configs    = "${baseDir}/cfg.files/*.cfg"
 params.outdir     = "${baseDir}/pipeline.results"
 params.fmt        = "fasta"
 
@@ -47,6 +47,7 @@ workflow {
 
     configs_ch = Channel
         .fromPath(params.configs, checkIfExists: true)
+        .filter { file -> !file.isDirectory() }
         .map { file ->
             tuple(file.baseName, file)
         }
