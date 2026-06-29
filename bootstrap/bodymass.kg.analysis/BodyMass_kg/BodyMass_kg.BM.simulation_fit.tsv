@@ -1,0 +1,4 @@
+trait	model	indicator	value
+BodyMass_kg	BM	logLik	-655.441378120677
+BodyMass_kg	BM	AIC	1314.88275624135
+BodyMass_kg	BM	AICc	1314.93962827927

@@ -1,0 +1,2 @@
+Trait	Model	n_species	n_pairs	min_nu	q025_nu	median_nu	mean_nu	q975_nu	max_nu	min_enu	q025_enu	median_enu	mean_enu	q975_enu	max_enu	mean_absdiff_z	median_absdiff_z
+BodyMass_kg	BM	214	22791	0	0.00623200011492358	0.225984303743488	0.291239067462645	1	1	0	0.006	0.228	0.2939114562766	1	1	0.852255482509197	0.428557526337484
