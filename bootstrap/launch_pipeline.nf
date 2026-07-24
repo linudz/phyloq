@@ -4,7 +4,7 @@ params.caastools  = "${baseDir}/caastools/ct"
 params.alignments = "${baseDir}/alignments/*"
 params.configs    = "${baseDir}/cfg.files/*.cfg"
 params.outdir     = "${baseDir}/pipeline.results"
-params.fmt        = "fasta"
+params.fmt        = "phylip-relaxed"
 
 process CAASTOOLS_DISCOVERY {
 
@@ -12,10 +12,7 @@ process CAASTOOLS_DISCOVERY {
 
     stageInMode 'copy'
 
-    publishDir(
-        "${params.outdir}/${gene_id}_results",
-        mode: 'copy'
-    )
+    publishDir path: { "${params.outdir}/${gene_id}_results" }, mode: 'copy'
 
     input:
     tuple val(gene_id), path(alignment), val(cfg_id), path(config)
