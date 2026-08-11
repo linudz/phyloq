@@ -5,3 +5,13 @@ bootstrap/.nextflow.log*
 bootstrap/.nextflow/history
 bootstrap/work
 bootstrap/pipeline.results
+/.nextflow/
+/.nextflow.log*
+/work/
+/Rplots.pdf
+bootstrap/fast.run/results/
+bootstrap/fast.run/rerconverge_results/
+bootstrap/rerconverge/test.*/
+bootstrap/drawer/.nextflow/
+bootstrap/drawer/work/
+bootstrap/drawer/pipeline.results/
