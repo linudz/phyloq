@@ -1,0 +1,49 @@
+name: phyloq
+
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+
+dependencies:
+  # Workflow runtime
+  - openjdk=17
+  - nextflow
+
+  # CAAStools
+  - python=3.11
+  - biopython
+  - numpy
+  - scipy
+
+  # R and package installation tools
+  - r-base=4.3
+  - r-remotes
+  - r-devtools
+
+  # RERconverge dependencies
+  - r-ape
+  - r-phangorn
+  - r-phytools
+  - r-geiger
+  - r-rcpp
+  - r-rcpparmadillo
+  - r-weights
+  - r-ggplot2
+  - r-dplyr
+  - r-gplots
+  - r-rcolorbrewer
+  - r-knitr
+  - r-progress
+  - r-castor
+  - r-fsa
+  - r-treetools
+  - r-rsvd
+  - bioconductor-impute
+  - bioconductor-ggtree
+
+  # Build tools needed for R packages compiled from source
+  - compilers
+  - make
+  - git
+  - curl
