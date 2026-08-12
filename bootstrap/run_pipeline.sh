@@ -36,4 +36,10 @@ echo "PhyloQ run: ${run_id}"
 echo "Results: ${results_dir}"
 
 cd "${script_dir}"
-exec nextflow run launch_pipeline.nf --run_id "${run_id}" "$@"
+
+nextflow_options=()
+if [[ -n "${PHYLOQ_NEXTFLOW_CONFIG:-}" ]]; then
+    nextflow_options+=(-c "${PHYLOQ_NEXTFLOW_CONFIG}")
+fi
+
+exec nextflow "${nextflow_options[@]}" run launch_pipeline.nf --run_id "${run_id}" "$@"

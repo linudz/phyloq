@@ -496,6 +496,72 @@ Nextflow uses the local executor by default and schedules tasks up to the
 available resource limit. Executor, CPU, memory, and queue settings can be
 added in an external Nextflow configuration when running on a cluster.
 
+## Running in the background with SLURM
+
+SLURM is optional. The normal `bash run_pipeline.sh` command keeps using the
+local executor. The repository also includes `bootstrap/slurm.config`, which
+assigns every
+CAAStools and RERconverge process to the SLURM executor. A small SLURM driver
+job keeps Nextflow running and submits the independent analysis jobs to the
+scheduler.
+
+From a cluster login node, activate the `phyloq` Conda environment and run:
+
+```bash
+cd bootstrap
+bash submit_pipeline_slurm.sh
+```
+
+The command returns immediately after `sbatch` accepts the driver job. It
+prints the job ID and the paths of its output and error logs under
+`bootstrap/slurm.logs/`. Monitor the driver with:
+
+```bash
+squeue -j JOB_ID
+```
+
+The individual pipeline processes also appear as separate SLURM jobs. CAAStools
+alignment/configuration combinations run independently, and the RERconverge
+configurations run independently in parallel with the CAAStools branch.
+
+If the cluster requires an account, partition, or QoS, export them before
+submission:
+
+```bash
+export PHYLOQ_SLURM_ACCOUNT="my_account"
+export PHYLOQ_SLURM_PARTITION="my_partition"
+export PHYLOQ_SLURM_QOS="my_qos"
+bash submit_pipeline_slurm.sh
+```
+
+Omit variables that the cluster does not require. The values are applied both
+to the driver and to the analysis jobs. Without them, SLURM uses the user's
+cluster defaults.
+
+Pipeline arguments are passed through unchanged. For example:
+
+```bash
+bash submit_pipeline_slurm.sh -resume
+
+bash submit_pipeline_slurm.sh \
+  --caas_config_dir "/absolute/path/to/caas/configs" \
+  --rerconverge_config_dir "/absolute/path/to/rer/configs"
+```
+
+The default resource requests are defined in `bootstrap/slurm.config`:
+
+| Process | CPUs | Memory | Time |
+|---|---:|---:|---:|
+| CAAStools discovery | 1 | 2 GB | 2 hours |
+| RERconverge installation check | 1 | 8 GB | 4 hours |
+| RERconverge analysis | 1 | 16 GB | 12 hours |
+
+The Nextflow driver requests 1 CPU, 4 GB, and seven days. Adjust these initial
+values after inspecting real cluster usage. The driver must remain alive until
+all child jobs finish. Some clusters do not permit jobs to submit other jobs;
+on such a system, run `run_pipeline.sh -c slurm.config` on the login node
+instead and follow the local policy for keeping Nextflow alive.
+
 ## Outputs
 
 ### Run directory
