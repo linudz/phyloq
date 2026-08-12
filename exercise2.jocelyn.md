@@ -115,8 +115,10 @@ exist and are not empty.
 Start the pipeline with the default test settings:
 
 ```bash
-nextflow run launch_pipeline.nf
+bash run_pipeline.sh
 ```
+
+The launcher prints the new run name, for example `run-2608121236`. It creates that directory under `results/` in the repository root and stores the name in `.last_run_id` for the checks below and for `-resume`.
 
 The two parts of the pipeline run in parallel:
 
@@ -135,12 +137,22 @@ message and should show the processes as completed.
 
 ## 7. Check the Output
 
+All outputs are outside the input folders. They are stored under:
+
+```text
+results/run-YYMMDDHHMM/
+├── caas.results/
+└── rer.results/
+```
+
+From `bootstrap/`, `20 20 12 61 79 80 81 98 702 33 100 204 250 395 398 399 400cat .last_run_id)` prints the current run directory name.
+
 ### CAAStools output
 
 Count the CAAStools result files:
 
 ```bash
-find fast.run/results -type f -name '*.caas' | wc -l
+find ../results/"$(cat .last_run_id)"/caas.results -type f -name '*.caas' | wc -l
 ```
 
 The expected number is:
@@ -160,7 +172,7 @@ This corresponds to:
 List the RERconverge result directories:
 
 ```bash
-find fast.run/rerconverge_results -maxdepth 1 -type d -name 'rerconverge.*' | sort
+find ../results/"$(cat .last_run_id)"/rer.results -maxdepth 1 -type d -name 'rerconverge.*' | sort
 ```
 
 You should see three directories:
@@ -174,7 +186,7 @@ rerconverge.div.group.002
 Check that each analysis produced an association table:
 
 ```bash
-find fast.run/rerconverge_results -type f -name 'associations.tsv' | wc -l
+find ../results/"$(cat .last_run_id)"/rer.results -type f -name 'associations.tsv' | wc -l
 ```
 
 The expected number is:
@@ -217,5 +229,5 @@ resolved, save and report:
 After fixing the problem, you can continue the same run with:
 
 ```bash
-nextflow run launch_pipeline.nf -resume
+bash run_pipeline.sh -resume
 ```

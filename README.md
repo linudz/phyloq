@@ -26,9 +26,7 @@ phyloq/
 │   ├── cfg.files/                  complete phenotype configurations
 │   ├── fast.run/
 │   │   ├── alignments/             five test alignments
-│   │   ├── configs/                three test configurations
-│   │   ├── results/                CAAStools test results
-│   │   └── rerconverge_results/    RERconverge test results
+│   │   └── configs/                three test configurations
 │   └── rerconverge/
 │       ├── build_gene_trees.R      constructs gene trees from alignments
 │       ├── run_rerconverge.R       RERconverge command-line wrapper
@@ -37,6 +35,7 @@ phyloq/
 │           ├── taxon_name_map.tsv
 │           └── trees/
 │               └── rerconverge_gene_trees.tsv
+├── results/                       timestamped run outputs (Git-ignored)
 └── supplementary/
 ```
 
@@ -288,12 +287,12 @@ Defaults are defined in `bootstrap/nextflow.config`.
 | `alignments` | alignment glob | `fast.run/alignments/*` |
 | `config_dir` | phenotype configuration directory | `fast.run/configs` |
 | `config_pattern` | pattern inside `config_dir` | `*.cfg` |
-| `outdir` | CAAStools results | `fast.run/results` |
+| `run_id` | timestamped run identifier supplied by the launcher | generated automatically |
+| `results_root` | root directory for all published results | repository `results` directory |
 | `fmt` | CAAStools alignment format | `phylip-relaxed` |
 | `rerconverge_script` | RERconverge wrapper | `rerconverge/run_rerconverge.R` |
 | `rerconverge_trees` | gene-tree manifest | fast-run manifest |
 | `rerconverge_master` | topology used to validate gene trees | Kuderna tree |
-| `rerconverge_outdir` | RERconverge results | `fast.run/rerconverge_results` |
 | `rerconverge_max_trees` | first N manifest trees; `0` means all | `3` |
 | `rerconverge_min_trees` | minimum trees required by `readTrees` | `1` |
 | `rerconverge_min_valid` | minimum valid genes per branch | `1` |
@@ -332,8 +331,10 @@ No output from the three `test` commands means that the checks succeeded.
 ### 3. Run both branches
 
 ```bash
-nextflow run launch_pipeline.nf
+bash run_pipeline.sh
 ```
+
+The launcher creates a new `results/run-YYMMDDHHMM/` directory and records its ID in the local, Git-ignored file `bootstrap/.last_run_id`. All published outputs from both branches go into that run directory.
 
 At the start of each workflow run, `INSTALL_RERCONVERGE` checks whether the active R library contains RERconverge. If it is missing, this single setup process installs it from the official GitHub repository before any RERconverge analysis starts. The process requires network access to GitHub only when installation is necessary. CAAStools is independent and can run in parallel while this setup is taking place.
 
@@ -352,7 +353,7 @@ phenotype configuration.
 ### Run only RERconverge
 
 ```bash
-nextflow run launch_pipeline.nf -entry RERCONVERGE_FAST
+bash run_pipeline.sh -entry RERCONVERGE_FAST
 ```
 
 This is useful for checking the R installation and gene-tree inputs without
@@ -361,8 +362,10 @@ starting CAAStools.
 ### Resume an interrupted run
 
 ```bash
-nextflow run launch_pipeline.nf -resume
+bash run_pipeline.sh -resume
 ```
+
+The launcher reads `bootstrap/.last_run_id`, so resume publishes into the same timestamped directory rather than creating a new run.
 
 Use the same inputs and parameter values. Do not remove `work/` or
 `.nextflow/` before resuming.
@@ -372,26 +375,24 @@ Use the same inputs and parameter values. Do not remove `work/` or
 For example, use every tree in the manifest:
 
 ```bash
-nextflow run launch_pipeline.nf --rerconverge_max_trees 0
+bash run_pipeline.sh --rerconverge_max_trees 0
 ```
 
 Use external configurations:
 
 ```bash
-nextflow run launch_pipeline.nf \
+bash run_pipeline.sh \
   --config_dir "/absolute/path/to/configurations" \
   --config_pattern "**/*.cfg"
 ```
 
-Use external alignments and output directories:
+Use external alignments and configurations:
 
 ```bash
-nextflow run launch_pipeline.nf \
+bash run_pipeline.sh \
   --alignments "/absolute/path/to/alignments/*.phy" \
   --config_dir "/absolute/path/to/configurations" \
-  --outdir "/absolute/path/to/caastools-results" \
-  --rerconverge_trees "/absolute/path/to/rerconverge_gene_trees.tsv" \
-  --rerconverge_outdir "/absolute/path/to/rerconverge-results"
+  --rerconverge_trees "/absolute/path/to/rerconverge_gene_trees.tsv"
 ```
 
 Quote absolute paths and glob expressions, especially when a path contains
@@ -400,7 +401,7 @@ spaces.
 ### Use an additional Nextflow configuration
 
 ```bash
-nextflow run launch_pipeline.nf -c /absolute/path/to/analysis.config
+bash run_pipeline.sh -c /absolute/path/to/analysis.config
 ```
 
 `-c` supplies a Nextflow settings file. `--config_dir` instead identifies the
@@ -412,7 +413,7 @@ The appropriate thresholds depend on gene and taxon coverage. A reasonable
 starting command for a manifest containing many genes is:
 
 ```bash
-nextflow run launch_pipeline.nf \
+bash run_pipeline.sh \
   --rerconverge_max_trees 0 \
   --rerconverge_min_trees 20 \
   --rerconverge_min_valid 20 \
@@ -436,29 +437,32 @@ added in an external Nextflow configuration when running on a cluster.
 
 ## Outputs
 
-### CAAStools
+### Run directory
+
+Each new launch creates `results/run-YYMMDDHHMM/`. A resumed launch reuses the last run ID stored locally in `bootstrap/.last_run_id`; both the state file and the complete `results/` tree are ignored by Git. Input directories are never used as output destinations.
 
 ```text
-bootstrap/fast.run/results/
-└── <gene>_results/
-    └── <gene>.<configuration>.caas
+results/
+└── run-YYMMDDHHMM/
+    ├── caas.results/
+    │   └── <gene>_results/
+    │       └── <gene>.<configuration>.caas
+    └── rer.results/
+        └── rerconverge.<configuration>/
+            ├── associations.tsv
+            ├── phenotype_paths.tsv
+            ├── rer_matrix.tsv
+            ├── rerconverge_objects.rds
+            ├── run_summary.tsv
+            └── missing_foreground_species.txt   optional
 ```
+
+### CAAStools
 
 An empty `.caas` file means that CAAStools completed without reporting a hit;
 it does not by itself indicate task failure.
 
 ### RERconverge
-
-```text
-bootstrap/fast.run/rerconverge_results/
-└── rerconverge.<configuration>/
-    ├── associations.tsv
-    ├── phenotype_paths.tsv
-    ├── rer_matrix.tsv
-    ├── rerconverge_objects.rds
-    ├── run_summary.tsv
-    └── missing_foreground_species.txt   optional
-```
 
 - `associations.tsv` contains gene-level association statistics (`Rho`, `N`,
   `P`, and the package-provided adjusted p-value).
@@ -488,7 +492,7 @@ If a personal library is used, export it before launching Nextflow:
 
 ```bash
 export R_LIBS_USER="$HOME/R/library"
-nextflow run launch_pipeline.nf
+bash run_pipeline.sh
 ```
 
 ### `Only N phenotype species occur in the tree set`

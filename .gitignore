@@ -12,6 +12,8 @@ bootstrap/pipeline.results
 bootstrap/fast.run/results/
 bootstrap/fast.run/rerconverge_results/
 bootstrap/rerconverge/test.*/
+bootstrap/.last_run_id
+/results/
 bootstrap/drawer/.nextflow/
 bootstrap/drawer/work/
 bootstrap/drawer/pipeline.results/

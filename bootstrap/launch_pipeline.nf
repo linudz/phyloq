@@ -6,7 +6,7 @@ process CAASTOOLS_DISCOVERY {
 
     stageInMode 'copy'
 
-    publishDir path: { "${params.outdir}/${gene_id}_results" }, mode: 'copy'
+    publishDir path: { "${params.results_root}/${params.run_id}/caas.results/${gene_id}_results" }, mode: 'copy'
 
     input:
     tuple val(gene_id), path(alignment), val(cfg_id), path(config)
@@ -31,8 +31,6 @@ process CAASTOOLS_DISCOVERY {
 process INSTALL_RERCONVERGE {
 
     tag "check/install RERconverge"
-    cache false
-
     output:
     path "rerconverge.ready", emit: ready
 
@@ -65,7 +63,7 @@ process RERCONVERGE {
 
     tag "${cfg_id} | ${params.rerconverge_max_trees} genes"
     stageInMode 'copy'
-    publishDir path: params.rerconverge_outdir, mode: 'copy', overwrite: true
+    publishDir path: "${params.results_root}/${params.run_id}/rer.results", mode: 'copy', overwrite: true
 
     input:
     tuple val(cfg_id), path(config), path(tree_manifest), path(master_tree), path(rer_script), path(rerconverge_ready)
@@ -89,6 +87,7 @@ process RERCONVERGE {
 }
 
 workflow RERCONVERGE_FAST {
+    if (!params.run_id) error "Missing --run_id. Launch with bootstrap/run_pipeline.sh."
     config_glob = "${params.config_dir}/${params.config_pattern}"
 
     rerconverge_configs_ch = Channel
@@ -113,6 +112,7 @@ workflow RERCONVERGE_FAST {
 }
 
 workflow {
+    if (!params.run_id) error "Missing --run_id. Launch with bootstrap/run_pipeline.sh."
     config_glob = "${params.config_dir}/${params.config_pattern}"
 
     alignments_ch = Channel
