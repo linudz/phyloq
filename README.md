@@ -516,13 +516,18 @@ results/
 
 ### CAAStools
 
-An empty `.caas` file means that CAAStools completed without reporting a hit;
-it does not by itself indicate task failure.
+Each `.caas` file represents one alignment/configuration combination.
+CAAStools compares amino-acid states with the species grouping encoded by the
+phenotype `.cfg` file and reports candidate positions matching that grouping.
+The filename preserves both input names. An empty file means that CAAStools
+completed without reporting a hit; it does not by itself indicate failure.
 
 ### RERconverge
 
-- `associations.tsv` contains gene-level association statistics (`Rho`, `N`,
-  `P`, and the package-provided adjusted p-value).
+- `associations.tsv` contains one row per gene. `Rho` gives the direction and
+  strength of association with foreground branches (positive is relatively
+  faster; negative is relatively slower), `N` is the number of branch
+  observations, `P` is unadjusted, and `p.adj` is package-adjusted.
 - `rer_matrix.tsv` contains relative evolutionary rates.
 - `phenotype_paths.tsv` records the phenotype mapped onto branches.
 - `run_summary.tsv` records effective inputs and thresholds.
@@ -533,6 +538,9 @@ it does not by itself indicate task failure.
 With only three genes, `NA` associations are expected when taxon or branch
 coverage is insufficient. The fast run validates software integration; it is
 not the final biological analysis.
+
+The complete `results/` directory is excluded from Git. Preserve or copy any
+run needed for later interpretation before cleaning local outputs.
 
 ## Troubleshooting pipeline runs
 
