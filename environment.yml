@@ -12,6 +12,8 @@ dependencies:
 
   # CAAStools
   - python=3.11
+  # CAAStools still imports pkg_resources, removed in setuptools 82.
+  - setuptools<82
   - biopython
   - numpy
   - scipy

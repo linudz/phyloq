@@ -125,6 +125,8 @@ The two parts of the pipeline run in parallel:
 - RERconverge performs one analysis for each of the three phenotype
   configurations, using three test genes together.
 
+Nextflow first checks RERconverge once. If the package is missing, the setup process tries to install it automatically from GitHub before starting the RERconverge analyses. CAAStools can start while this check is running. If the cluster compute node cannot access GitHub, use the manual installation steps in the README from the login node and then resume the pipeline.
+
 The RERconverge analysis must use several genes at the same time. It is not
 launched separately for each gene.
 

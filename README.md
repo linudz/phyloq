@@ -335,6 +335,10 @@ No output from the three `test` commands means that the checks succeeded.
 nextflow run launch_pipeline.nf
 ```
 
+At the start of each workflow run, `INSTALL_RERCONVERGE` checks whether the active R library contains RERconverge. If it is missing, this single setup process installs it from the official GitHub repository before any RERconverge analysis starts. The process requires network access to GitHub only when installation is necessary. CAAStools is independent and can run in parallel while this setup is taking place.
+
+The automatic check does not replace a reproducible software environment: `remotes` and the compiled R dependencies must already be available, as provided by `environment.yml`. On clusters whose compute nodes cannot access GitHub, install RERconverge manually on the login node by following the instructions above before launching Nextflow.
+
 The default validation run starts, in parallel:
 
 - 15 CAAStools tasks: 5 alignments × 3 phenotype configurations;

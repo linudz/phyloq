@@ -28,6 +28,39 @@ process CAASTOOLS_DISCOVERY {
     """
 }
 
+process INSTALL_RERCONVERGE {
+
+    tag "check/install RERconverge"
+    cache false
+
+    output:
+    path "rerconverge.ready", emit: ready
+
+    script:
+    """
+    Rscript -e '
+      if (!requireNamespace("remotes", quietly = TRUE)) {
+        stop("The R package remotes is required to install RERconverge.")
+      }
+
+      if (!requireNamespace("RERconverge", quietly = TRUE)) {
+        message("RERconverge is not installed; installing it from GitHub...")
+        remotes::install_github(
+          "nclark-lab/RERconverge",
+          ref = "master",
+          dependencies = TRUE,
+          upgrade = "never"
+        )
+      }
+
+      suppressPackageStartupMessages(library(RERconverge))
+      cat("RERconverge ", as.character(packageVersion("RERconverge")), " is ready.\\n", sep = "")
+    '
+
+    touch rerconverge.ready
+    """
+}
+
 process RERCONVERGE {
 
     tag "${cfg_id} | ${params.rerconverge_max_trees} genes"
@@ -35,7 +68,7 @@ process RERCONVERGE {
     publishDir path: params.rerconverge_outdir, mode: 'copy', overwrite: true
 
     input:
-    tuple val(cfg_id), path(config), path(tree_manifest), path(master_tree), path(rer_script)
+    tuple val(cfg_id), path(config), path(tree_manifest), path(master_tree), path(rer_script), path(rerconverge_ready)
 
     output:
     path "rerconverge.${cfg_id}"
@@ -71,7 +104,12 @@ workflow RERCONVERGE_FAST {
             )
         }
 
-    RERCONVERGE(rerconverge_configs_ch)
+    INSTALL_RERCONVERGE()
+
+    rerconverge_ready_ch = rerconverge_configs_ch
+        .combine(INSTALL_RERCONVERGE.out.ready)
+
+    RERCONVERGE(rerconverge_ready_ch)
 }
 
 workflow {
@@ -110,5 +148,10 @@ workflow {
         }
         | CAASTOOLS_DISCOVERY
 
-    RERCONVERGE(rerconverge_configs_ch)
+    INSTALL_RERCONVERGE()
+
+    rerconverge_ready_ch = rerconverge_configs_ch
+        .combine(INSTALL_RERCONVERGE.out.ready)
+
+    RERCONVERGE(rerconverge_ready_ch)
 }
