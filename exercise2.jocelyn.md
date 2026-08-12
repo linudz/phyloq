@@ -34,81 +34,94 @@ git pull
 This is important because the exercise uses the new RERconverge scripts,
 configuration file, and Nextflow workflow.
 
-## 2. Read the README
+## 2. Make Conda Available
 
-Before installing anything, open the main file:
+The repository contains an `environment.yml` file with the software needed for this exercise, including Python, R, Java, Nextflow, compilers, and the R dependencies.
 
-```text
-README.md
-```
-
-Follow the section called:
-
-```text
-Manual installation of RERconverge
-```
-
-The README contains the complete instructions for:
-
-- installing the required compiler;
-- installing the R packages `remotes` and `BiocManager`;
-- installing the Bioconductor package `impute`;
-- installing RERconverge from GitHub;
-- solving common installation errors.
-
-Please follow those instructions in order. Do not skip the compiler or
-`impute` steps.
-
-## 3. Check the RERconverge Installation
-
-After the installation, run this command:
+On a computing cluster, Conda is often provided as a software module. Your cluster is different from Fabio's cluster, so the exact module name may also be different. Search for the available module:
 
 ```bash
-Rscript -e 'library(RERconverge); stopifnot(exists("readTrees"), exists("getAllResiduals"), requireNamespace("impute", quietly=TRUE)); cat("RERconverge installation: OK\n")'
+module spider conda
+module spider anaconda
+module spider miniconda
 ```
 
-The expected final message is:
+The command opens a scrollable help page. Press `q` to leave it. Load the Conda or Miniconda module shown by your cluster. For example:
 
-```text
-RERconverge installation: OK
+```bash
+module load Miniconda3
 ```
 
-R may also print some warnings about packages built with a slightly different
-R version. Warnings are not always errors. The important points are that the
-command finishes and the final `OK` message appears.
+This is only an example. Use the exact module name and version shown on your server. If you cannot find one, check your cluster documentation or ask its support team.
 
-If the command stops with `Error`, return to the troubleshooting section of
-the README before continuing.
+Confirm that Conda is available:
 
-## 4. Move into the Bootstrap Directory
+```bash
+conda --version
+```
 
-From the repository root, run:
+## 3. Create the PhyloQ Environment
+
+Run this command from the root of the `phyloq` repository:
+
+```bash
+conda env create -f environment.yml
+```
+
+Conda may need several minutes to solve and install the environment. If an environment called `phyloq` already exists, update it instead:
+
+```bash
+conda env update -n phyloq -f environment.yml --prune
+```
+
+## 4. Activate and Check the Environment
+
+Activate it:
+
+```bash
+conda activate phyloq
+```
+
+If Conda says `Run 'conda init' before 'conda activate'`, run:
+
+```bash
+source "$(conda info --base)/etc/profile.d/conda.sh"
+conda activate phyloq
+```
+
+Then check the main programs:
+
+```bash
+which python
+which Rscript
+python --version
+Rscript --version
+nextflow -version
+python -c "import Bio, numpy, scipy, pkg_resources; print('Python dependencies: OK')"
+```
+
+The `python` and `Rscript` paths should point inside an environment named `phyloq`. A deprecation warning from `pkg_resources` is acceptable; the final `Python dependencies: OK` message should still appear.
+
+## 5. Read the README and Check the Inputs
+
+Read the main `README.md`, especially the sections about the Conda environment, RERconverge, running the pipeline, and troubleshooting.
+
+RERconverge does not need to be installed by hand before the first test. Nextflow checks it once and installs it automatically from GitHub if it is missing. If that automatic step fails because compute nodes cannot access GitHub, follow the manual installation section in the README from the login node.
+
+Move into the bootstrap directory:
 
 ```bash
 cd bootstrap
 ```
 
-Run all the remaining commands from inside this directory.
-
-## 5. Check the Main Programs and Input Files
-
-Check that Nextflow, Python, and R are available:
-
-```bash
-nextflow -version
-python3 --version
-R --version
-```
-
-Check the main RERconverge input files:
+Check the input files:
 
 ```bash
 test -s rerconverge/inputs/trees/rerconverge_gene_trees.tsv
 test -s rerconverge/inputs/science.abn7829_data_s4.nex.tree
 ```
 
-The two `test` commands normally print nothing. No output means that the files
-exist and are not empty.
+No output means that both files exist and are not empty.
 
 ## 6. Run the New Bootstrap Pipeline
 
@@ -145,7 +158,7 @@ results/run-YYMMDDHHMM/
 └── rer.results/
 ```
 
-From `bootstrap/`, `20 20 12 61 79 80 81 98 702 33 100 204 250 395 398 399 400cat .last_run_id)` prints the current run directory name.
+From `bootstrap/`, `$(cat .last_run_id)` prints the current run directory name.
 
 ### CAAStools output
 
@@ -204,7 +217,7 @@ meaningful.
 
 The exercise is complete if all of the following are true:
 
-- the RERconverge installation check prints `RERconverge installation: OK`;
+- the `INSTALL_RERCONVERGE` process and all RERconverge analyses finish successfully;
 - Nextflow finishes without errors;
 - there are 15 `.caas` files;
 - there are 3 RERconverge `associations.tsv` files.

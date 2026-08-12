@@ -70,6 +70,63 @@ Check the Python libraries:
 python3 -c "import Bio, numpy, scipy; print('Python dependencies: OK')"
 ```
 
+## Conda environment on a cluster
+
+The repository provides `environment.yml`, which installs Python, R, Java, Nextflow, compilers, and the available RERconverge dependencies in one isolated environment.
+
+Many clusters provide Conda through their module system. Module names differ between institutions, so first search the software catalogue:
+
+```bash
+module spider conda
+module spider anaconda
+module spider miniconda
+```
+
+Read the result and load the module available on that cluster, for example:
+
+```bash
+module load Miniconda3
+```
+
+`Miniconda3` is only an example; use the exact module name and version shown by the cluster. If none of the searches returns a module, consult the local cluster documentation or support team.
+
+From the repository root, create the environment:
+
+```bash
+conda env create -f environment.yml
+```
+
+If the `phyloq` environment already exists, update it instead:
+
+```bash
+conda env update -n phyloq -f environment.yml --prune
+```
+
+Activate it:
+
+```bash
+conda activate phyloq
+```
+
+If Conda reports `Run 'conda init' before 'conda activate'`, initialize Conda for the current shell without changing the account configuration:
+
+```bash
+source "$(conda info --base)/etc/profile.d/conda.sh"
+conda activate phyloq
+```
+
+Confirm that the executables come from the environment:
+
+```bash
+which python
+which Rscript
+python --version
+Rscript --version
+nextflow -version
+```
+
+CAAStools currently imports the legacy `pkg_resources` module, so `environment.yml` pins `setuptools<82`. RERconverge itself is checked once by the pipeline and installed automatically from GitHub if it is missing.
+
 ## Manual installation of RERconverge
 
 RERconverge is installed from its official GitHub repository rather than
