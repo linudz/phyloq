@@ -39,9 +39,13 @@ phyloq/
 └── supplementary/
 ```
 
-Nextflow's `work/`, `.nextflow/`, `.nextflow.log*`, and `.nextflow/history`
-are execution metadata or intermediate files. Keep `work/` and `.nextflow/`
-if an interrupted run may need to be resumed.
+Nextflow's active cache is `bootstrap/work/`, because the launcher always runs
+the workflow from `bootstrap/`. The matching `bootstrap/.nextflow/`,
+`bootstrap/.nextflow.log*`, and `bootstrap/.nextflow/history` paths contain
+execution metadata. Keep `bootstrap/work/` and `bootstrap/.nextflow/` if an
+interrupted run may need to be resumed. A `work/` directory in the repository
+root is left over from an old launch method and is not used by the current
+launcher.
 
 ## Requirements
 
@@ -424,8 +428,8 @@ bash run_pipeline.sh -resume
 
 The launcher reads `bootstrap/.last_run_id`, so resume publishes into the same timestamped directory rather than creating a new run.
 
-Use the same inputs and parameter values. Do not remove `work/` or
-`.nextflow/` before resuming.
+Use the same inputs and parameter values. Do not remove `bootstrap/work/` or
+`bootstrap/.nextflow/` before resuming.
 
 ### Override parameters on the command line
 
@@ -574,7 +578,8 @@ effective phenotype sample.
 
 ### A run fails after changing inputs
 
-Inspect `.nextflow.log` and the failing task's `.command.err` under `work/`.
+Inspect `bootstrap/.nextflow.log` and the failing task's `.command.err` under
+`bootstrap/work/`.
 After correcting the problem, use `-resume`. Nextflow will reuse tasks whose
 inputs and commands have not changed.
 

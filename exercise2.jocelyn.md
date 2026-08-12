@@ -273,8 +273,9 @@ computer.
 
 ## If Something Goes Wrong
 
-Do not delete the `work` directory immediately. It contains useful information
-about failed tasks.
+Do not delete `bootstrap/work/` immediately. It is Nextflow's active cache and
+contains useful information about failed tasks. A `work/` directory in the
+repository root is obsolete and is not used by the current launcher.
 
 First read the troubleshooting sections in `README.md`. If the problem is not
 resolved, save and report:
