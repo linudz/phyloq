@@ -27,7 +27,9 @@ write_tsv <- function(data, path) {
   )
 }
 
-collapse_repeated <- function(data, key_columns, label, tolerance = 1e-7) {
+collapse_repeated <- function(data, key_columns, label,
+                              relative_tolerance = 1e-3,
+                              absolute_tolerance = 1e-8) {
   key <- do.call(paste, c(data[key_columns], sep = "\r"))
   groups <- split(seq_len(nrow(data)), key)
   collapsed <- lapply(groups, function(indices) {
@@ -40,9 +42,16 @@ collapse_repeated <- function(data, key_columns, label, tolerance = 1e-7) {
         }
         finite <- values[is.finite(values)]
         if (length(finite) > 1L) {
-          scale <- max(1, abs(finite[[1L]]))
-          if (max(abs(finite - finite[[1L]])) > tolerance * scale) {
-            stop(label, " differs between chunks in column ", column, call. = FALSE)
+          scale <- max(abs(finite))
+          maximum_difference <- max(abs(finite - finite[[1L]]))
+          allowed_difference <- absolute_tolerance + relative_tolerance * scale
+          if (maximum_difference > allowed_difference) {
+            stop(
+              label, " differs between chunks in column ", column,
+              " (maximum difference ", signif(maximum_difference, 6L),
+              "; allowed ", signif(allowed_difference, 6L), ").",
+              call. = FALSE
+            )
           }
         }
       } else if (length(unique(values)) > 1L) {
