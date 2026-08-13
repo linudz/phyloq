@@ -1,0 +1,13 @@
+name: primate-pss-bootstrap
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - nextflow >=24.04
+  - openjdk >=17,<22
+  - r-base >=4.3,<4.4
+  - r-ape >=5.7
+  - r-geiger >=2.0
+  - r-subplex
+  - bash
+  - coreutils

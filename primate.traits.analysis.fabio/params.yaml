@@ -1,0 +1,45 @@
+# PRIMARY ANALYSIS SETTINGS ---------------------------------------------------
+# Total simulations PER TRAIT. Both conditional and full bootstrap are run.
+bootstrap_replicates: 1000
+
+# Simulations assigned to one Slurm job. 100 gives 10 jobs per trait at 1,000.
+replicates_per_task: 100
+
+# Reproducibility and statistical settings.
+bootstrap_seed: 20260812
+tail_proportion: 0.01
+bootstrap_max_attempts: 10
+
+# Frozen export contains 153 retained traits. Keep this guard unless subsetting.
+expected_traits: 153
+trait_regex: ".*"
+
+# SLURM / CORREFOC SETTINGS ---------------------------------------------------
+# Fill these only if required by your UPF allocation. Empty values are ignored.
+slurm_partition: ""
+slurm_account: ""
+slurm_qos: ""
+slurm_cluster_options: ""
+
+# Maximum number of submitted/running bootstrap jobs controlled by Nextflow.
+max_parallel_jobs: 200
+
+# Resources PER bootstrap chunk and for the final aggregation job.
+bootstrap_cpus: 1
+bootstrap_memory: "2 GB"
+bootstrap_time: "2h"
+aggregate_cpus: 1
+aggregate_memory: "8 GB"
+aggregate_time: "2h"
+
+# PATHS ----------------------------------------------------------------------
+# Relative paths are resolved from this export folder, not from launchDir.
+traits_dir: "inputs/traits"
+classified_dir: "inputs/classified"
+tree: "inputs/tree/science.abn7829_data_s4.nex.tree"
+taxonomy: "inputs/taxonomy/species_family_primate_group.tsv"
+pss_core: "scripts/pss.core.R"
+bootstrap_script: "scripts/parametric_bootstrap_chunk.R"
+summary_script: "scripts/summarize_parametric_bootstrap.R"
+output_dir: "results"
+conda_cache_dir: ".nextflow-conda"

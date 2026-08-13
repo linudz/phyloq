@@ -1,0 +1,527 @@
+species	family	primate_group_code	primate_group
+Allenopithecus_nigroviridis	Cercopithecidae	OWM	Old World monkeys
+Allocebus_trichotis	Cheirogaleidae	STR	Strepsirrhines
+Allochrocebus_lhoesti	Cercopithecidae	OWM	Old World monkeys
+Allochrocebus_preussi	Cercopithecidae	OWM	Old World monkeys
+Allochrocebus_solatus	Cercopithecidae	OWM	Old World monkeys
+Alouatta_arctoidea	Atelidae	PLA	New World monkeys (Platyrrhini)
+Alouatta_belzebul	Atelidae	PLA	New World monkeys (Platyrrhini)
+Alouatta_caraya	Atelidae	PLA	New World monkeys (Platyrrhini)
+Alouatta_discolor	Atelidae	PLA	New World monkeys (Platyrrhini)
+Alouatta_guariba	Atelidae	PLA	New World monkeys (Platyrrhini)
+Alouatta_macconnelli	Atelidae	PLA	New World monkeys (Platyrrhini)
+Alouatta_nigerrima	Atelidae	PLA	New World monkeys (Platyrrhini)
+Alouatta_palliata	Atelidae	PLA	New World monkeys (Platyrrhini)
+Alouatta_pigra	Atelidae	PLA	New World monkeys (Platyrrhini)
+Alouatta_sara	Atelidae	PLA	New World monkeys (Platyrrhini)
+Alouatta_seniculus	Atelidae	PLA	New World monkeys (Platyrrhini)
+Alouatta_ululata	Atelidae	PLA	New World monkeys (Platyrrhini)
+Aotus_azarae	Aotidae	PLA	New World monkeys (Platyrrhini)
+Aotus_brumbacki	Aotidae	PLA	New World monkeys (Platyrrhini)
+Aotus_griseimembra	Aotidae	PLA	New World monkeys (Platyrrhini)
+Aotus_jorgehernandezi	Aotidae	PLA	New World monkeys (Platyrrhini)
+Aotus_lemurinus	Aotidae	PLA	New World monkeys (Platyrrhini)
+Aotus_miconax	Aotidae	PLA	New World monkeys (Platyrrhini)
+Aotus_nancymaae	Aotidae	PLA	New World monkeys (Platyrrhini)
+Aotus_nigriceps	Aotidae	PLA	New World monkeys (Platyrrhini)
+Aotus_trivirgatus	Aotidae	PLA	New World monkeys (Platyrrhini)
+Aotus_vociferans	Aotidae	PLA	New World monkeys (Platyrrhini)
+Aotus_zonalis	Aotidae	PLA	New World monkeys (Platyrrhini)
+Arctocebus_aureus	Lorisidae	STR	Strepsirrhines
+Arctocebus_calabarensis	Lorisidae	STR	Strepsirrhines
+Ateles_belzebuth	Atelidae	PLA	New World monkeys (Platyrrhini)
+Ateles_chamek	Atelidae	PLA	New World monkeys (Platyrrhini)
+Ateles_fusciceps	Atelidae	PLA	New World monkeys (Platyrrhini)
+Ateles_geoffroyi	Atelidae	PLA	New World monkeys (Platyrrhini)
+Ateles_hybridus	Atelidae	PLA	New World monkeys (Platyrrhini)
+Ateles_marginatus	Atelidae	PLA	New World monkeys (Platyrrhini)
+Ateles_paniscus	Atelidae	PLA	New World monkeys (Platyrrhini)
+Avahi_betsileo	Indriidae	STR	Strepsirrhines
+Avahi_cleesei	Indriidae	STR	Strepsirrhines
+Avahi_laniger	Indriidae	STR	Strepsirrhines
+Avahi_meridionalis	Indriidae	STR	Strepsirrhines
+Avahi_mooreorum	Indriidae	STR	Strepsirrhines
+Avahi_occidentalis	Indriidae	STR	Strepsirrhines
+Avahi_peyrierasi	Indriidae	STR	Strepsirrhines
+Avahi_ramanantsoavanai	Indriidae	STR	Strepsirrhines
+Avahi_unicolor	Indriidae	STR	Strepsirrhines
+Brachyteles_arachnoides	Atelidae	PLA	New World monkeys (Platyrrhini)
+Brachyteles_hypoxanthus	Atelidae	PLA	New World monkeys (Platyrrhini)
+Cacajao_ayresi	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Cacajao_calvus	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Cacajao_hosomi	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Cacajao_melanocephalus	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Cacajao_ouakary	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Callibella_humilis	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Callicebus_barbarabrownae	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Callicebus_coimbrai	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Callicebus_melanochir	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Callicebus_nigrifrons	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Callicebus_personatus	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Callimico_goeldii	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Callithrix_aurita	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Callithrix_flaviceps	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Callithrix_geoffroyi	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Callithrix_jacchus	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Callithrix_kuhlii	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Callithrix_penicillata	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Carlito_syrichta	Tarsiidae	TAR	Tarsiers
+Cebuella_niveiventris	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Cebuella_pygmaea	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Cebus_aequatorialis	Cebidae	PLA	New World monkeys (Platyrrhini)
+Cebus_albifrons	Cebidae	PLA	New World monkeys (Platyrrhini)
+Cebus_brunneus	Cebidae	PLA	New World monkeys (Platyrrhini)
+Cebus_capucinus	Cebidae	PLA	New World monkeys (Platyrrhini)
+Cebus_cesarae	Cebidae	PLA	New World monkeys (Platyrrhini)
+Cebus_cuscinus	Cebidae	PLA	New World monkeys (Platyrrhini)
+Cebus_imitator	Cebidae	PLA	New World monkeys (Platyrrhini)
+Cebus_kaapori	Cebidae	PLA	New World monkeys (Platyrrhini)
+Cebus_leucocephalus	Cebidae	PLA	New World monkeys (Platyrrhini)
+Cebus_malitiosus	Cebidae	PLA	New World monkeys (Platyrrhini)
+Cebus_olivaceus	Cebidae	PLA	New World monkeys (Platyrrhini)
+Cebus_unicolor	Cebidae	PLA	New World monkeys (Platyrrhini)
+Cebus_versicolor	Cebidae	PLA	New World monkeys (Platyrrhini)
+Cebus_yuracus	Cebidae	PLA	New World monkeys (Platyrrhini)
+Tarsius_bancanus	Tarsiidae	TAR	Tarsiers
+Cercocebus_agilis	Cercopithecidae	OWM	Old World monkeys
+Cercocebus_atys	Cercopithecidae	OWM	Old World monkeys
+Cercocebus_chrysogaster	Cercopithecidae	OWM	Old World monkeys
+Cercocebus_galeritus	Cercopithecidae	OWM	Old World monkeys
+Cercocebus_lunulatus	Cercopithecidae	OWM	Old World monkeys
+Cercocebus_sanjei	Cercopithecidae	OWM	Old World monkeys
+Cercocebus_torquatus	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_albogularis	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_ascanius	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_campbelli	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_cephus	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_denti	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_diana	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_doggetti	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_dryas	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_erythrogaster	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_erythrotis	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_hamlyni	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_kandti	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_lomamiensis	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_lowei	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_mitis	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_mona	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_neglectus	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_nictitans	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_petaurista	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_pogonias	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_roloway	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_sclateri	Cercopithecidae	OWM	Old World monkeys
+Cercopithecus_wolfi	Cercopithecidae	OWM	Old World monkeys
+Cheirogaleus_andysabini	Cheirogaleidae	STR	Strepsirrhines
+Cheirogaleus_crossleyi	Cheirogaleidae	STR	Strepsirrhines
+Cheirogaleus_lavasoensis	Cheirogaleidae	STR	Strepsirrhines
+Cheirogaleus_major	Cheirogaleidae	STR	Strepsirrhines
+Cheirogaleus_medius	Cheirogaleidae	STR	Strepsirrhines
+Cheirogaleus_minusculus	Cheirogaleidae	STR	Strepsirrhines
+Cheirogaleus_shethi	Cheirogaleidae	STR	Strepsirrhines
+Cheirogaleus_sibreei	Cheirogaleidae	STR	Strepsirrhines
+Cheirogaleus_thomasi	Cheirogaleidae	STR	Strepsirrhines
+Cheracebus_lucifer	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Cheracebus_lugens	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Cheracebus_medemi	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Cheracebus_purinus	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Cheracebus_regulus	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Cheracebus_torquatus	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Chiropotes_albinasus	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Chiropotes_chiropotes	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Chiropotes_israelita	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Chiropotes_sagulatus	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Chiropotes_satanas	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Chiropotes_utahickae	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Chlorocebus_aethiops	Cercopithecidae	OWM	Old World monkeys
+Chlorocebus_cynosuros	Cercopithecidae	OWM	Old World monkeys
+Chlorocebus_djamdjamensis	Cercopithecidae	OWM	Old World monkeys
+Chlorocebus_pygerythrus	Cercopithecidae	OWM	Old World monkeys
+Chlorocebus_sabaeus	Cercopithecidae	OWM	Old World monkeys
+Chlorocebus_tantalus	Cercopithecidae	OWM	Old World monkeys
+Colobus_angolensis	Cercopithecidae	OWM	Old World monkeys
+Colobus_guereza	Cercopithecidae	OWM	Old World monkeys
+Colobus_polykomos	Cercopithecidae	OWM	Old World monkeys
+Colobus_satanas	Cercopithecidae	OWM	Old World monkeys
+Colobus_vellerosus	Cercopithecidae	OWM	Old World monkeys
+Daubentonia_madagascariensis	Daubentoniidae	STR	Strepsirrhines
+Erythrocebus_patas	Cercopithecidae	OWM	Old World monkeys
+Erythrocebus_poliophaeus	Cercopithecidae	OWM	Old World monkeys
+Eulemur_albifrons	Lemuridae	STR	Strepsirrhines
+Eulemur_cinereiceps	Lemuridae	STR	Strepsirrhines
+Eulemur_collaris	Lemuridae	STR	Strepsirrhines
+Eulemur_coronatus	Lemuridae	STR	Strepsirrhines
+Eulemur_flavifrons	Lemuridae	STR	Strepsirrhines
+Eulemur_fulvus	Lemuridae	STR	Strepsirrhines
+Eulemur_macaco	Lemuridae	STR	Strepsirrhines
+Eulemur_mongoz	Lemuridae	STR	Strepsirrhines
+Eulemur_rubriventer	Lemuridae	STR	Strepsirrhines
+Eulemur_rufifrons	Lemuridae	STR	Strepsirrhines
+Eulemur_rufus	Lemuridae	STR	Strepsirrhines
+Eulemur_sanfordi	Lemuridae	STR	Strepsirrhines
+Euoticus_elegantulus	Galagidae	STR	Strepsirrhines
+Euoticus_pallidus	Galagidae	STR	Strepsirrhines
+Galago_gallarum	Galagidae	STR	Strepsirrhines
+Galago_matschiei	Galagidae	STR	Strepsirrhines
+Galago_moholi	Galagidae	STR	Strepsirrhines
+Galago_senegalensis	Galagidae	STR	Strepsirrhines
+Galagoides_cocos	Galagidae	STR	Strepsirrhines
+Galagoides_demidovii	Galagidae	STR	Strepsirrhines
+Galagoides_granti	Galagidae	STR	Strepsirrhines
+Galagoides_kumbirensis	Galagidae	STR	Strepsirrhines
+Galagoides_orinus	Galagidae	STR	Strepsirrhines
+Galagoides_rondoensis	Galagidae	STR	Strepsirrhines
+Galagoides_thomasi	Galagidae	STR	Strepsirrhines
+Galagoides_zanzibaricus	Galagidae	STR	Strepsirrhines
+Gorilla_beringei	Hominidae	APE	Apes
+Gorilla_gorilla	Hominidae	APE	Apes
+Hapalemur_alaotrensis	Lemuridae	STR	Strepsirrhines
+Hapalemur_aureus	Lemuridae	STR	Strepsirrhines
+Hapalemur_griseus	Lemuridae	STR	Strepsirrhines
+Hapalemur_meridionalis	Lemuridae	STR	Strepsirrhines
+Hapalemur_occidentalis	Lemuridae	STR	Strepsirrhines
+Hoolock_hoolock	Hylobatidae	APE	Apes
+Hoolock_leuconedys	Hylobatidae	APE	Apes
+Hoolock_tianxing	Hylobatidae	APE	Apes
+Hylobates_abbotti	Hylobatidae	APE	Apes
+Hylobates_agilis	Hylobatidae	APE	Apes
+Hylobates_albibarbis	Hylobatidae	APE	Apes
+Hylobates_funereus	Hylobatidae	APE	Apes
+Hylobates_klossii	Hylobatidae	APE	Apes
+Hylobates_lar	Hylobatidae	APE	Apes
+Hylobates_moloch	Hylobatidae	APE	Apes
+Hylobates_muelleri	Hylobatidae	APE	Apes
+Hylobates_pileatus	Hylobatidae	APE	Apes
+Indri_indri	Indriidae	STR	Strepsirrhines
+Lagothrix_cana	Atelidae	PLA	New World monkeys (Platyrrhini)
+Lagothrix_flavicauda	Atelidae	PLA	New World monkeys (Platyrrhini)
+Lagothrix_lagotricha	Atelidae	PLA	New World monkeys (Platyrrhini)
+Lagothrix_poeppigii	Atelidae	PLA	New World monkeys (Platyrrhini)
+Lagotrix_lugens	Atelidae	PLA	New World monkeys (Platyrrhini)
+Lemur_catta	Lemuridae	STR	Strepsirrhines
+Leontocebus_cruzlimai	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Leontocebus_fuscicolis	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Leontocebus_fuscus	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Leontocebus_illigeri	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Leontocebus_lagonotus	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Leontocebus_leucogenys	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Leontocebus_nigricollis	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Leontocebus_nigrifrons	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Leontocebus_tripartitus	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Leontocebus_weddelli	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Leontopithecus_caissara	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Leontopithecus_chrysomelas	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Leontopithecus_chrysopygus	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Leontopithecus_rosalia	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Lepilemur_aeeclis	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_ahmansonorum	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_ankaranensis	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_betsileo	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_dorsalis	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_edwardsi	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_fleuretae	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_grewcockorum	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_hollandorum	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_hubbardi	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_jamesorum	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_leucopus	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_microdon	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_milanoii	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_mittermeieri	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_mustelinus	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_otto	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_petteri	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_randrianasoloi	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_ruficaudatus	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_sahamalazensis	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_scottorum	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_seali	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_septentrionalis	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_tymerlachsoni	Lepilemuridae	STR	Strepsirrhines
+Lepilemur_wrightae	Lepilemuridae	STR	Strepsirrhines
+Lophocebus_albigena	Cercopithecidae	OWM	Old World monkeys
+Lophocebus_aterrimus	Cercopithecidae	OWM	Old World monkeys
+Lophocebus_johnstoni	Cercopithecidae	OWM	Old World monkeys
+Lophocebus_opdenboschi	Cercopithecidae	OWM	Old World monkeys
+Lophocebus_osmani	Cercopithecidae	OWM	Old World monkeys
+Lophocebus_ugandae	Cercopithecidae	OWM	Old World monkeys
+Loris_lydekkerianus	Lorisidae	STR	Strepsirrhines
+Loris_tardigradus	Lorisidae	STR	Strepsirrhines
+Macaca_arctoides	Cercopithecidae	OWM	Old World monkeys
+Macaca_assamensis	Cercopithecidae	OWM	Old World monkeys
+Macaca_cyclopis	Cercopithecidae	OWM	Old World monkeys
+Macaca_fascicularis	Cercopithecidae	OWM	Old World monkeys
+Macaca_fuscata	Cercopithecidae	OWM	Old World monkeys
+Macaca_hecki	Cercopithecidae	OWM	Old World monkeys
+Macaca_leonina	Cercopithecidae	OWM	Old World monkeys
+Macaca_leucogenys	Cercopithecidae	OWM	Old World monkeys
+Macaca_maura	Cercopithecidae	OWM	Old World monkeys
+Macaca_mulatta	Cercopithecidae	OWM	Old World monkeys
+Macaca_munzala	Cercopithecidae	OWM	Old World monkeys
+Macaca_nemestrina	Cercopithecidae	OWM	Old World monkeys
+Macaca_nigra	Cercopithecidae	OWM	Old World monkeys
+Macaca_nigrescens	Cercopithecidae	OWM	Old World monkeys
+Macaca_ochreata	Cercopithecidae	OWM	Old World monkeys
+Macaca_pagensis	Cercopithecidae	OWM	Old World monkeys
+Macaca_radiata	Cercopithecidae	OWM	Old World monkeys
+Macaca_siberu	Cercopithecidae	OWM	Old World monkeys
+Macaca_silenus	Cercopithecidae	OWM	Old World monkeys
+Macaca_sinica	Cercopithecidae	OWM	Old World monkeys
+Macaca_sylvanus	Cercopithecidae	OWM	Old World monkeys
+Macaca_thibetana	Cercopithecidae	OWM	Old World monkeys
+Macaca_tonkeana	Cercopithecidae	OWM	Old World monkeys
+Mandrillus_leucophaeus	Cercopithecidae	OWM	Old World monkeys
+Mandrillus_sphinx	Cercopithecidae	OWM	Old World monkeys
+Mico_acariensis	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Mico_argentatus	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Mico_chrysoleucos	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Mico_emiliae	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Mico_humeralifer	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Mico_humilis	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Mico_intermedius	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Mico_leucippe	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Mico_marcai	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Mico_mauesi	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Mico_melanurus	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Mico_nigriceps	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Mico_rondoni	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Mico_saterei	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Microcebus_arnholdi	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_berthae	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_bongolavensis	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_boraha	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_danfossi	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_ganzhorni	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_gerpi	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_griseorufus	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_jollyae	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_lehilahytsara	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_macarthurii	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_mamiratra	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_manitatra	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_margotmarshae	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_marohita	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_mittermeieri	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_murinus	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_myoxinus	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_ravelobensis	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_rufus	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_sambiranensis	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_simmonsi	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_tanosi	Cheirogaleidae	STR	Strepsirrhines
+Microcebus_tavaratra	Cheirogaleidae	STR	Strepsirrhines
+Miopithecus_ogouensis	Cercopithecidae	OWM	Old World monkeys
+Miopithecus_talapoin	Cercopithecidae	OWM	Old World monkeys
+Mirza_coquereli	Cheirogaleidae	STR	Strepsirrhines
+Mirza_zaza	Cheirogaleidae	STR	Strepsirrhines
+Nasalis_larvatus	Cercopithecidae	OWM	Old World monkeys
+Nomascus_annamensis	Hylobatidae	APE	Apes
+Nomascus_concolor	Hylobatidae	APE	Apes
+Nomascus_gabriellae	Hylobatidae	APE	Apes
+Nomascus_hainanus	Hylobatidae	APE	Apes
+Nomascus_leucogenys	Hylobatidae	APE	Apes
+Nomascus_nasutus	Hylobatidae	APE	Apes
+Nomascus_siki	Hylobatidae	APE	Apes
+Nycticebus_bancanus	Lorisidae	STR	Strepsirrhines
+Nycticebus_bengalensis	Lorisidae	STR	Strepsirrhines
+Nycticebus_borneanus	Lorisidae	STR	Strepsirrhines
+Nycticebus_coucang	Lorisidae	STR	Strepsirrhines
+Nycticebus_javanicus	Lorisidae	STR	Strepsirrhines
+Nycticebus_kayan	Lorisidae	STR	Strepsirrhines
+Nycticebus_menagensis	Lorisidae	STR	Strepsirrhines
+Nycticebus_pygmaeus	Lorisidae	STR	Strepsirrhines
+Otolemur_crassicaudatus	Galagidae	STR	Strepsirrhines
+Otolemur_garnettii	Galagidae	STR	Strepsirrhines
+Pan_paniscus	Hominidae	APE	Apes
+Pan_troglodytes	Hominidae	APE	Apes
+Papio_anubis	Cercopithecidae	OWM	Old World monkeys
+Papio_cynocephalus	Cercopithecidae	OWM	Old World monkeys
+Papio_hamadryas	Cercopithecidae	OWM	Old World monkeys
+Papio_kindae	Cercopithecidae	OWM	Old World monkeys
+Papio_papio	Cercopithecidae	OWM	Old World monkeys
+Papio_ursinus	Cercopithecidae	OWM	Old World monkeys
+Paragalago_granti	Galagidae	STR	Strepsirrhines
+Paragalago_cocos	Galagidae	STR	Strepsirrhines
+Paragalago_orinus	Galagidae	STR	Strepsirrhines
+Paragalago_rondoensis	Galagidae	STR	Strepsirrhines
+Paragalago_zanzibaricus	Galagidae	STR	Strepsirrhines
+Perodicticus_edwardsi	Lorisidae	STR	Strepsirrhines
+Perodicticus_ibeanus	Lorisidae	STR	Strepsirrhines
+Perodicticus_potto	Lorisidae	STR	Strepsirrhines
+Phaner_electromontis	Cheirogaleidae	STR	Strepsirrhines
+Phaner_furcifer	Cheirogaleidae	STR	Strepsirrhines
+Phaner_pallescens	Cheirogaleidae	STR	Strepsirrhines
+Phaner_parienti	Cheirogaleidae	STR	Strepsirrhines
+Piliocolobus_badius	Cercopithecidae	OWM	Old World monkeys
+Piliocolobus_bouvieri	Cercopithecidae	OWM	Old World monkeys
+Piliocolobus_epieni	Cercopithecidae	OWM	Old World monkeys
+Piliocolobus_foai	Cercopithecidae	OWM	Old World monkeys
+Piliocolobus_gordonorum	Cercopithecidae	OWM	Old World monkeys
+Piliocolobus_kirkii	Cercopithecidae	OWM	Old World monkeys
+Piliocolobus_langi	Cercopithecidae	OWM	Old World monkeys
+Piliocolobus_lulindicus	Cercopithecidae	OWM	Old World monkeys
+Piliocolobus_oustaleti	Cercopithecidae	OWM	Old World monkeys
+Piliocolobus_parmentieri	Cercopithecidae	OWM	Old World monkeys
+Piliocolobus_pennantii	Cercopithecidae	OWM	Old World monkeys
+Piliocolobus_preussi	Cercopithecidae	OWM	Old World monkeys
+Piliocolobus_rufomitratus	Cercopithecidae	OWM	Old World monkeys
+Piliocolobus_semlikiensis	Cercopithecidae	OWM	Old World monkeys
+Piliocolobus_temminckii	Cercopithecidae	OWM	Old World monkeys
+Piliocolobus_tephrosceles	Cercopithecidae	OWM	Old World monkeys
+Piliocolobus_tholloni	Cercopithecidae	OWM	Old World monkeys
+Piliocolobus_waldronae	Cercopithecidae	OWM	Old World monkeys
+Pithecia_aequatorialis	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Pithecia_albicans	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Pithecia_cazuzai	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Pithecia_chrysocephala	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Pithecia_hirsuta	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Pithecia_inusta	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Pithecia_irrorata	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Pithecia_isabela	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Pithecia_milleri	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Pithecia_mittermeieri	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Pithecia_monachus	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Pithecia_napensis	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Pithecia_pissinattii	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Pithecia_pithecia	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Pithecia_rylandsi	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Pithecia_vanzolinii	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_aureipalatii	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_baptista	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_bernhardi	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_brunneus	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_caligatus	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_caquetensis	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_cinerascens	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_cupreus	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_discolor	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_donacophilus	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_hoffmansi	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_miltoni	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_modestus	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_moloch	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_oenanthe	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_olallae	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_ornatus	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_pallescens	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_stephennashi	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_toppini	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_urubambensis	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Plecturocebus_vieirai	Pitheciidae	PLA	New World monkeys (Platyrrhini)
+Pongo_abelii	Hominidae	APE	Apes
+Pongo_pygmaeus	Hominidae	APE	Apes
+Pongo_tapanuliensis	Hominidae	APE	Apes
+Presbytis_bicolor	Cercopithecidae	OWM	Old World monkeys
+Presbytis_canicrus	Cercopithecidae	OWM	Old World monkeys
+Presbytis_chrysomelas	Cercopithecidae	OWM	Old World monkeys
+Presbytis_comata	Cercopithecidae	OWM	Old World monkeys
+Presbytis_femoralis	Cercopithecidae	OWM	Old World monkeys
+Presbytis_frontata	Cercopithecidae	OWM	Old World monkeys
+Presbytis_hosei	Cercopithecidae	OWM	Old World monkeys
+Presbytis_melalophos	Cercopithecidae	OWM	Old World monkeys
+Presbytis_mitrata	Cercopithecidae	OWM	Old World monkeys
+Presbytis_natunae	Cercopithecidae	OWM	Old World monkeys
+Presbytis_potenziani	Cercopithecidae	OWM	Old World monkeys
+Presbytis_rubicunda	Cercopithecidae	OWM	Old World monkeys
+Presbytis_sabana	Cercopithecidae	OWM	Old World monkeys
+Presbytis_siamensis	Cercopithecidae	OWM	Old World monkeys
+Presbytis_siberu	Cercopithecidae	OWM	Old World monkeys
+Presbytis_sumatrana	Cercopithecidae	OWM	Old World monkeys
+Presbytis_thomasi	Cercopithecidae	OWM	Old World monkeys
+Procolobus_verus	Cercopithecidae	OWM	Old World monkeys
+Prolemur_simus	Lemuridae	STR	Strepsirrhines
+Propithecus_candidus	Indriidae	STR	Strepsirrhines
+Propithecus_coquereli	Indriidae	STR	Strepsirrhines
+Propithecus_coronatus	Indriidae	STR	Strepsirrhines
+Propithecus_deckenii	Indriidae	STR	Strepsirrhines
+Propithecus_diadema	Indriidae	STR	Strepsirrhines
+Propithecus_edwardsi	Indriidae	STR	Strepsirrhines
+Propithecus_perrieri	Indriidae	STR	Strepsirrhines
+Propithecus_tattersalli	Indriidae	STR	Strepsirrhines
+Propithecus_verreauxi	Indriidae	STR	Strepsirrhines
+Pygathrix_cinerea	Cercopithecidae	OWM	Old World monkeys
+Pygathrix_nemaeus	Cercopithecidae	OWM	Old World monkeys
+Pygathrix_nigripes	Cercopithecidae	OWM	Old World monkeys
+Rhinopithecus_avunculus	Cercopithecidae	OWM	Old World monkeys
+Rhinopithecus_bieti	Cercopithecidae	OWM	Old World monkeys
+Rhinopithecus_brelichi	Cercopithecidae	OWM	Old World monkeys
+Rhinopithecus_roxellana	Cercopithecidae	OWM	Old World monkeys
+Rhinopithecus_strykeri	Cercopithecidae	OWM	Old World monkeys
+Rungwecebus_kipunji	Cercopithecidae	OWM	Old World monkeys
+Saguinus_bicolor	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Saguinus_geoffroyi	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Saguinus_imperator	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Saguinus_inustus	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Saguinus_labiatus	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Saguinus_leucopus	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Saguinus_martinsi	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Saguinus_midas	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Saguinus_mystax	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Saguinus_niger	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Saguinus_oedipus	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Saguinus_ursulus	Callitrichidae	PLA	New World monkeys (Platyrrhini)
+Saimiri_boliviensis	Cebidae	PLA	New World monkeys (Platyrrhini)
+Saimiri_cassiquiarensis	Cebidae	PLA	New World monkeys (Platyrrhini)
+Saimiri_collinsi	Cebidae	PLA	New World monkeys (Platyrrhini)
+Saimiri_macrodon	Cebidae	PLA	New World monkeys (Platyrrhini)
+Saimiri_oerstedii	Cebidae	PLA	New World monkeys (Platyrrhini)
+Saimiri_sciureus	Cebidae	PLA	New World monkeys (Platyrrhini)
+Saimiri_ustus	Cebidae	PLA	New World monkeys (Platyrrhini)
+Saimiri_vanzolinii	Cebidae	PLA	New World monkeys (Platyrrhini)
+Sapajus_apella	Cebidae	PLA	New World monkeys (Platyrrhini)
+Sapajus_cay	Cebidae	PLA	New World monkeys (Platyrrhini)
+Sapajus_flavius	Cebidae	PLA	New World monkeys (Platyrrhini)
+Sapajus_libidinosus	Cebidae	PLA	New World monkeys (Platyrrhini)
+Sapajus_macrocephalus	Cebidae	PLA	New World monkeys (Platyrrhini)
+Sapajus_nigritus	Cebidae	PLA	New World monkeys (Platyrrhini)
+Sapajus_robustus	Cebidae	PLA	New World monkeys (Platyrrhini)
+Sapajus_xanthosternos	Cebidae	PLA	New World monkeys (Platyrrhini)
+Sciurocheirus_alleni	Galagidae	STR	Strepsirrhines
+Sciurocheirus_cameronensis	Galagidae	STR	Strepsirrhines
+Sciurocheirus_gabonensis	Galagidae	STR	Strepsirrhines
+Sciurocheirus_makandensis	Galagidae	STR	Strepsirrhines
+Semnopithecus_ajax	Cercopithecidae	OWM	Old World monkeys
+Semnopithecus_entellus	Cercopithecidae	OWM	Old World monkeys
+Semnopithecus_hector	Cercopithecidae	OWM	Old World monkeys
+Semnopithecus_hypoleucos	Cercopithecidae	OWM	Old World monkeys
+Semnopithecus_johnii	Cercopithecidae	OWM	Old World monkeys
+Semnopithecus_priam	Cercopithecidae	OWM	Old World monkeys
+Semnopithecus_schistaceus	Cercopithecidae	OWM	Old World monkeys
+Semnopithecus_vetulus	Cercopithecidae	OWM	Old World monkeys
+Simias_concolor	Cercopithecidae	OWM	Old World monkeys
+Symphalangus_syndactylus	Hylobatidae	APE	Apes
+Tarsius_dentatus	Tarsiidae	TAR	Tarsiers
+Tarsius_fuscus	Tarsiidae	TAR	Tarsiers
+Tarsius_lariang	Tarsiidae	TAR	Tarsiers
+Tarsius_pelengensis	Tarsiidae	TAR	Tarsiers
+Tarsius_pumilus	Tarsiidae	TAR	Tarsiers
+Tarsius_sangirensis	Tarsiidae	TAR	Tarsiers
+Tarsius_spectrumgurskyae	Tarsiidae	TAR	Tarsiers
+Tarsius_supriatnai	Tarsiidae	TAR	Tarsiers
+Tarsius_tarsier	Tarsiidae	TAR	Tarsiers
+Tarsius_tumpara	Tarsiidae	TAR	Tarsiers
+Tarsius_wallacei	Tarsiidae	TAR	Tarsiers
+Theropithecus_gelada	Cercopithecidae	OWM	Old World monkeys
+Trachypithecus_auratus	Cercopithecidae	OWM	Old World monkeys
+Trachypithecus_barbei	Cercopithecidae	OWM	Old World monkeys
+Trachypithecus_crepusculus	Cercopithecidae	OWM	Old World monkeys
+Trachypithecus_cristatus	Cercopithecidae	OWM	Old World monkeys
+Trachypithecus_delacouri	Cercopithecidae	OWM	Old World monkeys
+Trachypithecus_ebenus	Cercopithecidae	OWM	Old World monkeys
+Trachypithecus_francoisi	Cercopithecidae	OWM	Old World monkeys
+Trachypithecus_geei	Cercopithecidae	OWM	Old World monkeys
+Trachypithecus_germaini	Cercopithecidae	OWM	Old World monkeys
+Trachypithecus_hatinhensis	Cercopithecidae	OWM	Old World monkeys
+Trachypithecus_laotum	Cercopithecidae	OWM	Old World monkeys
+Trachypithecus_leucocephalus	Cercopithecidae	OWM	Old World monkeys
+Trachypithecus_margarita	Cercopithecidae	OWM	Old World monkeys
+Trachypithecus_mauritius	Cercopithecidae	OWM	Old World monkeys
+Trachypithecus_obscurus	Cercopithecidae	OWM	Old World monkeys
+Trachypithecus_phayrei	Cercopithecidae	OWM	Old World monkeys
+Trachypithecus_pileatus	Cercopithecidae	OWM	Old World monkeys
+Trachypithecus_poliocephalus	Cercopithecidae	OWM	Old World monkeys
+Trachypithecus_selangorensis	Cercopithecidae	OWM	Old World monkeys
+Trachypithecus_shortridgei	Cercopithecidae	OWM	Old World monkeys
+Varecia_rubra	Lemuridae	STR	Strepsirrhines
+Varecia_variegata	Lemuridae	STR	Strepsirrhines
