@@ -14,11 +14,13 @@
 
 set -euo pipefail
 
-# Correfoc does not currently provide a default Miniconda3 module.
-module purge
-module load modulepath/noarch-rocky9
-module load Miniconda3/23.9.0-0
-source /homes/aplic/noarch/software/Miniconda3/23.9.0-0/etc/profile.d/conda.sh
+# Initialize Conda directly: Correfoc's Lmod hierarchy is not stable.
+CORREFOC_CONDA_SH=/homes/aplic/noarch/software/Miniconda3/23.9.0-0/etc/profile.d/conda.sh
+if [[ ! -r "${CORREFOC_CONDA_SH}" ]]; then
+    echo "Cannot read Conda initialization script: ${CORREFOC_CONDA_SH}" >&2
+    exit 1
+fi
+source "${CORREFOC_CONDA_SH}"
 conda activate primate-pss-bootstrap
 
 # Slurm executes a spooled copy of this script. Return to the directory from
