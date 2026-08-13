@@ -17,9 +17,9 @@ trait_regex: ".*"
 # SLURM / CORREFOC SETTINGS ---------------------------------------------------
 # Fill these only if required by your UPF allocation. Empty values are ignored.
 slurm_partition: "std-cpu"
-slurm_account: ""
-slurm_qos: ""
-slurm_cluster_options: ""
+slurm_account: ""  # Informational; use slurm_cluster_options if required.
+slurm_qos: ""      # Informational; use slurm_cluster_options if required.
+slurm_cluster_options: ""  # Example: "--account=MY_ACCOUNT --qos=MY_QOS"
 
 # Maximum number of submitted/running bootstrap jobs controlled by Nextflow.
 max_parallel_jobs: 200

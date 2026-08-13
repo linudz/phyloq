@@ -1,4 +1,11 @@
+# Nextflow state, logs, locks and Conda-environment cache
 .nextflow*
+
+# Nextflow task staging and published outputs
 work/
 results/
-results.smoke/
+results.smoke*/
+
+# Slurm driver logs (keep the directory itself in Git)
+logs/*
+!logs/.gitkeep

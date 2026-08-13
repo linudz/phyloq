@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - nextflow >=24.04
+  - nextflow >=26.04,<27
   - openjdk >=17,<22
   - r-base >=4.3,<4.4
   - r-ape >=5.7
