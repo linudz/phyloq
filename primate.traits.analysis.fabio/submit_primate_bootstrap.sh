@@ -18,8 +18,10 @@ module load Miniconda3
 source /homes/aplic/noarch/software/Miniconda3/23.9.0-0/etc/profile.d/conda.sh
 conda activate primate-pss-bootstrap
 
-# Always run from the directory containing this submission script.
-cd "$(dirname "$0")"
+# Slurm executes a spooled copy of this script. Return to the directory from
+# which sbatch was invoked, where main.nf and params.yaml are located.
+cd "${SLURM_SUBMIT_DIR:?SLURM_SUBMIT_DIR is not set}"
+mkdir -p .nextflow logs results
 
 nextflow run main.nf \
   -profile slurm \
