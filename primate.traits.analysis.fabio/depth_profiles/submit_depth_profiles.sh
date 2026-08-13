@@ -10,7 +10,9 @@
 
 set -euo pipefail
 
-module load Miniconda3
+# Correfoc does not currently provide a default Miniconda3 module.
+module purge
+module load Miniconda3/23.9.0-0
 source /homes/aplic/noarch/software/Miniconda3/23.9.0-0/etc/profile.d/conda.sh
 conda activate primate-pss-bootstrap
 
