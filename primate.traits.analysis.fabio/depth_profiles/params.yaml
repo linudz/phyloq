@@ -1,0 +1,44 @@
+# ANALYSIS -------------------------------------------------------------------
+# Run 1,000 deterministic simulations from the models and parameters frozen
+# from the validated bootstrap. Both bootstrap types and tails are retained.
+bootstrap_replicates: 1000
+replicates_per_task: 100
+bootstrap_seed: 20260812
+bootstrap_max_attempts: 10
+
+# Primary estimand: top and bottom 1% of PSS pairs. Curves are evaluated at
+# 0.00, 0.01, ..., 1.00 when depth_grid_points is 101.
+tail_proportion: 0.01
+depth_grid_points: 101
+
+# Frozen export contains 153 retained traits. Keep this guard for the full run.
+expected_traits: 153
+trait_regex: ".*"
+
+# OUTPUT ---------------------------------------------------------------------
+# This folder lives inside depth_profiles/ and contains its own .gitignore.
+output_dir: "results"
+
+# SLURM / CORREFOC -----------------------------------------------------------
+slurm_partition: "std-cpu"
+slurm_cluster_options: ""
+max_parallel_jobs: 200
+
+bootstrap_cpus: 1
+bootstrap_memory: "2 GB"
+bootstrap_time: "2h"
+aggregate_cpus: 1
+aggregate_memory: "8 GB"
+aggregate_time: "3h"
+conda_cache_dir: ".nextflow-conda"
+
+# FROZEN INPUTS AND VERSIONED SCRIPTS ----------------------------------------
+# Paths are resolved relative to depth_profiles/main.nf.
+traits_dir: "../inputs/traits"
+classified_dir: "../inputs/classified"
+tree: "../inputs/tree/science.abn7829_data_s4.nex.tree"
+taxonomy: "../inputs/taxonomy/species_family_primate_group.tsv"
+pss_core: "../scripts/pss.core.R"
+observed_fits: "inputs/observed_model_fits.tsv"
+bootstrap_script: "scripts/parametric_bootstrap_depth_chunk.R"
+summary_script: "scripts/summarize_depth_profiles.R"
