@@ -16,7 +16,7 @@ trait_regex: ".*"
 
 # SLURM / CORREFOC SETTINGS ---------------------------------------------------
 # Fill these only if required by your UPF allocation. Empty values are ignored.
-slurm_partition: ""
+slurm_partition: "std-cpu"
 slurm_account: ""
 slurm_qos: ""
 slurm_cluster_options: ""

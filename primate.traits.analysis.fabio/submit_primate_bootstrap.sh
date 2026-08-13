@@ -6,9 +6,9 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=4G
 #SBATCH --time=7-00:00:00
+#SBATCH --partition=std-cpu
 
 # Uncomment and complete these directives if required by Correfoc.
-##SBATCH --partition=PARTITION_NAME
 ##SBATCH --account=ACCOUNT_NAME
 ##SBATCH --qos=QOS_NAME
 
