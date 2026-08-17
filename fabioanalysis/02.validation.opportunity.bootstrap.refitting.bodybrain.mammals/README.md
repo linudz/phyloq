@@ -43,8 +43,10 @@ simulations per trait:
 bash submit_production.sh
 ```
 
-Nextflow writes work and Conda caches under `$SCRATCH` when it is defined.
-Published outputs remain under `results/pilot/` or `results/production/`.
+Nextflow writes `work/` beside the workflow so that the driver and all SLURM
+worker nodes see the same task directories on shared SamanthaFS. The Conda
+cache uses `$SCRATCH` when that variable is defined and otherwise stays beside
+the workflow. Published outputs remain under `results/pilot/` or `results/production/`.
 Both results and logs are ignored by Git, except for their `.gitkeep` files.
 
 ## Returning results
