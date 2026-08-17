@@ -1,0 +1,22 @@
+states_dir: "inputs/states"
+pss_core: "inputs/core/pss.core.R"
+output_dir: "results/production"
+conditional_replicates: 1000
+conditional_replicates_per_task: 10
+full_replicates: 100
+full_replicates_per_task: 1
+bootstrap_seed: 20260817
+bootstrap_max_attempts: 10
+depth_grid_points: 101
+expected_traits: 3
+
+slurm_partition: "std-cpu"
+slurm_cluster_options: ""
+max_parallel_jobs: 100
+conditional_memory: "16 GB"
+conditional_time: "12h"
+full_memory: "24 GB"
+full_time: "24h"
+aggregate_memory: "8 GB"
+aggregate_time: "4h"
+conda_cache_dir: ".nextflow-conda"
