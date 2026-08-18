@@ -1,0 +1,8 @@
+.nextflow/
+.nextflow.log*
+.nextflow-conda/
+work/
+logs/*
+!logs/.gitkeep
+results/*
+!results/.gitkeep
