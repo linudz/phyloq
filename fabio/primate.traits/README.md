@@ -95,3 +95,15 @@ files are also saved under `results/`.
 - `inputs/metadata/`: domain mapping and filtering audit, included for context.
 
 No input from the old `statistical.test.approach` is used.
+
+## Continuous phylogenetic-depth profiles
+
+The independent workflow under `depth_profiles/` recreates the same
+deterministic bootstrap while retaining the complete depth distribution of
+top and bottom PSS tails. It produces cumulative curves, pointwise and
+simultaneous null envelopes, calibrated global curve statistics, excursion
+intervals and BH-adjusted trait-level probabilities.
+
+Its outputs are written to the separate, Git-ignored
+`depth_profile_results/` directory. See `depth_profiles/README.md` for the
+Correfoc command, parameters, outputs and validation rules.

@@ -37,7 +37,7 @@ From the root of the cloned `phyloq` repository:
 git pull
 conda env update -n phyloq -f environment.yml --prune
 conda activate phyloq
-cd fabioanalysis/02.validation.opportunity.bootstrap.refitting.bodybrain.mammals.production
+cd fabio/venditti.mammals/02.validation.opportunity.bootstrap.refitting.bodybrain.mammals.production
 sha256sum -c MANIFEST.sha256
 ```
 

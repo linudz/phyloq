@@ -27,7 +27,7 @@ The pilot runs 3 conditional simulations and 1 full-refit simulation per
 trait:
 
 ```bash
-cd fabioanalysis/02.validation.opportunity.bootstrap.refitting.bodybrain.mammals
+cd fabio/venditti.mammals/02.validation.opportunity.bootstrap.refitting.bodybrain.mammals
 bash submit_pilot.sh
 ```
 

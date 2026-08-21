@@ -21,7 +21,7 @@ conda activate primate-pss-bootstrap
 
 # Submit from repository root so Slurm can open logs/ before the script starts.
 if [[ ! -f "${SLURM_SUBMIT_DIR}/depth_profiles/main.nf" ]]; then
-  echo "Submit this wrapper from primate.traits.analysis.fabio/." >&2
+  echo "Submit this wrapper from fabio/primate.traits/." >&2
   exit 1
 fi
 pipeline_dir="${SLURM_SUBMIT_DIR}/depth_profiles"

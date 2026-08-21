@@ -5,6 +5,8 @@
 work/
 results/
 results.smoke*/
+work.depth_profiles/
+depth_profile_results*/
 
 # Slurm driver logs (keep the directory itself in Git)
 logs/*
