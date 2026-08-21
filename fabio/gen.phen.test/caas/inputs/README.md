@@ -8,6 +8,7 @@
   pooled event reconstruction.
 - `benchmark.configs.tsv` is the Nextflow manifest connecting each approach to
   its source, pooled configuration and complete pool.
+- `alignments/` is populated directly on Correfoc and is excluded from Git.
 
 Regenerate all derived inputs with:
 

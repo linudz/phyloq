@@ -148,7 +148,10 @@ are shared across the three benchmark arms in `conf/cluster.config`.
 
 ## Nextflow execution
 
-Set the alignment path and SLURM settings in `conf/cluster.config`, then launch:
+Alignment files are installed directly on Correfoc under
+`inputs/alignments/` and are excluded from Git. The configured input glob is
+`inputs/alignments/*.phy`. Set the remaining SLURM settings in
+`conf/cluster.config`, then launch:
 
 ```bash
 sbatch submit_pipeline_slurm.sh

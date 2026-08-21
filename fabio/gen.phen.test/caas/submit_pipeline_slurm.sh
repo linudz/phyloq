@@ -25,7 +25,7 @@ fi
 # sbatch was invoked, where the complete pipeline checkout must be located.
 pipeline_dir="${SLURM_SUBMIT_DIR:?SLURM_SUBMIT_DIR is not set}"
 if [[ ! -f "${pipeline_dir}/run_pipeline.sh" || ! -f "${pipeline_dir}/main.nf" ]]; then
-    echo "Submit this script from the lq.table2.bootstrap.nextflow directory." >&2
+    echo "Submit this script from fabio/gen.phen.test/caas/." >&2
     echo "SLURM submission directory: ${pipeline_dir}" >&2
     exit 1
 fi

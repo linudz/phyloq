@@ -5,6 +5,7 @@ logs/*
 !logs/.gitkeep
 results/
 work/
+inputs/alignments/
 logs/genphen-bootstrap-driver-*.out
 logs/genphen-bootstrap-driver-*.err
 __pycache__/
