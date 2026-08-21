@@ -159,6 +159,14 @@ results/run-YYMMDDHHMM/
 ```
 
 From `bootstrap/`, `$(cat .last_run_id)` prints the current run directory name.
+To print the complete path to the current results:
+
+```bash
+echo ../results/"$(cat .last_run_id)"
+```
+
+The `results/` directory is local and is not uploaded to GitHub. A new run
+gets a new timestamped directory; `-resume` continues in the same directory.
 
 ### CAAStools output
 
@@ -178,6 +186,19 @@ This corresponds to:
 
 ```text
 5 alignments x 3 phenotype configurations = 15 CAAStools tasks
+```
+
+Each `.caas` file is one alignment tested with one phenotype configuration.
+The `.cfg` file divides the species into groups, and CAAStools reports
+amino-acid positions whose pattern matches that grouping. The filename names
+both the gene/alignment and the configuration. An empty file means that the
+task finished but found no candidate position; it is not automatically an
+error.
+
+List all CAAStools outputs:
+
+```bash
+find ../results/"$(cat .last_run_id)"/caas.results -type f -name '*.caas' | sort
 ```
 
 ### RERconverge output
@@ -208,6 +229,31 @@ The expected number is:
 3
 ```
 
+Each `rerconverge.<configuration>/` directory is one phenotype configuration
+analysed across the three test genes. In its main file, `associations.tsv`,
+each row represents one gene:
+
+- `Rho`: direction and strength of the association with foreground branches.
+  Positive means relatively faster evolution in the foreground; negative means
+  relatively slower evolution.
+- `N`: number of branch observations used.
+- `P`: unadjusted association p-value.
+- `p.adj`: adjusted p-value produced by RERconverge.
+
+The directory also contains `rer_matrix.tsv` (relative evolutionary rates),
+`phenotype_paths.tsv` (phenotype mapped onto branches), `run_summary.tsv`
+(inputs and thresholds), and `rerconverge_objects.rds` (saved R objects).
+`missing_foreground_species.txt` may appear if foreground species are missing
+from the tree.
+
+To inspect one association table:
+
+```bash
+column -t -s $'\t' ../results/"$(cat .last_run_id)"/rer.results/rerconverge.ctrl.group.001/associations.tsv | less -S
+```
+
+Press `q` to leave `less`.
+
 It is normal for some values inside these test tables to be `NA`. This is a
 very small three-gene test. In this exercise we are checking that the software
 and workflow run correctly, not whether the results are biologically
@@ -227,8 +273,9 @@ computer.
 
 ## If Something Goes Wrong
 
-Do not delete the `work` directory immediately. It contains useful information
-about failed tasks.
+Do not delete `bootstrap/work/` immediately. It is Nextflow's active cache and
+contains useful information about failed tasks. A `work/` directory in the
+repository root is obsolete and is not used by the current launcher.
 
 First read the troubleshooting sections in `README.md`. If the problem is not
 resolved, save and report:
