@@ -1,0 +1,11 @@
+.last_run_id
+.nextflow/
+.nextflow.log*
+logs/*
+!logs/.gitkeep
+results/
+work/
+logs/genphen-bootstrap-driver-*.out
+logs/genphen-bootstrap-driver-*.err
+__pycache__/
+*.py[cod]

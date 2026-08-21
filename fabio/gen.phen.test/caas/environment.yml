@@ -1,0 +1,20 @@
+name: phyloq
+
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+
+dependencies:
+  # Workflow runtime
+  - openjdk=17
+  - nextflow
+
+  # CAAStools
+  - python=3.11
+  # CAAStools still imports pkg_resources, removed in setuptools 82.
+  - setuptools<82
+  - biopython
+  - dendropy
+  - numpy
+  - scipy
