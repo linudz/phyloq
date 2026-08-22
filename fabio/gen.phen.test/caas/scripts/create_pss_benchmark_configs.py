@@ -31,7 +31,13 @@ DEFAULT_MANIFEST = PROJECT_DIR / "inputs" / "benchmark.configs.tsv"
 DEFAULT_RANKED_13X13_MANIFEST = (
     PROJECT_DIR / "inputs" / "benchmark.configs.pss-ranked-13x13.tsv"
 )
+DEFAULT_CERCOPITHECID_RANDOM_POOLS_MANIFEST = (
+    PROJECT_DIR
+    / "inputs"
+    / "benchmark.configs.pss-cercopithecidae-random-pools.tsv"
+)
 RANKED_13X13_LABEL = "07_pss_ranked_endpoint_disjoint_13x13"
+CERCOPITHECID_RANDOM_POOLS_LABEL = "08_pss_cercopithecidae_random_pools"
 
 
 @dataclass(frozen=True)
@@ -93,6 +99,24 @@ def absolute_trait_tails(rows: Sequence[dict[str, str]], group_size: int) -> Ite
     fg_groups = list(unique_genus_combinations(foreground, group_size))
     bg_groups = list(unique_genus_combinations(background, group_size))
     for fg, bg in itertools.product(fg_groups, bg_groups):
+        yield Hypothesis(fg, bg)
+
+
+def independent_fixed_side_pools(
+    rows: Sequence[dict[str, str]], group_size: int
+) -> Iterable[Hypothesis]:
+    """Independently sample FG and BG from preassigned species pools.
+
+    The upstream PSS pairs justify pool membership but do not constrain the
+    comparisons. No genus restriction is applied: this benchmark implements
+    pure random 4-vs-4 sampling from the two fixed-side species lists.
+    """
+    foreground = [row["Species"] for row in rows if row["Group"] == "FG"]
+    background = [row["Species"] for row in rows if row["Group"] == "BG"]
+    for fg, bg in itertools.product(
+        itertools.combinations(foreground, group_size),
+        itertools.combinations(background, group_size),
+    ):
         yield Hypothesis(fg, bg)
 
 
@@ -238,6 +262,12 @@ def main() -> None:
         default=DEFAULT_RANKED_13X13_MANIFEST,
         help="single-strategy manifest for launching only the ranked 13x13 arm",
     )
+    parser.add_argument(
+        "--cercopithecid-random-pools-manifest",
+        type=Path,
+        default=DEFAULT_CERCOPITHECID_RANDOM_POOLS_MANIFEST,
+        help="single-strategy manifest for the cercopithecid random-pool arm",
+    )
     parser.add_argument("--cycles", type=int, default=100)
     parser.add_argument("--group-size", type=int, default=4)
     parser.add_argument("--seed", type=int, default=260821)
@@ -279,6 +309,11 @@ def main() -> None:
             RANKED_13X13_LABEL,
             args.table_dir / "08_pss_ranked_endpoint_disjoint_13_pairs.tsv",
             pss_pairs,
+        ),
+        (
+            CERCOPITHECID_RANDOM_POOLS_LABEL,
+            args.table_dir / "09_cercopithecidae_pss_random_pools.tsv",
+            independent_fixed_side_pools,
         ),
     ]
 
@@ -326,22 +361,31 @@ def main() -> None:
         writer.writerow(manifest_header)
         writer.writerows(manifest_rows)
 
-    # Keep a one-row manifest beside the complete benchmark manifest. It lets
-    # Nextflow launch this new arm alone instead of resubmitting earlier arms.
-    ranked_13x13_rows = [
-        row for row in manifest_rows if row[0] == RANKED_13X13_LABEL
-    ]
-    if len(ranked_13x13_rows) != 1:
-        raise ValueError("Could not identify the ranked 13x13 manifest row")
-    args.ranked_13x13_manifest.parent.mkdir(parents=True, exist_ok=True)
-    with args.ranked_13x13_manifest.open("w", newline="") as handle:
-        writer = csv.writer(handle, delimiter="\t", lineterminator="\n")
-        writer.writerow(manifest_header)
-        writer.writerows(ranked_13x13_rows)
+    # Keep one-row manifests beside the complete benchmark manifest. They let
+    # Nextflow launch a new arm alone instead of resubmitting earlier arms.
+    for label, path in (
+        (RANKED_13X13_LABEL, args.ranked_13x13_manifest),
+        (
+            CERCOPITHECID_RANDOM_POOLS_LABEL,
+            args.cercopithecid_random_pools_manifest,
+        ),
+    ):
+        single_rows = [row for row in manifest_rows if row[0] == label]
+        if len(single_rows) != 1:
+            raise ValueError(f"Could not identify the single-manifest row: {label}")
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("w", newline="") as handle:
+            writer = csv.writer(handle, delimiter="\t", lineterminator="\n")
+            writer.writerow(manifest_header)
+            writer.writerows(single_rows)
 
     print(f"\nWrote {len(manifest_rows)} benchmark configurations to {args.output_dir}")
     print(f"Manifest: {args.manifest}")
     print(f"Ranked 13x13-only manifest: {args.ranked_13x13_manifest}")
+    print(
+        "Cercopithecid random-pools-only manifest: "
+        f"{args.cercopithecid_random_pools_manifest}"
+    )
     print(f"Seed: {args.seed}; cycles per approach: {args.cycles}; comparison: {args.group_size} vs {args.group_size}")
 
 

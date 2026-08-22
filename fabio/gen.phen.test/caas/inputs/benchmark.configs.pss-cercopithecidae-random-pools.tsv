@@ -1,0 +1,2 @@
+approach	source_table	hypotheses_config	pool_config	possible_cycles	selected_cycles	sha256
+08_pss_cercopithecidae_random_pools	inputs/config.creation/09_cercopithecidae_pss_random_pools.tsv	inputs/benchmark-configs/08_pss_cercopithecidae_random_pools.pooled.caas.cfg	inputs/benchmark-pools/08_pss_cercopithecidae_random_pools.pool.caas.cfg	26460	100	dcefc7fb9eea31f05be2bbf51b41a3aa4117072a70b768d29a6001a3ee4d1b33

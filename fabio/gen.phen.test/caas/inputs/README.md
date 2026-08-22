@@ -1,8 +1,8 @@
 # Benchmark inputs
 
-- `config.creation/` contains the source selections used to define the seven
+- `config.creation/` contains the source selections used to define the eight
   benchmark strategies.
-- `benchmark-configs/` contains the seven generated 100-cycle, 4-vs-4 pooled
+- `benchmark-configs/` contains the eight generated 100-cycle, 4-vs-4 pooled
   CAAStools configurations.
 - `benchmark-pools/` contains the complete fixed FG/BG pools required for
   pooled event reconstruction.
@@ -10,6 +10,8 @@
   its source, pooled configuration and complete pool.
 - `benchmark.configs.pss-ranked-13x13.tsv` contains only the hierarchical
   13-vs-13 PSS strategy for a focused Nextflow launch.
+- `benchmark.configs.pss-cercopithecidae-random-pools.tsv` contains only the
+  cercopithecid PSS-defined random-pool strategy.
 - `alignments/` is populated directly on Correfoc and is excluded from Git.
 
 Regenerate all derived inputs with:

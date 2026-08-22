@@ -1,6 +1,6 @@
 # PSS benchmark with pooled CAAStools
 
-This workflow benchmarks seven strategies for defining genome–phenome
+This workflow benchmarks eight strategies for defining genome–phenome
 hypotheses from relative brain mass. Here, *benchmark* refers to the direct
 comparison of these predefined hypothesis-building strategies under the
 same pooled CAAStools settings.
@@ -20,8 +20,8 @@ biologically superior.
 
 ## Common experimental design
 
-- Seven independent approaches: three original benchmarks and four additional
-  PSS-pair pooling hypotheses.
+- Eight independent approaches: three original benchmarks and five additional
+  PSS-informed pooling hypotheses.
 - 100 unique cycles per approach.
 - Four foreground (FG) versus four background (BG) species per cycle.
 - A fixed seed (`260821`) and SHA-256 ranking make selection reproducible
@@ -29,7 +29,7 @@ biologically superior.
 - Higher phenotype is encoded as FG; lower phenotype is encoded as BG.
 - Species have fixed side membership within each approach, as required for
   pooled event reconstruction.
-- The seven configurations are crossed with all alignments by Nextflow and
+- The eight configurations are crossed with all alignments by Nextflow and
   can therefore run in parallel.
 
 Each pooled configuration is headerless and uses the format:
@@ -123,12 +123,42 @@ The 13 pairs define 715 possible linked 4-vs-4 cycles. The common seeded
 selection retains 100 cycles. FG and BG are never sampled independently: each
 cycle is always assembled from four intact PSS pairs.
 
+This design tests paired directional shifts. It does not enforce separation
+between the complete FG and BG trait distributions: an FG endpoint from one
+pair may have a lower trait value than a BG endpoint from another pair.
+
 Recreate the ranked source tables before regenerating all configurations with:
 
 ```bash
 python3 scripts/create_pss_ranked_13x13_groups.py
 python3 scripts/create_pss_benchmark_configs.py
 ```
+
+## Approach 8: `pss.cercopithecidae.random.pools`
+
+Sources:
+
+- `inputs/config.creation/09_cercopithecidae_pss_bottom_linked_pairs.tsv`;
+- `inputs/config.creation/09_cercopithecidae_pss_random_pools.tsv`.
+
+The PSS analysis is restricted to Cercopithecidae. A top-1% pair contributes
+to pool definition when at least one endpoint also occurs in a bottom-1% pair.
+The higher endpoint defines FG membership and the lower endpoint defines BG
+membership. Deduplication yields nine FG and ten BG species without cross-side
+ambiguities.
+
+The pairs justify the two pools but do not constrain individual comparisons.
+Each cycle independently samples four FG and four BG species, with no genus or
+linked-pair restriction. This produces 26,460 possible comparisons; 100 are
+selected reproducibly with the common seed.
+
+## Planned benchmark: `pss.with.separation`
+
+This future benchmark will combine top-1% PSS support with complete separation
+of the final trait distributions. The current maximum endpoint-disjoint
+solution is 12 FG versus 12 BG around a relative-brain-mass threshold of
+approximately 1.4565. It is distinct from approach 7 and has no pooled config
+yet.
 
 ## Recreate the configurations
 
@@ -154,7 +184,7 @@ manifest.
 
 ## Generated inputs
 
-The seven pooled configurations are:
+The eight pooled configurations are:
 
 ```text
 inputs/benchmark-configs/01_family_extrema.pooled.caas.cfg
@@ -164,6 +194,7 @@ inputs/benchmark-configs/04_pss_all_congeneric_top1pct.pooled.caas.cfg
 inputs/benchmark-configs/05_pss_macaca_papio_trachypithecus_top1pct.pooled.caas.cfg
 inputs/benchmark-configs/06_pss_macaca_papio_top1pct.pooled.caas.cfg
 inputs/benchmark-configs/07_pss_ranked_endpoint_disjoint_13x13.pooled.caas.cfg
+inputs/benchmark-configs/08_pss_cercopithecidae_random_pools.pooled.caas.cfg
 ```
 
 CAAStools also requires a complete fixed-side pool for reconstructing coherent
@@ -180,6 +211,9 @@ relative to this project, so the directory can be transferred to the cluster.
 
 `inputs/benchmark.configs.pss-ranked-13x13.tsv` contains only approach 7 and
 can be used to launch this strategy without resubmitting the previous arms.
+
+`inputs/benchmark.configs.pss-cercopithecidae-random-pools.tsv` contains only
+approach 8 for a focused launch of the random-pool benchmark.
 
 ## Example selections
 
@@ -208,7 +242,7 @@ event, while incompatible amino-acid signatures remain separate events.
 
 The positional hypergeometric prefilter defaults to `0.05`. Each 4-vs-4 cycle
 requires at least three observed, non-gap species on each side. These settings
-are shared across the seven benchmark arms in `conf/cluster.config`.
+are shared across the eight benchmark arms in `conf/cluster.config`.
 
 ## Nextflow execution
 
@@ -222,7 +256,7 @@ sbatch submit_pipeline_slurm.sh
 ```
 
 Nextflow reads `inputs/benchmark.configs.tsv`, forms the Cartesian product of
-the seven approaches and all alignments, and submits the resulting jobs in
+the eight approaches and all alignments, and submits the resulting jobs in
 parallel subject to the configured queue limit. Use a fresh run for this new
 graph; subsequently, the same run can be resumed with:
 
@@ -236,6 +270,13 @@ one-row manifest as a fresh run:
 ```bash
 sbatch submit_pipeline_slurm.sh \
   --benchmark_manifest "$PWD/inputs/benchmark.configs.pss-ranked-13x13.tsv"
+```
+
+To launch only the cercopithecid random-pool strategy:
+
+```bash
+sbatch submit_pipeline_slurm.sh \
+  --benchmark_manifest "$PWD/inputs/benchmark.configs.pss-cercopithecidae-random-pools.tsv"
 ```
 
 The original three hypothesis and pool files are byte-identical to those used
