@@ -1,6 +1,6 @@
 # PSS benchmark with pooled CAAStools
 
-This workflow benchmarks six strategies for defining genome–phenome
+This workflow benchmarks seven strategies for defining genome–phenome
 hypotheses from relative brain mass. Here, *benchmark* refers to the direct
 comparison of these predefined hypothesis-building strategies under the
 same pooled CAAStools settings.
@@ -20,7 +20,7 @@ biologically superior.
 
 ## Common experimental design
 
-- Six independent approaches: three original benchmarks and three additional
+- Seven independent approaches: three original benchmarks and four additional
   PSS-pair pooling hypotheses.
 - 100 unique cycles per approach.
 - Four foreground (FG) versus four background (BG) species per cycle.
@@ -29,7 +29,7 @@ biologically superior.
 - Higher phenotype is encoded as FG; lower phenotype is encoded as BG.
 - Species have fixed side membership within each approach, as required for
   pooled event reconstruction.
-- The six configurations are crossed with all alignments by Nextflow and
+- The seven configurations are crossed with all alignments by Nextflow and
   can therefore run in parallel.
 
 Each pooled configuration is headerless and uses the format:
@@ -108,6 +108,28 @@ This focal Papionini subset includes only the two prespecified genera
 tribe. After the fixed-side exclusion, 19 source pairs yield 371 valid cycles
 and a selected-cycle discovery pool of 8 FG and 7 BG species.
 
+## Approach 7: hierarchical PSS matching, 13 versus 13
+
+Source: `inputs/config.creation/08_pss_ranked_endpoint_disjoint_13_pairs.tsv`.
+
+The global top-1% PSS pairs are traversed from highest to lowest score. A pair
+is retained only if neither endpoint has already been selected. The endpoint
+with higher relative brain mass enters FG and its linked lower endpoint enters
+BG. Selection stops at 13 pairs, producing 13 unique FG and 13 unique BG
+species without cross-group ambiguities. With the current data, rank 20 is
+sufficient to recover all 13 endpoint-disjoint pairs.
+
+The 13 pairs define 715 possible linked 4-vs-4 cycles. The common seeded
+selection retains 100 cycles. FG and BG are never sampled independently: each
+cycle is always assembled from four intact PSS pairs.
+
+Recreate the ranked source tables before regenerating all configurations with:
+
+```bash
+python3 scripts/create_pss_ranked_13x13_groups.py
+python3 scripts/create_pss_benchmark_configs.py
+```
+
 ## Recreate the configurations
 
 From the `CAAS` directory, run:
@@ -132,7 +154,7 @@ manifest.
 
 ## Generated inputs
 
-The six pooled configurations are:
+The seven pooled configurations are:
 
 ```text
 inputs/benchmark-configs/01_family_extrema.pooled.caas.cfg
@@ -141,6 +163,7 @@ inputs/benchmark-configs/03_pss_best_pair_per_genus.pooled.caas.cfg
 inputs/benchmark-configs/04_pss_all_congeneric_top1pct.pooled.caas.cfg
 inputs/benchmark-configs/05_pss_macaca_papio_trachypithecus_top1pct.pooled.caas.cfg
 inputs/benchmark-configs/06_pss_macaca_papio_top1pct.pooled.caas.cfg
+inputs/benchmark-configs/07_pss_ranked_endpoint_disjoint_13x13.pooled.caas.cfg
 ```
 
 CAAStools also requires a complete fixed-side pool for reconstructing coherent
@@ -154,6 +177,9 @@ inputs/benchmark-pools/
 configuration and complete pool. It also records the number of possible and
 selected cycles and the configuration checksum. Paths in the manifest are
 relative to this project, so the directory can be transferred to the cluster.
+
+`inputs/benchmark.configs.pss-ranked-13x13.tsv` contains only approach 7 and
+can be used to launch this strategy without resubmitting the previous arms.
 
 ## Example selections
 
@@ -182,7 +208,7 @@ event, while incompatible amino-acid signatures remain separate events.
 
 The positional hypergeometric prefilter defaults to `0.05`. Each 4-vs-4 cycle
 requires at least three observed, non-gap species on each side. These settings
-are shared across the six benchmark arms in `conf/cluster.config`.
+are shared across the seven benchmark arms in `conf/cluster.config`.
 
 ## Nextflow execution
 
@@ -196,12 +222,20 @@ sbatch submit_pipeline_slurm.sh
 ```
 
 Nextflow reads `inputs/benchmark.configs.tsv`, forms the Cartesian product of
-the six approaches and all alignments, and submits the resulting jobs in
+the seven approaches and all alignments, and submits the resulting jobs in
 parallel subject to the configured queue limit. Use a fresh run for this new
 graph; subsequently, the same run can be resumed with:
 
 ```bash
 sbatch submit_pipeline_slurm.sh -resume
+```
+
+For the first test of the hierarchical 13-vs-13 strategy, launch only its
+one-row manifest as a fresh run:
+
+```bash
+sbatch submit_pipeline_slurm.sh \
+  --benchmark_manifest "$PWD/inputs/benchmark.configs.pss-ranked-13x13.tsv"
 ```
 
 The original three hypothesis and pool files are byte-identical to those used

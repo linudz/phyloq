@@ -28,6 +28,10 @@ DEFAULT_TABLE_DIR = PROJECT_DIR / "inputs" / "config.creation"
 DEFAULT_OUTPUT_DIR = PROJECT_DIR / "inputs" / "benchmark-configs"
 DEFAULT_POOL_DIR = PROJECT_DIR / "inputs" / "benchmark-pools"
 DEFAULT_MANIFEST = PROJECT_DIR / "inputs" / "benchmark.configs.tsv"
+DEFAULT_RANKED_13X13_MANIFEST = (
+    PROJECT_DIR / "inputs" / "benchmark.configs.pss-ranked-13x13.tsv"
+)
+RANKED_13X13_LABEL = "07_pss_ranked_endpoint_disjoint_13x13"
 
 
 @dataclass(frozen=True)
@@ -228,6 +232,12 @@ def main() -> None:
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     parser.add_argument("--pool-dir", type=Path, default=DEFAULT_POOL_DIR)
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
+    parser.add_argument(
+        "--ranked-13x13-manifest",
+        type=Path,
+        default=DEFAULT_RANKED_13X13_MANIFEST,
+        help="single-strategy manifest for launching only the ranked 13x13 arm",
+    )
     parser.add_argument("--cycles", type=int, default=100)
     parser.add_argument("--group-size", type=int, default=4)
     parser.add_argument("--seed", type=int, default=260821)
@@ -265,6 +275,11 @@ def main() -> None:
             args.table_dir / "05_all_global_top1pct_pss_pairs.tsv",
             macaca_papio_top_pss_pairs,
         ),
+        (
+            RANKED_13X13_LABEL,
+            args.table_dir / "08_pss_ranked_endpoint_disjoint_13_pairs.tsv",
+            pss_pairs,
+        ),
     ]
 
     manifest_rows = []
@@ -296,16 +311,37 @@ def main() -> None:
             f"discovery pool={len(foreground)} FG vs {len(background)} BG"
         )
 
+    manifest_header = [
+        "approach",
+        "source_table",
+        "hypotheses_config",
+        "pool_config",
+        "possible_cycles",
+        "selected_cycles",
+        "sha256",
+    ]
     args.manifest.parent.mkdir(parents=True, exist_ok=True)
     with args.manifest.open("w", newline="") as handle:
         writer = csv.writer(handle, delimiter="\t", lineterminator="\n")
-        writer.writerow(
-            ["approach", "source_table", "hypotheses_config", "pool_config", "possible_cycles", "selected_cycles", "sha256"]
-        )
+        writer.writerow(manifest_header)
         writer.writerows(manifest_rows)
+
+    # Keep a one-row manifest beside the complete benchmark manifest. It lets
+    # Nextflow launch this new arm alone instead of resubmitting earlier arms.
+    ranked_13x13_rows = [
+        row for row in manifest_rows if row[0] == RANKED_13X13_LABEL
+    ]
+    if len(ranked_13x13_rows) != 1:
+        raise ValueError("Could not identify the ranked 13x13 manifest row")
+    args.ranked_13x13_manifest.parent.mkdir(parents=True, exist_ok=True)
+    with args.ranked_13x13_manifest.open("w", newline="") as handle:
+        writer = csv.writer(handle, delimiter="\t", lineterminator="\n")
+        writer.writerow(manifest_header)
+        writer.writerows(ranked_13x13_rows)
 
     print(f"\nWrote {len(manifest_rows)} benchmark configurations to {args.output_dir}")
     print(f"Manifest: {args.manifest}")
+    print(f"Ranked 13x13-only manifest: {args.ranked_13x13_manifest}")
     print(f"Seed: {args.seed}; cycles per approach: {args.cycles}; comparison: {args.group_size} vs {args.group_size}")
 
 
