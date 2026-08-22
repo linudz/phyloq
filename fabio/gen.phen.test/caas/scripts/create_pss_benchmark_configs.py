@@ -36,8 +36,14 @@ DEFAULT_CERCOPITHECID_RANDOM_POOLS_MANIFEST = (
     / "inputs"
     / "benchmark.configs.pss-cercopithecidae-random-pools.tsv"
 )
+DEFAULT_CERCOPITHECID_ABSOLUTE_TRAIT_MANIFEST = (
+    PROJECT_DIR
+    / "inputs"
+    / "benchmark.configs.cercopithecidae-absolute-trait.tsv"
+)
 RANKED_13X13_LABEL = "07_pss_ranked_endpoint_disjoint_13x13"
 CERCOPITHECID_RANDOM_POOLS_LABEL = "08_pss_cercopithecidae_random_pools"
+CERCOPITHECID_ABSOLUTE_TRAIT_LABEL = "09_cercopithecidae_absolute_trait_pools"
 
 
 @dataclass(frozen=True)
@@ -113,6 +119,30 @@ def independent_fixed_side_pools(
     """
     foreground = [row["Species"] for row in rows if row["Group"] == "FG"]
     background = [row["Species"] for row in rows if row["Group"] == "BG"]
+    for fg, bg in itertools.product(
+        itertools.combinations(foreground, group_size),
+        itertools.combinations(background, group_size),
+    ):
+        yield Hypothesis(fg, bg)
+
+
+def independent_absolute_trait_pools(
+    rows: Sequence[dict[str, str]], group_size: int
+) -> Iterable[Hypothesis]:
+    """Randomly sample fixed sides assigned by absolute phenotype rank.
+
+    The species set and 9-vs-10 pool sizes match approach 08 exactly. Only
+    the side assignment changes: the nine highest relative-brain-mass values
+    are FG and the ten lowest values are BG.
+    """
+    foreground = [
+        row["Species"] for row in rows if row["AbsoluteTraitGroup"] == "FG"
+    ]
+    background = [
+        row["Species"] for row in rows if row["AbsoluteTraitGroup"] == "BG"
+    ]
+    if len(foreground) + len(background) != len(rows):
+        raise ValueError("AbsoluteTraitGroup must be FG or BG for every species")
     for fg, bg in itertools.product(
         itertools.combinations(foreground, group_size),
         itertools.combinations(background, group_size),
@@ -268,6 +298,12 @@ def main() -> None:
         default=DEFAULT_CERCOPITHECID_RANDOM_POOLS_MANIFEST,
         help="single-strategy manifest for the cercopithecid random-pool arm",
     )
+    parser.add_argument(
+        "--cercopithecid-absolute-trait-manifest",
+        type=Path,
+        default=DEFAULT_CERCOPITHECID_ABSOLUTE_TRAIT_MANIFEST,
+        help="single-strategy manifest for the matched absolute-trait arm",
+    )
     parser.add_argument("--cycles", type=int, default=100)
     parser.add_argument("--group-size", type=int, default=4)
     parser.add_argument("--seed", type=int, default=260821)
@@ -314,6 +350,12 @@ def main() -> None:
             CERCOPITHECID_RANDOM_POOLS_LABEL,
             args.table_dir / "09_cercopithecidae_pss_random_pools.tsv",
             independent_fixed_side_pools,
+        ),
+        (
+            CERCOPITHECID_ABSOLUTE_TRAIT_LABEL,
+            args.table_dir
+            / "10_cercopithecidae_pss_vs_absolute_trait_assignments.tsv",
+            independent_absolute_trait_pools,
         ),
     ]
 
@@ -369,6 +411,10 @@ def main() -> None:
             CERCOPITHECID_RANDOM_POOLS_LABEL,
             args.cercopithecid_random_pools_manifest,
         ),
+        (
+            CERCOPITHECID_ABSOLUTE_TRAIT_LABEL,
+            args.cercopithecid_absolute_trait_manifest,
+        ),
     ):
         single_rows = [row for row in manifest_rows if row[0] == label]
         if len(single_rows) != 1:
@@ -385,6 +431,10 @@ def main() -> None:
     print(
         "Cercopithecid random-pools-only manifest: "
         f"{args.cercopithecid_random_pools_manifest}"
+    )
+    print(
+        "Cercopithecid absolute-trait-only manifest: "
+        f"{args.cercopithecid_absolute_trait_manifest}"
     )
     print(f"Seed: {args.seed}; cycles per approach: {args.cycles}; comparison: {args.group_size} vs {args.group_size}")
 
