@@ -1,8 +1,8 @@
 # Benchmark inputs
 
-- `config.creation/` contains the three source selections used to define the
+- `config.creation/` contains the source selections used to define the six
   benchmark strategies.
-- `benchmark-configs/` contains the three generated 100-cycle, 4-vs-4 pooled
+- `benchmark-configs/` contains the six generated 100-cycle, 4-vs-4 pooled
   CAAStools configurations.
 - `benchmark-pools/` contains the complete fixed FG/BG pools required for
   pooled event reconstruction.

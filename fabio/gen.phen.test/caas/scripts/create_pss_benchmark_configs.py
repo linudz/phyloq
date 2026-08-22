@@ -2,7 +2,7 @@
 
 """Create reproducible 4-vs-4 pooled CAAStools benchmark configurations.
 
-The three strategies differ only in how biological hypotheses are assembled.
+The strategies differ only in how biological hypotheses are assembled.
 Each output row has the CAAStools resampling format:
 
     cycle_id<TAB>FG_species_comma_list<TAB>BG_species_comma_list
@@ -19,7 +19,7 @@ import hashlib
 import itertools
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable, Sequence
+from typing import FrozenSet, Iterable, Optional, Sequence
 
 
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -101,6 +101,88 @@ def pss_pairs(rows: Sequence[dict[str, str]], group_size: int) -> Iterable[Hypot
         )
 
 
+def genus(species: str) -> str:
+    return species.split("_", 1)[0]
+
+
+def pss_top_pair_cycles(
+    rows: Sequence[dict[str, str]],
+    group_size: int,
+    *,
+    congeneric_only: bool = False,
+    allowed_genera: Optional[FrozenSet[str]] = None,
+) -> Iterable[Hypothesis]:
+    """Combine top-1% PSS pairs while preserving fixed pooled sides.
+
+    Pair direction is defined only by the observed trait: the higher endpoint
+    is FG and the lower endpoint is BG. Species that occur in both roles in
+    the filtered pair set are removed with every pair containing them because
+    species-aware pooled event reconstruction requires fixed side membership.
+    Each candidate cycle must contain four distinct FG and four distinct BG
+    species, with no species shared across sides.
+    """
+    filtered = []
+    for row in rows:
+        higher = row["higher_phenotype_species"]
+        lower = row["lower_phenotype_species"]
+        higher_genus = genus(higher)
+        lower_genus = genus(lower)
+        if congeneric_only and higher_genus != lower_genus:
+            continue
+        if allowed_genera is not None and (
+            higher_genus not in allowed_genera or lower_genus not in allowed_genera
+        ):
+            continue
+        filtered.append(row)
+
+    higher_species = {row["higher_phenotype_species"] for row in filtered}
+    lower_species = {row["lower_phenotype_species"] for row in filtered}
+    ambiguous = higher_species & lower_species
+    fixed_side_rows = [
+        row
+        for row in filtered
+        if row["higher_phenotype_species"] not in ambiguous
+        and row["lower_phenotype_species"] not in ambiguous
+    ]
+
+    for selected in itertools.combinations(fixed_side_rows, group_size):
+        foreground = tuple(row["higher_phenotype_species"] for row in selected)
+        background = tuple(row["lower_phenotype_species"] for row in selected)
+        if len(set(foreground)) != group_size:
+            continue
+        if len(set(background)) != group_size:
+            continue
+        if set(foreground) & set(background):
+            continue
+        yield Hypothesis(foreground, background)
+
+
+def all_congeneric_top_pss_pairs(
+    rows: Sequence[dict[str, str]], group_size: int
+) -> Iterable[Hypothesis]:
+    return pss_top_pair_cycles(rows, group_size, congeneric_only=True)
+
+
+def focal_three_genera_top_pss_pairs(
+    rows: Sequence[dict[str, str]], group_size: int
+) -> Iterable[Hypothesis]:
+    return pss_top_pair_cycles(
+        rows,
+        group_size,
+        allowed_genera=frozenset({"Macaca", "Papio", "Trachypithecus"}),
+    )
+
+
+def macaca_papio_top_pss_pairs(
+    rows: Sequence[dict[str, str]], group_size: int
+) -> Iterable[Hypothesis]:
+    return pss_top_pair_cycles(
+        rows,
+        group_size,
+        allowed_genera=frozenset({"Macaca", "Papio"}),
+    )
+
+
 def validate_fixed_sides(hypotheses: Sequence[Hypothesis], label: str) -> tuple[list[str], list[str]]:
     foreground = sorted({species for h in hypotheses for species in h.foreground})
     background = sorted({species for h in hypotheses for species in h.background})
@@ -168,6 +250,21 @@ def main() -> None:
             args.table_dir / "04_best_top1pct_pair_per_genus.tsv",
             pss_pairs,
         ),
+        (
+            "04_pss_all_congeneric_top1pct",
+            args.table_dir / "05_all_global_top1pct_pss_pairs.tsv",
+            all_congeneric_top_pss_pairs,
+        ),
+        (
+            "05_pss_macaca_papio_trachypithecus_top1pct",
+            args.table_dir / "05_all_global_top1pct_pss_pairs.tsv",
+            focal_three_genera_top_pss_pairs,
+        ),
+        (
+            "06_pss_macaca_papio_top1pct",
+            args.table_dir / "05_all_global_top1pct_pss_pairs.tsv",
+            macaca_papio_top_pss_pairs,
+        ),
     ]
 
     manifest_rows = []
@@ -194,6 +291,10 @@ def main() -> None:
             )
         )
         print_examples(label, selected, args.examples)
+        print(
+            f"        candidates={len(candidates)}; "
+            f"discovery pool={len(foreground)} FG vs {len(background)} BG"
+        )
 
     args.manifest.parent.mkdir(parents=True, exist_ok=True)
     with args.manifest.open("w", newline="") as handle:
