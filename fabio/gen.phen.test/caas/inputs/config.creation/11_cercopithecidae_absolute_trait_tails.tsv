@@ -1,0 +1,13 @@
+Group	Species	Genus	RelativeBrainMass	TailRank	TotalSpecies	TailFraction
+FG	Macaca_nigra	Macaca	1.84761012273804	1	55	0.1
+FG	Macaca_nemestrina	Macaca	1.83251926526372	2	55	0.1
+FG	Macaca_assamensis	Macaca	1.74260482385831	3	55	0.1
+FG	Cercocebus_torquatus	Cercocebus	1.73108977116651	4	55	0.1
+FG	Theropithecus_gelada	Theropithecus	1.71298603806218	5	55	0.1
+FG	Mandrillus_sphinx	Mandrillus	1.7108123695039	6	55	0.1
+BG	Trachypithecus_auratus	Trachypithecus	0.889339844798994	1	55	0.1
+BG	Colobus_angolensis	Colobus	1.03844986053132	2	55	0.1
+BG	Pygathrix_nigripes	Pygathrix	1.11092229621021	3	55	0.1
+BG	Colobus_guereza	Colobus	1.12730140694425	4	55	0.1
+BG	Trachypithecus_geei	Trachypithecus	1.13621797700091	5	55	0.1
+BG	Trachypithecus_phayrei	Trachypithecus	1.14972528795357	6	55	0.1

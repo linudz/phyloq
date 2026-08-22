@@ -12,8 +12,8 @@
   13-vs-13 PSS strategy for a focused Nextflow launch.
 - `benchmark.configs.pss-cercopithecidae-random-pools.tsv` contains only the
   cercopithecid PSS-defined random-pool strategy.
-- `benchmark.configs.cercopithecidae-absolute-trait.tsv` contains only the
-  species-matched cercopithecid absolute-trait control and should be used with
+- `benchmark.configs.cercopithecidae-absolute-trait-tails.tsv` contains only
+  the cercopithecid upper/lower 10% trait-tail control and should be used with
   `-resume` to avoid selecting the complete benchmark manifest.
 - `alignments/` is populated directly on Correfoc and is excluded from Git.
 

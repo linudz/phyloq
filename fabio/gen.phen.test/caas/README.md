@@ -21,7 +21,7 @@ biologically superior.
 ## Common experimental design
 
 - Nine independent approaches: three original benchmarks, five additional
-  PSS-informed hypotheses, and one species-matched absolute-trait control.
+  PSS-informed hypotheses, and one clade-restricted absolute-trait-tail control.
 - 100 unique cycles per approach.
 - Four foreground (FG) versus four background (BG) species per cycle.
 - A fixed seed (`260821`) and SHA-256 ranking make selection reproducible
@@ -152,29 +152,27 @@ Each cycle independently samples four FG and four BG species, with no genus or
 linked-pair restriction. This produces 26,460 possible comparisons; 100 are
 selected reproducibly with the common seed.
 
-## Approach 9: Cercopithecidae absolute-trait matched control
+## Approach 9: Cercopithecidae absolute-trait tails
 
-Source:
-`inputs/config.creation/10_cercopithecidae_pss_vs_absolute_trait_assignments.tsv`.
+Sources:
 
-This control retains exactly the same 19 Cercopithecidae species and the same
-nine-FG/ten-BG pool sizes as approach 8. It changes only the assignment rule:
-the nine species with the highest absolute relative brain mass form FG and the
-ten species with the lowest values form BG. The resulting trait distributions
-are completely separated between *Papio papio* (lowest FG, 1.31996) and
-*Trachypithecus francoisi* (highest BG, 1.30766).
+- `inputs/config.creation/10_cercopithecidae_relative_brain_mass.tsv`;
+- `inputs/config.creation/11_cercopithecidae_absolute_trait_tails.tsv`.
 
-Six species change sides relative to the PSS-informed assignment. *Macaca
-leonina*, *M. maura*, and *Papio papio* move from BG to FG; *Trachypithecus
-francoisi*, *T. pileatus*, and *T. cristatus* move from FG to BG. This matched
-design tests whether the approach-8 signal is attributable to the PSS-defined
-directional shifts or can be recovered by absolute phenotype separation in
-the same clade and species set.
+This control applies the same upper/lower 10% principle as approach 2 after
+restricting the phenotype table to the 55 Cercopithecidae species. The tail
+size is rounded upward, giving six FG species with the highest relative brain
+mass and six BG species with the lowest values.
 
-As in approach 8, the pool definition does not constrain individual cycles.
-Each cycle independently samples four FG and four BG species, without a genus
-restriction. The 9-by-10 pools define 26,460 possible 4-vs-4 comparisons, of
-which 100 are selected reproducibly with the common seed.
+Each cycle independently samples four species from each fixed pool. No genus
+restriction is imposed: the lower tail contains only three genera, so such a
+restriction could not produce a 4-vs-4 comparison. The two six-species pools
+define 225 possible comparisons, of which 100 are selected reproducibly with
+the common seed.
+
+This replaces the aborted median-like split of the 19 PSS-selected species.
+The approach label is also changed, ensuring that new output is written to a
+separate result directory rather than mixed with partial obsolete results.
 
 ## Planned benchmark: `pss.with.separation`
 
@@ -219,7 +217,7 @@ inputs/benchmark-configs/05_pss_macaca_papio_trachypithecus_top1pct.pooled.caas.
 inputs/benchmark-configs/06_pss_macaca_papio_top1pct.pooled.caas.cfg
 inputs/benchmark-configs/07_pss_ranked_endpoint_disjoint_13x13.pooled.caas.cfg
 inputs/benchmark-configs/08_pss_cercopithecidae_random_pools.pooled.caas.cfg
-inputs/benchmark-configs/09_cercopithecidae_absolute_trait_pools.pooled.caas.cfg
+inputs/benchmark-configs/09_cercopithecidae_absolute_trait_tails.pooled.caas.cfg
 ```
 
 CAAStools also requires a complete fixed-side pool for reconstructing coherent
@@ -240,9 +238,9 @@ can be used to launch this strategy without resubmitting the previous arms.
 `inputs/benchmark.configs.pss-cercopithecidae-random-pools.tsv` contains only
 approach 8 for a focused launch of the random-pool benchmark.
 
-`inputs/benchmark.configs.cercopithecidae-absolute-trait.tsv` contains only
-approach 9. Use it with `-resume` to schedule the matched absolute-trait arm
-without selecting the complete nine-approach manifest.
+`inputs/benchmark.configs.cercopithecidae-absolute-trait-tails.tsv` contains
+only approach 9. Use it with `-resume` to schedule the tail control without
+selecting the complete nine-approach manifest.
 
 ## Example selections
 
@@ -308,11 +306,11 @@ sbatch submit_pipeline_slurm.sh \
   --benchmark_manifest "$PWD/inputs/benchmark.configs.pss-cercopithecidae-random-pools.tsv"
 ```
 
-To resume the existing run with only the new absolute-trait matched control:
+To resume the existing run with only the replacement absolute-trait tails:
 
 ```bash
 sbatch submit_pipeline_slurm.sh -resume \
-  --benchmark_manifest "$PWD/inputs/benchmark.configs.cercopithecidae-absolute-trait.tsv"
+  --benchmark_manifest "$PWD/inputs/benchmark.configs.cercopithecidae-absolute-trait-tails.tsv"
 ```
 
 The one-row manifest is essential here: `-resume` selects the existing
