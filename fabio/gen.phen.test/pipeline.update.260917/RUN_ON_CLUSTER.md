@@ -15,15 +15,24 @@ outputs as a cluster cache. Run the commands below from `pipeline.update.260917`
 # Once; skip if the dedicated environment already exists:
 bash create_conda_environment.sh
 
-# Replace the alignment directory. This command submits ONE SLURM driver.
-bash launch_all_caas.sh --run-id caas-all-01 \
-  --alignments-dir /ABSOLUTE/PATH/inputs/alignments
+# Reuse the previous CAAS inputs; submit ONE SLURM driver.
+bash launch_all_caas.sh --run-id caas-all-01
 ```
 
 The script activates Conda, automatically builds the alignment inventory and
 explicit selection, then launches one Nextflow workflow. The CAAS tasks activate
-the same environment on worker nodes. If the alignments are already in this
-bundle's `inputs/alignments/`, omit `--alignments-dir`.
+the same environment on worker nodes. With the repository layout, the default
+is **`../caas/inputs/alignments/*.phy`**, exactly the collection configured by
+the previous CAAS pipeline. Do not move or copy those alignments into the new
+bundle. In the original research-project layout, the matching default is
+`../pipeline/inputs/alignments/*.phy`. Only a standalone bundle without a legacy
+sibling defaults to its own `inputs/alignments/*.phy`. Missing directories or
+an empty default glob fail before submission, showing the expected path.
+
+The diagnostic phylogeny is already bundled at
+`inputs/frozen/brain-260917-v1/sources/tree.nwk`. CAAS pooled does not require
+gene trees. The trees configured by the older bootstrap RERconverge workflow
+are unrelated inputs and are not substituted here. See `INPUT_PATHS.md`.
 
 No package installation, pilot, synthetic experiment or statistical approval is
 performed inside the production launcher. Input hashes, the bundled CAAStools

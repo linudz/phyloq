@@ -82,6 +82,9 @@ def prepare(design, output, run_id, modes, pattern=None, inventory_path=None, re
                       cycles=sum(int(r['selected_cycles']) for r in rows),
                       hypotheses_by_strategy=dict(Counter(r['strategy_id'] for r in rows)),
                       direct_discovery=True, pilot_required=False, caastools_sha256=tool_hash,
+                      phylogeny_path=str((design/'sources/tree.nwk').resolve()),
+                      phylogeny_sha256=sha(design/'sources/tree.nwk'),
+                      phylogeny_usage='Bundled diagnostic tree; pooled CAAS does not take a gene-tree input',
                       historical_references_included='references' in modes, auxiliary_p2_included='auxiliary-p2' in modes,
                       results_imported=False, enrichment='not_requested_discovery_only')
         write_json(tmp/'launch.request.json', request)
@@ -115,6 +118,7 @@ def main():
     print(f"{report['hypotheses']} hypotheses x {report['alignments']} alignments = {report['expected_caas_tasks']} CAAS tasks")
     print('Cycles across hypotheses:', report['cycles'])
     print('Frozen launch inputs:', output)
+    print('Bundled diagnostic phylogeny:', report.get('phylogeny_path', str(a.design.resolve()/'sources/tree.nwk')))
     print('No pilot, approval JSON, enrichment or downstream statistical prerequisites.')
 
 

@@ -87,6 +87,40 @@ class UnifiedShell(unittest.TestCase):
         self.assertEqual(args.count(str(ROOT/'launch_all_caas.sh')), 1)
         self.assertIn('--export=ALL', args)
 
+    def layout_driver(self, legacy_name, have_alignment=True):
+        # Reproduce the sibling layout without the real cluster or Conda.
+        bundle = self.base/'project'/'new'; bundle.mkdir(parents=True)
+        (bundle/'main.nf').touch(); (bundle/'conf').mkdir()
+        (bundle/'conf/conda_helpers.sh').write_bytes((ROOT/'conf/conda_helpers.sh').read_bytes())
+        legacy = bundle.parent/legacy_name
+        (legacy/'conf').mkdir(parents=True)
+        (legacy/'conf/cluster.config').write_text('params.alignments = "${projectDir}/inputs/alignments/*.phy"\n')
+        folder = legacy/'inputs/alignments'; folder.mkdir(parents=True)
+        if have_alignment: (folder/'GENE.phy').write_text('fixture only; Python is stubbed')
+        self.fake('python', 'printf "%s\\n" "$@" >> "$CAAS_TEST_LOG"\n')
+        hook = self.base/'conda.sh'
+        hook.write_text('conda() { export CONDA_PREFIX="'+str(self.base)+'"; return 0; }\n')
+        env = dict(self.env, CAAS_CONDA_SH=str(hook), CAAS_VALIDATION_ROOT=str(bundle), SLURM_JOB_ID='unit')
+        p = subprocess.run(['bash',str(ROOT/'launch_all_caas.sh'),'--run-id','unit-paths'],
+                           cwd=self.base,env=env,capture_output=True,text=True)
+        return p, folder
+
+    def test_phyloq_default_reuses_legacy_phy_alignments(self):
+        p, folder = self.layout_driver('caas')
+        self.assertEqual(p.returncode, 0, p.stderr)
+        self.assertIn(str(folder)+'/*.phy', self.log.read_text())
+
+    def test_research_copy_reuses_legacy_pipeline_alignments(self):
+        p, folder = self.layout_driver('pipeline')
+        self.assertEqual(p.returncode, 0, p.stderr)
+        self.assertIn(str(folder)+'/*.phy', self.log.read_text())
+
+    def test_empty_old_directory_fails_before_launch(self):
+        p, _ = self.layout_driver('caas', have_alignment=False)
+        self.assertNotEqual(p.returncode, 0)
+        self.assertIn('No alignments match', p.stderr)
+        self.assertFalse(self.log.exists())
+
     def driver(self, plan_only=False):
         self.fake('python', 'printf "%s\\n" "$@" >> "$CAAS_TEST_LOG"\n')
         hook = self.base/'conda.sh'

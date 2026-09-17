@@ -6,9 +6,8 @@ From `pipeline.update.260917` on the cluster:
 # Once, if the dedicated environment does not yet exist:
 bash create_conda_environment.sh
 
-# Replace the alignment path; this submits one SLURM driver.
-bash launch_all_caas.sh --run-id caas-all-01 \
-  --alignments-dir /ABSOLUTE/PATH/inputs/alignments
+# Reuses ../caas/inputs/alignments/*.phy from the previous pipeline.
+bash launch_all_caas.sh --run-id caas-all-01
 ```
 
 The script inventories the alignments and runs N3/N4/N5, all 99 R0 hypotheses,

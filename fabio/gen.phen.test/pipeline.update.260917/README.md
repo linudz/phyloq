@@ -23,10 +23,15 @@ From this directory on the cluster:
 # Once, if not already created:
 bash create_conda_environment.sh
 
-# The script inventories the alignments and submits one Nextflow driver:
-bash launch_all_caas.sh --run-id caas-all-01 \
-  --alignments-dir /ABSOLUTE/PATH/inputs/alignments
+# Reuse the previous pipeline's ../caas/inputs/alignments/*.phy:
+bash launch_all_caas.sh --run-id caas-all-01
 ```
+
+The default matches the old `caas/conf/cluster.config`, resolved relative to
+this new sibling directory. The original research-project copy uses
+`../pipeline/inputs/alignments/*.phy`; a standalone copy without either legacy
+pipeline uses its own `inputs/alignments/*.phy`. Explicit alignment options
+override these defaults. See `INPUT_PATHS.md` for alignment/tree provenance.
 
 This selects **N3/N4/N5 + all 99 R0 + all 99 R1 + P1/N6**: **203 hypotheses,
 20,130 cycles across hypotheses**, with one pooled CAAS task per hypothesis and

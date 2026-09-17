@@ -35,11 +35,12 @@ while [[ $# -gt 0 ]]; do
         --plan-only) caas_plan_only=1; shift ;;
         --cluster-config) caas_launch_extras+=(--cluster-config "${2:?Missing config path}"); shift 2 ;;
         -h|--help)
-            echo 'Usage: bash launch_all_caas.sh --run-id NAME --alignments-dir DIR [options]'
+            echo 'Usage: bash launch_all_caas.sh --run-id NAME [--alignments-dir DIR] [options]'
             echo 'One SLURM driver runs N3/N4/N5 + all 99 R0 + all 99 R1 + P1/N6 (203 hypotheses).'
             echo 'No pilot or approval JSON. Uses the bundled modified pooled CAAStools.'
             echo 'Sources: --alignments-dir DIR, --alignments-pattern QUOTED_GLOB, or --inventory TSV'
-            echo 'Default source: inputs/alignments/* inside this bundle.'
+            echo 'Default source in phyloq: ../caas/inputs/alignments/*.phy (the existing pipeline inputs).'
+            echo 'In the research project: ../pipeline/inputs/alignments/*.phy; standalone: inputs/alignments/*.phy.'
             echo 'Options: --modes all|deterministic,r0,r1,paired --include-references --include-p2'
             echo '         --resume --plan-only --cluster-config FILE'
             echo 'Historical references/P2 are NOT rerun unless explicitly included.'
@@ -51,8 +52,25 @@ done
 [[ -f "$caas_root/main.nf" ]] || { echo 'Set CAAS_VALIDATION_ROOT to the pipeline directory.' >&2; exit 2; }
 [[ "$caas_run_id" =~ ^[A-Za-z0-9][A-Za-z0-9_-]*$ ]] || { echo 'Supply --run-id using letters, digits, underscores or hyphens.' >&2; exit 2; }
 if [[ ${#caas_source[@]} == 0 ]]; then
-    [[ -d "$caas_root/inputs/alignments" ]] || { echo 'Supply --alignments-dir, --alignments-pattern or --inventory.' >&2; exit 2; }
-    caas_source=(--alignments-pattern "$caas_root/inputs/alignments/*")
+    # Preserve the location and *.phy glob from the previous CAAS cluster.config.
+    # The new bundle is a sibling, not the owner of another alignment collection.
+    if [[ -f "$caas_root/../caas/conf/cluster.config" ]]; then
+        caas_alignment_dir="$caas_root/../caas/inputs/alignments"
+    elif [[ -f "$caas_root/../pipeline/conf/cluster.config" ]]; then
+        caas_alignment_dir="$caas_root/../pipeline/inputs/alignments"
+    else
+        caas_alignment_dir="$caas_root/inputs/alignments"
+    fi
+    [[ -d "$caas_alignment_dir" ]] || {
+        echo "Expected alignment directory: $caas_alignment_dir" >&2
+        echo 'Keep the old CAAS inputs in place, or supply an explicit --alignments-dir / --alignments-pattern / --inventory.' >&2
+        exit 2
+    }
+    caas_alignment_dir="$(cd "$caas_alignment_dir" && pwd)"
+    caas_pattern="$caas_alignment_dir/*.phy"
+    compgen -G "$caas_pattern" >/dev/null || { echo "No alignments match the old pipeline pattern: $caas_pattern" >&2; exit 2; }
+    caas_source=(--alignments-pattern "$caas_pattern")
+    echo "Using existing CAAS alignments: $caas_pattern"
 fi
 export CAAS_VALIDATION_ROOT="$caas_root"
 # Resolve any relative source/config paths against the caller's working directory.
