@@ -1,0 +1,27 @@
+{
+  "P0_bg_support": 10,
+  "P0_fg_support": 9,
+  "P0_query_genes": 1,
+  "P0_retained_positions": 1,
+  "P0_significant_positions": 4,
+  "alignments": 2,
+  "background_genes": 2,
+  "functional_status": {
+    "analyzed_queries": 0,
+    "required": "CAAS discovery completed separately from enrichment/statistical inference. No live requests were sent.",
+    "status": "not_requested_discovery_only"
+  },
+  "hypotheses": 9,
+  "latest_trace_caas_statuses": {
+    "COMPLETED": 18
+  },
+  "launch_lock_sha256": "067aefd0dc3b5f34b63f47ee676d7315d2184f395889b64ecf19577321e8fe9f",
+  "retained_position": 15,
+  "run_id": "unified-discovery-check",
+  "status": "pass",
+  "synthetic_only": true,
+  "trace_sha256": {
+    "results/unified-discovery-check/nextflow.20260917T172515880526Z.trace.tsv": "946a49fa4294088e64203eed122831bc4228371bfe5c934ba9d19d4c43cd86ad"
+  },
+  "unique_published_tasks": 18
+}

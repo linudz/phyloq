@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "discovery": {
+    "fmt": "phylip-relaxed",
+    "filter_significant": "0.05",
+    "patterns": "1,2,3",
+    "max_bg_gaps": "NO",
+    "max_fg_gaps": "NO",
+    "max_gaps": "NO",
+    "max_gaps_per_position": "0.5",
+    "max_bg_miss": "NO",
+    "max_fg_miss": "NO",
+    "max_miss": "NO",
+    "min_fg_observed": 3,
+    "min_bg_observed": 3
+  },
+  "filter": {
+    "pvalue_threshold": 0.05,
+    "cluster_density_threshold": 0.7,
+    "cluster_min_span": 3,
+    "cluster_min_positions": 3,
+    "minimum_balanced_support": 4
+  },
+  "enrichment": {
+    "organism": "hsapiens",
+    "sources": ["GO:BP", "GO:MF", "GO:CC", "KEGG", "REAC", "WP", "TF", "MIRNA", "HPA", "CORUM", "HP"],
+    "correction": "g_SCS",
+    "threshold": 0.05,
+    "domain_scope": "custom",
+    "backend": "disabled",
+    "annotation_version": null,
+    "historical_annotation_version": "e114_eg62_p19_27110d83",
+    "live_requests": false
+  },
+  "statistics": {
+    "approved": false,
+    "primary_metric": null,
+    "term_universe": [],
+    "term_universe_status": "requires_review",
+    "term_groups": {},
+    "multiple_testing": null,
+    "tail": "upper",
+    "gene_list_replicates": 1000,
+    "gene_list_seed": 260917
+  }
+}

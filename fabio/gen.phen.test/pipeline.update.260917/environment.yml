@@ -1,0 +1,21 @@
+name: caas-validation-260917
+
+# Separate from the historical/shared phyloq environment.
+# Build-specific, platform-specific packages are recorded after installation.
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+
+dependencies:
+  - python=3.11
+  - nextflow=24.04.2
+  - openjdk=17
+  - biopython=1.84
+  - dendropy=4.5.2
+  - numpy=1.26.4
+  - scipy=1.13.1
+  # The unmodified bundled ct still imports pkg_resources.
+  - setuptools>=65,<81
+  # Figures use base R only; no CRAN package installation is needed.
+  - r-base=4.3

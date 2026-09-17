@@ -1,0 +1,13 @@
+strategy_id	historical_source	sampling_mode	source_table	fg_pool_size	bg_pool_size	selected_cycles	hypothesis_count	reference_status
+N0	02_absolute_trait_tails	within_side_unique_genus	sources/config.creation/02_trait_distribution_tails.tsv	13	13	100	1	requires_provenance_audit
+N1	01_family_extrema	linked_family	sources/config.creation/01_family_trait_extrema.tsv	13	13	100	1	requires_provenance_audit
+N2	09_cercopithecidae_absolute_trait_tails	unrestricted	sources/config.creation/11_cercopithecidae_absolute_trait_tails.tsv	6	6	100	1	requires_provenance_audit
+N3		unrestricted	sources/config.creation/10_cercopithecidae_relative_brain_mass.tsv	9	10	100	1	new
+N4		unrestricted	sources/config.creation/09_cercopithecidae_pss_random_pools.tsv	9	10	100	1	new
+N5		unrestricted	sources/config.creation/10_cercopithecidae_relative_brain_mass.tsv	9	10	100	1	new
+N6		linked_genus	sources/config.creation/10_cercopithecidae_relative_brain_mass.tsv	6	6	15	1	new
+P0	08_pss_cercopithecidae_random_pools	unrestricted	sources/config.creation/09_cercopithecidae_pss_random_pools.tsv	9	10	100	1	requires_provenance_audit
+P1		linked_genus	sources/config.creation/04_best_top1pct_pair_per_genus.tsv	6	6	15	1	new
+P2	07_pss_ranked_endpoint_disjoint_13x13	linked_pss	sources/config.creation/08_pss_ranked_endpoint_disjoint_13_pairs.tsv	13	13	100	1	requires_provenance_audit
+R0		unrestricted	sources/config.creation/09_cercopithecidae_pss_random_pools.tsv	9	10	100	99	new
+R1		unrestricted	sources/config.creation/10_cercopithecidae_relative_brain_mass.tsv	9	10	100	99	new

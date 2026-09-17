@@ -1,0 +1,14 @@
+{
+  "approved_by": "",
+  "design_sha256": "",
+  "selection_sha256": "",
+  "alignment_manifest_sha256": "",
+  "settings_sha256": "",
+  "pool_review": false,
+  "technical_review": false,
+  "statistical_review": false,
+  "production_review": false,
+  "pilot_cost_report_sha256": "",
+  "pilot_cost_report": "",
+  "notes": "Fill only after review of the concrete manifests and pilot report. Not required for local synthetic smoke tests."
+}

@@ -1,0 +1,13 @@
+strategy_id	replicate_id	linked_unit	foreground	background
+P1	000	Cercopithecus	Cercopithecus_cephus	Cercopithecus_petaurista
+P1	000	Colobus	Colobus_polykomos	Colobus_guereza
+P1	000	Macaca	Macaca_nigra	Macaca_tonkeana
+P1	000	Papio	Papio_anubis	Papio_papio
+P1	000	Semnopithecus	Semnopithecus_entellus	Semnopithecus_priam
+P1	000	Trachypithecus	Trachypithecus_cristatus	Trachypithecus_auratus
+N6	000	Cercopithecus	Cercopithecus_cephus	Cercopithecus_diana
+N6	000	Colobus	Colobus_polykomos	Colobus_angolensis
+N6	000	Macaca	Macaca_nigra	Macaca_fuscata
+N6	000	Papio	Papio_ursinus	Papio_papio
+N6	000	Semnopithecus	Semnopithecus_entellus	Semnopithecus_priam
+N6	000	Trachypithecus	Trachypithecus_francoisi	Trachypithecus_auratus

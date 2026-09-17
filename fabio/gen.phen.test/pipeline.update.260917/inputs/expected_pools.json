@@ -1,0 +1,30 @@
+{
+  "P0": {
+    "FG": "Macaca_nigra Macaca_nemestrina Semnopithecus_entellus Macaca_mulatta Papio_anubis Colobus_polykomos Trachypithecus_francoisi Trachypithecus_pileatus Trachypithecus_cristatus",
+    "BG": "Macaca_leonina Macaca_maura Papio_papio Macaca_tonkeana Macaca_silenus Macaca_fuscata Semnopithecus_priam Trachypithecus_geei Colobus_guereza Trachypithecus_auratus"
+  },
+  "N3": {
+    "FG": "Macaca_nigra Macaca_nemestrina Macaca_assamensis Cercocebus_torquatus Theropithecus_gelada Mandrillus_sphinx Papio_ursinus Semnopithecus_entellus Macaca_mulatta",
+    "BG": "Trachypithecus_auratus Colobus_angolensis Pygathrix_nigripes Colobus_guereza Trachypithecus_geei Trachypithecus_phayrei Trachypithecus_cristatus Allenopithecus_nigroviridis Trachypithecus_obscurus Nasalis_larvatus"
+  },
+  "N4": {
+    "FG": "Macaca_nigra Macaca_nemestrina Semnopithecus_entellus Macaca_mulatta Papio_anubis Colobus_polykomos Macaca_leonina Macaca_maura Papio_papio",
+    "BG": "Trachypithecus_auratus Colobus_guereza Trachypithecus_geei Trachypithecus_cristatus Semnopithecus_priam Macaca_fuscata Trachypithecus_pileatus Macaca_silenus Macaca_tonkeana Trachypithecus_francoisi"
+  },
+  "N5": {
+    "FG": "Colobus_polykomos Macaca_nigra Macaca_nemestrina Macaca_assamensis Papio_ursinus Semnopithecus_entellus Trachypithecus_francoisi Trachypithecus_pileatus Trachypithecus_germaini",
+    "BG": "Colobus_angolensis Macaca_fuscata Macaca_silenus Macaca_tonkeana Macaca_cyclopis Macaca_radiata Papio_papio Semnopithecus_priam Trachypithecus_auratus Trachypithecus_geei"
+  },
+  "quotas": {
+    "Colobus": [3, 1, 1], "Macaca": [13, 3, 5], "Papio": [5, 1, 1],
+    "Semnopithecus": [2, 1, 1], "Trachypithecus": [8, 3, 2]
+  },
+  "paired": {
+    "Trachypithecus": ["Trachypithecus_cristatus", "Trachypithecus_auratus", "Trachypithecus_francoisi", "Trachypithecus_auratus"],
+    "Macaca": ["Macaca_nigra", "Macaca_tonkeana", "Macaca_nigra", "Macaca_fuscata"],
+    "Semnopithecus": ["Semnopithecus_entellus", "Semnopithecus_priam", "Semnopithecus_entellus", "Semnopithecus_priam"],
+    "Colobus": ["Colobus_polykomos", "Colobus_guereza", "Colobus_polykomos", "Colobus_angolensis"],
+    "Papio": ["Papio_anubis", "Papio_papio", "Papio_ursinus", "Papio_papio"],
+    "Cercopithecus": ["Cercopithecus_cephus", "Cercopithecus_petaurista", "Cercopithecus_cephus", "Cercopithecus_diana"]
+  }
+}

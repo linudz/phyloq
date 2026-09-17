@@ -1,0 +1,37 @@
+{
+  "scripts_sha256": "ca543b27f3bf040379f636d8262da7bb58bc3ea0aa7126a1a22dfd49d98d47c4",
+  "status": "pass",
+  "suites": [
+    {
+      "command": [
+        "/Users/fabio/.pyenv/versions/3.9.4/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": "validation.log",
+      "suite": "validation"
+    },
+    {
+      "command": [
+        "/Users/fabio/.pyenv/versions/3.9.4/bin/python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "bin/caastools/test",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": "bundled-caastools.log",
+      "suite": "bundled-caastools"
+    }
+  ],
+  "timestamp": "2026-09-17T17:28:43.235813+00:00"
+}

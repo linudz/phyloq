@@ -1,0 +1,9 @@
+{
+  "annotation_version": "toy-v1",
+  "organism": "hsapiens",
+  "sources": [
+    "TOY"
+  ],
+  "term_membership_sha256": "1cbf236d76be6fdd9d693c94abd562bfe2b169fa83b7dea734290b10cd601410",
+  "toy_only": true
+}

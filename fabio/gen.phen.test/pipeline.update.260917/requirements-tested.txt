@@ -1,0 +1,8 @@
+# Observed local Python 3.9.4 environment; record, not an automatic installation.
+# Review compatibility before installing on the cluster. Legacy ct imports
+# pkg_resources, so its setuptools compatibility must also be checked.
+biopython==1.79
+numpy==2.0.2
+scipy==1.13.1
+DendroPy==4.5.2
+setuptools==49.2.1

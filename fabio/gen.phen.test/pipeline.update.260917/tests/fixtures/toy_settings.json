@@ -1,0 +1,62 @@
+{
+  "discovery": {
+    "filter_significant": "0.05",
+    "fmt": "phylip-relaxed",
+    "max_bg_gaps": "NO",
+    "max_bg_miss": "NO",
+    "max_fg_gaps": "NO",
+    "max_fg_miss": "NO",
+    "max_gaps": "NO",
+    "max_gaps_per_position": "0.5",
+    "max_miss": "NO",
+    "min_bg_observed": 3,
+    "min_fg_observed": 3,
+    "patterns": "1,2,3"
+  },
+  "enrichment": {
+    "annotation_version": "toy-v1",
+    "backend": "local-hypergeom-bonferroni",
+    "correction": "bonferroni",
+    "domain_scope": "custom",
+    "historical_annotation_version": "e114_eg62_p19_27110d83",
+    "implementation_approved": true,
+    "live_requests": false,
+    "organism": "hsapiens",
+    "sources": [
+      "TOY"
+    ],
+    "threshold": 0.05
+  },
+  "filter": {
+    "cluster_density_threshold": 0.7,
+    "cluster_min_positions": 3,
+    "cluster_min_span": 3,
+    "minimum_balanced_support": 4,
+    "pvalue_threshold": 0.05
+  },
+  "schema_version": 1,
+  "statistics": {
+    "approved": true,
+    "expected_null_counts": {
+      "G0": 5,
+      "R0": 1,
+      "R1": 1
+    },
+    "gene_list_replicates": 5,
+    "gene_list_seed": 260917,
+    "multiple_testing": "holm",
+    "null_families": [
+      "R0",
+      "R1",
+      "G0"
+    ],
+    "primary_metric": "query_fraction",
+    "tail": "upper",
+    "term_groups": {},
+    "term_universe": [
+      "TOY:A",
+      "TOY:B"
+    ],
+    "term_universe_status": "synthetic_fixture_only"
+  }
+}

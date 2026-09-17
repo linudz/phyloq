@@ -1,0 +1,32 @@
+{
+  "P0_bg_support": 10,
+  "P0_fg_support": 9,
+  "P0_query_genes": 1,
+  "P0_retained_positions": 1,
+  "P0_significant_positions": 4,
+  "alignments": 2,
+  "background_genes": 2,
+  "functional_status": {
+    "analyzed_queries": 19,
+    "annotation_version": "toy-v1",
+    "backend": "local-hypergeom-bonferroni",
+    "inference": "complete_conditional_benchmark",
+    "interpretation": "Conditional randomization benchmark; significant terms are not independent discoveries",
+    "status": "complete"
+  },
+  "hypotheses": 9,
+  "latest_trace_caas_statuses": {
+    "CACHED": 16,
+    "COMPLETED": 2
+  },
+  "launch_lock_sha256": "03280c04002a5132ecb8259e17b74d059f35aa94541df872b8959120c0e5fee8",
+  "retained_position": 15,
+  "run_id": "smoke-final-partial",
+  "status": "pass",
+  "synthetic_only": true,
+  "trace_sha256": {
+    "results/smoke-final-partial/nextflow.20260917T164757965961Z.trace.tsv": "02d45466d456d9d508980a943886647ad241d930969009a99cddd4aeb054e0ea",
+    "results/smoke-final-partial/nextflow.20260917T164848792296Z.trace.tsv": "8e4da27d102a2953fed544fde76886cda5b20f65c2469a852597cc8d13d16094"
+  },
+  "unique_published_tasks": 18
+}

@@ -1,0 +1,7 @@
+package	hypotheses	cycles	alignments	discovery_tasks	extrapolated_cpu_hours	extrapolated_raw_output_GB	status
+deterministic	3	300	16130	48390			synthetic_smoke_not_extrapolated
+R0_pilot	19	1900	16130	306470			synthetic_smoke_not_extrapolated
+deterministic_R0_total99	102	10200	16130	1645260			synthetic_smoke_not_extrapolated
+R1_pilot_optional	19	1900	16130	306470			synthetic_smoke_not_extrapolated
+paired_optional	2	30	16130	32260			synthetic_smoke_not_extrapolated
+combined_optional_package	123	12130	16130	1983990			synthetic_smoke_not_extrapolated

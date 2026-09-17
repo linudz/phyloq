@@ -1,0 +1,85 @@
+{
+  "caveats": [
+    "Wall time depends on queue and concurrency; no billing tariff assumed",
+    "Include failed-task usage and driver/aggregation resources from scheduler accounting before cost approval",
+    "Inspect length-dependent runtime, scheduler delay, staging I/O and disk amplification before batching",
+    "R0-complete is 99 TOTAL, not 99 additional; reuse pilot via a checksummed cohort"
+  ],
+  "cpu_seconds": 28.706149,
+  "failed_or_aborted_trace_records": 2,
+  "manual_review_required": [
+    "scheduler overhead",
+    "complete failure rate",
+    "staged work-directory disk use",
+    "actual CPU-hour tariff",
+    "representativeness of alignment panel",
+    "batching proposal"
+  ],
+  "max_rss_bytes": 99188736,
+  "measured_successful_tasks": 18,
+  "raw_output_bytes": 63806,
+  "smoke": true,
+  "trace_records": 52,
+  "workloads": [
+    {
+      "alignments": 16130,
+      "cycles": 300,
+      "discovery_tasks": 48390,
+      "extrapolated_cpu_hours": "",
+      "extrapolated_raw_output_GB": "",
+      "hypotheses": 3,
+      "package": "deterministic",
+      "status": "synthetic_smoke_not_extrapolated"
+    },
+    {
+      "alignments": 16130,
+      "cycles": 1900,
+      "discovery_tasks": 306470,
+      "extrapolated_cpu_hours": "",
+      "extrapolated_raw_output_GB": "",
+      "hypotheses": 19,
+      "package": "R0_pilot",
+      "status": "synthetic_smoke_not_extrapolated"
+    },
+    {
+      "alignments": 16130,
+      "cycles": 10200,
+      "discovery_tasks": 1645260,
+      "extrapolated_cpu_hours": "",
+      "extrapolated_raw_output_GB": "",
+      "hypotheses": 102,
+      "package": "deterministic_R0_total99",
+      "status": "synthetic_smoke_not_extrapolated"
+    },
+    {
+      "alignments": 16130,
+      "cycles": 1900,
+      "discovery_tasks": 306470,
+      "extrapolated_cpu_hours": "",
+      "extrapolated_raw_output_GB": "",
+      "hypotheses": 19,
+      "package": "R1_pilot_optional",
+      "status": "synthetic_smoke_not_extrapolated"
+    },
+    {
+      "alignments": 16130,
+      "cycles": 30,
+      "discovery_tasks": 32260,
+      "extrapolated_cpu_hours": "",
+      "extrapolated_raw_output_GB": "",
+      "hypotheses": 2,
+      "package": "paired_optional",
+      "status": "synthetic_smoke_not_extrapolated"
+    },
+    {
+      "alignments": 16130,
+      "cycles": 12130,
+      "discovery_tasks": 1983990,
+      "extrapolated_cpu_hours": "",
+      "extrapolated_raw_output_GB": "",
+      "hypotheses": 123,
+      "package": "combined_optional_package",
+      "status": "synthetic_smoke_not_extrapolated"
+    }
+  ]
+}

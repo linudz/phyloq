@@ -1,0 +1,28 @@
+{
+  "P0_bg_support": 10,
+  "P0_fg_support": 9,
+  "P0_query_genes": 1,
+  "P0_retained_positions": 1,
+  "P0_significant_positions": 4,
+  "alignments": 2,
+  "background_genes": 2,
+  "functional_status": {
+    "analyzed_queries": 0,
+    "required": "Approve frozen annotation version/engine and primary statistic. No live requests were sent.",
+    "status": "blocked_annotation_not_frozen"
+  },
+  "hypotheses": 9,
+  "latest_trace_caas_statuses": {
+    "CACHED": 18
+  },
+  "launch_lock_sha256": "2486a69f2ecbc616c734b6fb7ac1d0da1283cb93dcfb0ca6e5a4fbcfa86e5f83",
+  "retained_position": 15,
+  "run_id": "standalone-environment-check",
+  "status": "pass",
+  "synthetic_only": true,
+  "trace_sha256": {
+    "results/standalone-environment-check/nextflow.20260917T170706981908Z.trace.tsv": "ab1b0ffe63f3f1967c34ce961602cf7e4a730ce872ba2e1bd18e6b71543266bb",
+    "results/standalone-environment-check/nextflow.20260917T170951780597Z.trace.tsv": "ce00842984aafe5343bcad10641aac5d50dad48fc1787c0e04d2b2a8ae20dbe6"
+  },
+  "unique_published_tasks": 18
+}
