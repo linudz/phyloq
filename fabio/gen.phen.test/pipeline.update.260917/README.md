@@ -555,3 +555,6 @@ See `review/COST_REVIEW_TEMPLATE.md`, `review/SMOKE_TEST_REPORT.md` and
 `review/reference-audit/reference_compatibility.tsv`. Historical discovery and
 consolidated result directories have not been modified. Production and online
 annotation requests remain unrun pending Fabio's review.
+# Log locations
+
+Driver, submission, Nextflow and trace logs are grouped under `logs/<run-id>/`, including failures before Conda starts. See [LOGGING.md](LOGGING.md) for direct `sbatch` behavior and task-level logs.

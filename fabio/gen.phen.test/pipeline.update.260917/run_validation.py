@@ -135,10 +135,12 @@ def main():
         summaries_root=str(a.summaries_root.resolve()), annotation_input=str(a.annotation.resolve()) if a.annotation else str(ROOT / 'inputs/annotations.disabled.txt'),
         annotation_backend=cfg['enrichment']['backend'], launch_id=launch_id)
     plan_dir = ROOT / 'launch-plans' / a.run_id
+    log_dir = ROOT / 'logs' / a.run_id
+    log_dir.mkdir(parents=True, exist_ok=True)
     plan_dir.mkdir(parents=True, exist_ok=True)
     param_file = plan_dir / (launch_id + '.params.json')
     write_json(param_file, params)
-    cmd = [a.nextflow, '-log', str(plan_dir / (launch_id + '.nextflow.log')), 'run', str(ROOT / 'main.nf'),
+    cmd = [a.nextflow, '-log', str(log_dir / (launch_id + '.nextflow.log')), 'run', str(ROOT / 'main.nf'),
            '-profile', a.profile, '-params-file', str(param_file), '-work-dir', str(a.work_dir.resolve())]
     if a.cluster_config: cmd += ['-c', str(a.cluster_config.resolve())]
     if a.resume: cmd += ['-resume', 'caas_' + a.run_id.replace('-', '_')]

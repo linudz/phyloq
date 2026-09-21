@@ -1,4 +1,6 @@
 work/
+/logs/*
+!/logs/.gitkeep
 results/
 summaries/
 .nextflow*

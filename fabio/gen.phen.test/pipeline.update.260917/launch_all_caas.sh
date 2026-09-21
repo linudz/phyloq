@@ -5,6 +5,9 @@
 #SBATCH --partition=std-cpu
 #SBATCH --mem=8G
 #SBATCH --time=3-00:00:00
+#SBATCH --output=logs/slurm-%j.out
+#SBATCH --error=logs/slurm-%j.err
+#SBATCH --open-mode=append
 set -euo pipefail
 caas_script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 caas_root="${CAAS_VALIDATION_ROOT:-$caas_script_dir}"
@@ -52,6 +55,8 @@ while [[ $# -gt 0 ]]; do
 done
 [[ -f "$caas_root/main.nf" ]] || { echo 'Set CAAS_VALIDATION_ROOT to the pipeline directory.' >&2; exit 2; }
 [[ "$caas_run_id" =~ ^[A-Za-z0-9][A-Za-z0-9_-]*$ ]] || { echo 'Supply --run-id using letters, digits, underscores or hyphens.' >&2; exit 2; }
+source "$caas_root/conf/logging_helpers.sh"
+caas_start_logging
 if [[ ${#caas_source[@]} == 0 ]]; then
     # Preserve the location and *.phy glob from the previous CAAS cluster.config.
     # The new bundle is a sibling, not the owner of another alignment collection.
@@ -80,7 +85,7 @@ export CAAS_LAUNCH_CALLER_DIR="${CAAS_LAUNCH_CALLER_DIR:-$PWD}"
 if [[ -z "${SLURM_JOB_ID:-}" && "$caas_plan_only" == 0 ]]; then
     command -v sbatch >/dev/null || { echo 'sbatch not found: run this command on the cluster.' >&2; exit 1; }
     echo "Submitting one CAAS driver; selected modes: $caas_modes. No pilot."
-    exec sbatch --export=ALL "$caas_root/launch_all_caas.sh" "${caas_original_args[@]}"
+    exec sbatch --export=ALL --output="$caas_log_dir/slurm-%j.out" --error="$caas_log_dir/slurm-%j.err" --open-mode=append "$caas_root/launch_all_caas.sh" "${caas_original_args[@]}"
 fi
 cd "$CAAS_LAUNCH_CALLER_DIR"
 source "$caas_root/conf/conda_helpers.sh"
