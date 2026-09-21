@@ -2,6 +2,7 @@
 # Submit THIS driver explicitly with sbatch after reviewing a dry-run launch plan.
 #SBATCH --job-name=CAAS_VALIDATION_DRIVER
 #SBATCH --cpus-per-task=1
+#SBATCH --partition=std-cpu
 #SBATCH --mem=8G
 #SBATCH --time=3-00:00:00
 set -euo pipefail

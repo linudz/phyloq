@@ -2,6 +2,7 @@
 # One driver, one Nextflow run, all explicitly selected CAAS modes.
 #SBATCH --job-name=CAAS_VALIDATION_ALL
 #SBATCH --cpus-per-task=1
+#SBATCH --partition=std-cpu
 #SBATCH --mem=8G
 #SBATCH --time=3-00:00:00
 set -euo pipefail
