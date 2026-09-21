@@ -3,6 +3,7 @@
 import argparse
 import datetime
 import os
+import re
 import shlex
 import subprocess
 import sys
@@ -11,6 +12,8 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / 'scripts'))
 from common import digest, identifier, read_json, read_tsv, require, sha, tree_hash, verify_design, write_json
 from check_environment import inspect_runtime
+sys.path.insert(0, str(ROOT / 'launch_support'))
+from resource_resume import resume_identity
 
 STAGES = ['prepare', 'smoke', 'benchmark', 'deterministic', 'paired', 'summarize', 'reference-rerun', 'auxiliary-p2']
 
@@ -36,9 +39,17 @@ def main():
     p.add_argument('--results-root', type=Path, default=ROOT / 'results')
     p.add_argument('--summaries-root', type=Path, default=ROOT / 'summaries')
     p.add_argument('--cluster-config', type=Path, help='User-reviewed resource/environment overrides')
+    p.add_argument('--task-time', default='30m', help='Walltime per CAAS task; safe to change on resume')
+    p.add_argument('--task-memory', default='2 GB', help='Memory per CAAS task; safe to change on resume')
+    p.add_argument('--task-cpus', type=int, default=1, help='CPUs per CAAS task; safe to change on resume')
     p.add_argument('--resume', action='store_true', help='Only resume this exact run and frozen selection')
     p.add_argument('--execute', action='store_true', help='Without this flag, print/save a plan only')
     a = p.parse_args()
+    require(a.task_cpus > 0, 'Task CPUs must be positive')
+    require(re.fullmatch(r'[1-9][0-9]*(?:\.[0-9]+)?\s*(?:ms|s|m|h|d)', a.task_time) is not None,
+            'Use a positive task time with a unit, e.g. 30m or 1h')
+    require(re.fullmatch(r'[1-9][0-9]*(?:\.[0-9]+)?\s*(?:KB|MB|GB|TB)', a.task_memory, re.I) is not None,
+            'Use positive task memory with a unit, e.g. 2 GB')
     if a.conda_prefix:
         a.conda_prefix = a.conda_prefix.resolve()
         require(a.conda_init is not None and a.conda_init.is_file(), 'Conda mode requires --conda-init pointing to conda.sh')
@@ -76,7 +87,9 @@ def main():
     # Bind code, actual selection, annotations, settings and outputs to the run.
     fingerprint = digest(dict(scripts=tree_hash(ROOT / 'scripts'), workflow=sha(ROOT / 'main.nf'),
                               config=sha(ROOT / 'nextflow.config'), cluster=tree_hash(ROOT / 'conf'), launcher=sha(__file__),
-                              environment=sha(ROOT/'environment.yml')))
+                              environment=sha(ROOT/'environment.yml'),
+                              resume_helper=sha(ROOT/'launch_support/resource_resume.py')))
+    implementation_fingerprint = fingerprint
     # Conda package records detect updates in-place even at the same prefix.
     package_lock = {p.name:sha(p) for p in sorted((a.conda_prefix/'conda-meta').glob('*.json'))} if a.conda_prefix else None
     identity = dict(stage=a.stage, direct_discovery=direct_discovery, design_sha256=sha(design / 'design.lock.json'),
@@ -95,7 +108,11 @@ def main():
     launch_lock = out / 'launch.lock.json'
     if launch_lock.exists():
         require(a.resume, 'Run ID already exists; use --resume for the exact same inputs, or a new run ID')
-        require(read_json(launch_lock) == identity, 'Run inputs/code changed. Refusing incompatible resume; use a new run ID')
+        identity = resume_identity(read_json(launch_lock), identity,
+                                   read_json(ROOT/'launch_support/resource_resume_bridge.json'))
+        # Keep the reviewed old task-script fingerprint to reuse valid cache.
+        # Actual implementation and resources are recorded in each launch plan.
+        fingerprint = identity['code_fingerprint']
     else:
         require(not a.resume, 'Cannot resume a run with no launch lock')
         require(not out.exists(), 'Output directory exists without a run lock; choose a new run ID')
@@ -125,6 +142,7 @@ def main():
         (Path(r['alignment_path']) if Path(r['alignment_path']).is_absolute() else a.alignments.parent/ r['alignment_path']).resolve().is_relative_to(ROOT/'tests/fixtures')
         for r in inventory)
     params = dict(stage=a.stage, direct_discovery=direct_discovery, synthetic_inputs=synthetic_inputs,
+        task_time=a.task_time, task_memory=a.task_memory, task_cpus=a.task_cpus,
         run_id=a.run_id, design=str(design), settings=str(a.settings.resolve()),
         selection_manifest=str(selection) if selection else None, alignment_manifest=str(a.alignments.resolve()) if a.alignments else None,
         cohort_manifest=str(a.cohort.resolve()) if a.cohort else None, approvals=str(a.approvals.resolve()) if a.approvals else None,
@@ -144,6 +162,8 @@ def main():
     if a.resume: cmd += ['-resume', 'caas_' + a.run_id.replace('-', '_')]
     else: cmd += ['-name', 'caas_' + a.run_id.replace('-', '_')]
     plan = dict(identity, run_id=a.run_id, hypotheses=len(selected), alignments=len(inventory),
+                actual_implementation_fingerprint=implementation_fingerprint,
+                task_resources=dict(time=a.task_time, memory=a.task_memory, cpus=a.task_cpus),
                 expected_tasks=len(selected)*len(inventory), cycles=sum(int(r['selected_cycles']) for r in selected),
                 command=cmd, execute=a.execute, production=a.stage not in ('smoke', 'summarize'),
                 approvals_required_for_execution=a.stage not in ('smoke', 'summarize', 'benchmark'))

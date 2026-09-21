@@ -29,6 +29,11 @@ Historical references/P2 are opt-in only.
 
 ## Resume
 
+The resource-limit fix is compatible with the five-analysis version 287d4ab:
+resume that same run ID after stopping its old driver/jobs and updating.
+See [RESOURCE_RESUME.md](RESOURCE_RESUME.md). The default new task limit is
+30 minutes and 2 GB. Timeout still stops the pipeline (no silent skipping).
+
 ```bash
 bash launch_all_caas.sh --run-id caas-five-01 --resume
 ```

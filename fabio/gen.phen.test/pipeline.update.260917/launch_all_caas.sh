@@ -38,6 +38,8 @@ while [[ $# -gt 0 ]]; do
         --resume) caas_resume=(--resume); shift ;;
         --plan-only) caas_plan_only=1; shift ;;
         --cluster-config) caas_launch_extras+=(--cluster-config "${2:?Missing config path}"); shift 2 ;;
+        --task-time|--task-memory|--task-cpus)
+            caas_launch_extras+=("$1" "${2:?Missing resource value}"); shift 2 ;;
         -h|--help)
             echo 'Usage: bash launch_all_caas.sh --run-id NAME [--alignments-dir DIR] [options]'
             echo 'One SLURM driver runs N3/N4/N5 + P1/N6 (5 pooled analyses). R0/R1 are disabled.'
@@ -47,6 +49,7 @@ while [[ $# -gt 0 ]]; do
             echo 'In the research project: ../pipeline/inputs/alignments/*.phy; standalone: inputs/alignments/*.phy.'
             echo 'Options: --modes all|deterministic|paired --include-references --include-p2'
             echo '         --resume --plan-only --cluster-config FILE'
+            echo 'Resources: --task-time 30m --task-memory "2 GB" --task-cpus 1 (resource-only resume allowed).'
             echo 'Historical references/P2 are NOT rerun unless explicitly included.'
             echo 'Outside SLURM, bash submits with sbatch. Direct sbatch use is also supported.'
             exit 0 ;;

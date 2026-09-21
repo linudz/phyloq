@@ -1,0 +1,5 @@
+{
+  "description": "Reviewed resources-only transition from phyloq 287d4ab. Analysis scripts, main.nf, frozen inputs and tool unchanged. Preserve old task fingerprints only for this exact implementation.",
+  "source_code_fingerprints": ["e07fe871315c5a58d78e59872ae7dfc0ba5ab043d7ea71b70173cdd9a4bf68b3"],
+  "target_code_fingerprint": "493ddeb1df5c0973ff8f5382f77ef24f5ada7470592fcbbd826b88978f753583"
+}
