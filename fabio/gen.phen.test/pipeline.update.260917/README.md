@@ -21,9 +21,12 @@ historical reference and is not rerun by default.
 
 ## Launch
 
-**Resource fix:** the reduced run from commit 287d4ab can resume through the
-reviewed resource-only compatibility bridge. CPU/memory/time flags may change
-on resume; analysis inputs may not. See [RESOURCE_RESUME.md](RESOURCE_RESUME.md).
+**Shared-tool fix:** CAAS tasks now use the absolute shared CAAStools path, not
+a per-task directory copy. This changes the task definition: start a NEW run ID
+after stopping an older run. Do not update the checkout underneath running jobs.
+The old resource-only bridge does not authorize this staging change.
+CPU/memory/time flags may change on subsequent same-version resumes.
+See [RESOURCE_RESUME.md](RESOURCE_RESUME.md).
 
 See [RUN_ON_CLUSTER.md](RUN_ON_CLUSTER.md). Nextflow processes, pooled settings
 and frozen species/cycle assignments are unchanged. No pilot, enrichment or

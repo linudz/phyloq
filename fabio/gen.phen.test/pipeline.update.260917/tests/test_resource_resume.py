@@ -33,12 +33,14 @@ class ResourceResume(unittest.TestCase):
         with self.assertRaises(ValueError):
             resume_identity(self.old, dict(self.new, code_fingerprint='unreviewed'), self.bridge)
 
-    def test_bridge_matches_exact_installed_code(self):
+    def test_shared_tool_change_cannot_use_resource_only_bridge(self):
         actual = digest(dict(scripts=tree_hash(ROOT/'scripts'), workflow=sha(ROOT/'main.nf'),
                              config=sha(ROOT/'nextflow.config'), cluster=tree_hash(ROOT/'conf'),
                              launcher=sha(ROOT/'run_validation.py'), environment=sha(ROOT/'environment.yml'),
                              resume_helper=sha(ROOT/'launch_support/resource_resume.py')))
-        self.assertEqual(actual, self.bridge['target_code_fingerprint'])
+        self.assertNotEqual(actual, self.bridge['target_code_fingerprint'])
+        with self.assertRaises(ValueError):
+            resume_identity(self.old, dict(self.new, code_fingerprint=actual), self.bridge)
 
 
 if __name__ == '__main__': unittest.main()

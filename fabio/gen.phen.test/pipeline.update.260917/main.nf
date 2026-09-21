@@ -49,7 +49,9 @@ process CAAS_POOLED {
     publishDir path: { "${params.results_root}/${params.run_id}/${strategy}/${replicate}/raw" }, mode: 'copy', overwrite: false
     input:
     tuple val(hypothesis), val(strategy), val(replicate), val(gene), path(job), path(alignment), path(pool), path(cycles)
-    path caastools
+    // Shared read-only installation: a value, not a staged directory input.
+    // run_caas.py verifies its frozen checksum before every invocation.
+    val caastools
     output:
     tuple val(hypothesis), val(strategy), val(replicate), path("${gene}")
     script:
@@ -164,7 +166,7 @@ workflow {
                   file(row.job_file, checkIfExists: true), file(row.alignment_path, checkIfExists: true),
                   file(row.pool_path, checkIfExists: true), file(row.config_path, checkIfExists: true))
         }
-        CAAS_POOLED(jobs, file(params.caastools_dir, checkIfExists: true))
+        CAAS_POOLED(jobs, file(params.caastools_dir, checkIfExists: true).toAbsolutePath().toString())
         grouped = CAAS_POOLED.out.groupTuple(by: [0,1,2])
         ASSEMBLE_FILTER_AND_QUERY(grouped, alignments)
         // The cohort comes from declared outputs; no glob of a publishing directory.

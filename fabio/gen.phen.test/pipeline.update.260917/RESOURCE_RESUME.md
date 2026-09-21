@@ -1,5 +1,20 @@
 # Resource limits and safe resume
 
+## Shared-tool staging update
+
+The current version uses the shared absolute CAAStools directory as a value
+input, never as a staged directory. Workers verify its frozen checksum and
+disable Python bytecode writes. Alignment, job and cycle files still use copy
+staging. No old work/results directories are removed automatically.
+
+This changes main.nf and therefore deliberately does NOT qualify for the
+resource-only bridge described below. Stop an old run before updating the
+checkout and start a NEW ID, e.g. `caas-five-shared-01`. Subsequent resumes of
+this new run use the same ID and can adjust resource flags. Keep the shared
+tool path mounted and unchanged for the entire run.
+
+## Historical resource-only transition (before shared-tool update)
+
 The cluster selector explicitly sets CPU, memory and time. Nextflow 24.04.2
 replaced the base selector when loading the cluster profile, previously losing
 these directives. Defaults are now 1 CPU, 2 GB and 30 minutes per CAAS task.

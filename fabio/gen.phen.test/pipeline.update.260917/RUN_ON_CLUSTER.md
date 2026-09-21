@@ -29,9 +29,11 @@ Historical references/P2 are opt-in only.
 
 ## Resume
 
-The resource-limit fix is compatible with the five-analysis version 287d4ab:
-resume that same run ID after stopping its old driver/jobs and updating.
-See [RESOURCE_RESUME.md](RESOURCE_RESUME.md). The default new task limit is
+The shared-tool staging fix changes the task definition and needs a new run ID
+when transitioning from older versions (for example, `caas-five-shared-01`).
+Do not update a checkout while its jobs are active. Subsequent resumes of the
+same new version use that same new ID. See [RESOURCE_RESUME.md](RESOURCE_RESUME.md).
+The default new task limit is
 30 minutes and 2 GB. Timeout still stops the pipeline (no silent skipping).
 
 ```bash
