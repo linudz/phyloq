@@ -16,13 +16,17 @@ save.figure <- function(name, draw, width=9, height=5) {
 }
 plot.discoveries <- function() {
   par(mar=c(5.5,5,2,1),las=1,cex=1.1)
+  if (!any(is.finite(x$common_query_fraction))) {
+    plot.new(); text(.5,.5,'No shared completed, testable genes\nFractions are not estimable')
+    return(invisible(NULL))
+  }
   groups <- order.ids[order.ids %in% x$strategy_id]
   values <- lapply(groups,function(g) x$common_query_fraction[x$strategy_id==g])
   names(values) <- groups
-  boxplot(values,ylim=c(0,max(.05,x$common_query_fraction)*1.12),ylab='Query / common testable background',xlab='',
+  boxplot(values,ylim=c(0,max(.05,x$common_query_fraction,na.rm=TRUE)*1.12),ylab='Query / common testable background',xlab='',
           col=ifelse(groups=='P0','#983548',ifelse(groups %in% c('R0','R1'),'#c7d4dc','#91a9b8')),outline=FALSE)
   for(i in seq_along(values)) points(rep(i,length(values[[i]])),values[[i]],pch=16,cex=.7,col='#34424c66')
-  mtext('Each point is one complete hypothesis, not one cycle',side=1,line=3.3,cex=.85)
+  mtext('Each point is one hypothesis; non-completed genes excluded',side=1,line=3.3,cex=.85)
   if(any(x$smoke)) mtext('SYNTHETIC SOFTWARE TEST — NOT BIOLOGICAL RESULTS',side=3,col='#983548',cex=.8)
 }
 save.figure('01_query_background_fraction',plot.discoveries)

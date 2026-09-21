@@ -1,5 +1,5 @@
 {
-  "description": "Reviewed resources-only transition from phyloq 287d4ab. Analysis scripts, main.nf, frozen inputs and tool unchanged. Preserve old task fingerprints only for this exact implementation.",
-  "source_code_fingerprints": ["e07fe871315c5a58d78e59872ae7dfc0ba5ab043d7ea71b70173cdd9a4bf68b3"],
-  "target_code_fingerprint": "493ddeb1df5c0973ff8f5382f77ef24f5ada7470592fcbbd826b88978f753583"
+  "description": "Reviewed transition from shared-tool commit 0c55eff to partial-result continuation. CAAS command, input validation, frozen inputs and tool unchanged; failed-task handling and downstream summaries changed. Preserve valid CAAS cache only for this exact implementation.",
+  "source_code_fingerprints": ["0557b68e23314083ab176edb921bafa2144361ee572de8d7ef02651c4d6ab965"],
+  "target_code_fingerprint": "842bb6f6a9516777b8cc9edc4420e086914d4c51c1c39d37b1d04c5c7c50331d"
 }

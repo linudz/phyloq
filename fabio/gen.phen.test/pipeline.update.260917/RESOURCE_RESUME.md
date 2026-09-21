@@ -1,5 +1,10 @@
 # Resource limits and safe resume
 
+**Current policy:** CAAS failures/timeouts no longer stop direct benchmark runs.
+The supported bridge is now from shared-tool version 0c55eff to this continuation
+policy. See [PARTIAL_RESULTS.md](PARTIAL_RESULTS.md). Resource-only transition
+instructions below describe historical releases and are not current launch advice.
+
 ## Shared-tool staging update
 
 The current version uses the shared absolute CAAStools directory as a value

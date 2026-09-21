@@ -34,7 +34,10 @@ when transitioning from older versions (for example, `caas-five-shared-01`).
 Do not update a checkout while its jobs are active. Subsequent resumes of the
 same new version use that same new ID. See [RESOURCE_RESUME.md](RESOURCE_RESUME.md).
 The default new task limit is
-30 minutes and 2 GB. Timeout still stops the pipeline (no silent skipping).
+30 minutes and 2 GB. In direct benchmark mode a failed/timed-out CAAS task no
+longer stops the pipeline; it is explicitly reported as non-completed.
+See [PARTIAL_RESULTS.md](PARTIAL_RESULTS.md) for the compatible resume of the
+shared-tool version and the required completeness reports.
 
 ```bash
 bash launch_all_caas.sh --run-id caas-five-01 --resume

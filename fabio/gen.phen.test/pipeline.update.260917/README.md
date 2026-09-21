@@ -1,5 +1,9 @@
 # CAAS pooled validation — reduced design
 
+**Failure handling:** direct benchmark runs continue after failed/timed-out CAAS
+tasks and report missing genes separately. Existing shared-tool runs can resume
+through a reviewed compatibility bridge. See [PARTIAL_RESULTS.md](PARTIAL_RESULTS.md).
+
 The standard launch runs five analyses. R0/R1 randomized null series are disabled.
 
 | Analysis | Selection | FG/BG pool | Pooled cycles per gene |
@@ -48,6 +52,7 @@ unchanged reduced runs support normal Nextflow resume.
 - `results/<run>/<strategy>/<replicate>/<hypothesis>/`: assembled/filtered results.
 - `summaries/<run>/`: descriptive comparisons.
 - `logs/<run>/`: driver/Nextflow logs; see [LOGGING.md](LOGGING.md).
+- `summaries/<run>/matched/non_completed_genes.tsv`: incomplete gene/hypothesis tasks.
 - `inputs/launches/<run>/`: exact selection and alignment inventory.
 
 Keep `work/`, `.nextflow/`, launch inputs and locks for resume.

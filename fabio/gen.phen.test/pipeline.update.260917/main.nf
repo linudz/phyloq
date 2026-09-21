@@ -44,6 +44,8 @@ process VALIDATE_INPUTS {
 }
 
 process CAAS_POOLED {
+    // Failed discovery tasks are missing observations, never negative results.
+    errorStrategy { params.direct_discovery ? 'ignore' : 'terminate' }
     tag "${strategy}/${replicate}:${gene}"
     stageInMode 'copy'
     publishDir path: { "${params.results_root}/${params.run_id}/${strategy}/${replicate}/raw" }, mode: 'copy', overwrite: false
@@ -67,17 +69,18 @@ process ASSEMBLE_FILTER_AND_QUERY {
     tag "${hypothesis}: verify completeness and filter"
     executor 'local'
     stageInMode 'copy'
-    publishDir path: { "${params.results_root}/${params.run_id}/${strategy}/${replicate}" }, mode: 'copy', overwrite: false
+    publishDir path: { "${params.results_root}/${params.run_id}/${strategy}/${replicate}" }, mode: 'copy', overwrite: true
     input:
     tuple val(hypothesis), val(strategy), val(replicate), path(artifacts, stageAs: 'raw/*')
     path alignments
     output:
     tuple val(hypothesis), path("${hypothesis}")
     script:
+    def partialArg = params.direct_discovery ? '--allow-incomplete' : ''
     """
     # implementation ${params.code_fingerprint}
     "${params.python_command}" "${projectDir}/scripts/summarize_hypothesis.py" \
-      --hypothesis "${hypothesis}" --alignments "${alignments}" --artifacts raw --output "${hypothesis}"
+      --hypothesis "${hypothesis}" --alignments "${alignments}" --artifacts raw --output "${hypothesis}" ${partialArg}
     """
 }
 
@@ -85,7 +88,7 @@ process COMMON_BACKGROUND {
     tag "common background for the declared cohort"
     executor 'local'
     stageInMode 'copy'
-    publishDir "${params.summaries_root}/${params.run_id}", mode: 'copy', overwrite: false
+    publishDir "${params.summaries_root}/${params.run_id}", mode: 'copy', overwrite: true
     input:
     path cohort
     path summaries, stageAs: 'cohort_summaries/*'
@@ -94,7 +97,7 @@ process COMMON_BACKGROUND {
     script:
     """
     # implementation ${params.code_fingerprint}
-    "${params.python_command}" "${projectDir}/scripts/common_background.py" --cohort "${cohort}" --summary-base cohort_summaries --output matched
+    "${params.python_command}" "${projectDir}/scripts/common_background.py" --cohort "${cohort}" --summary-base cohort_summaries --output matched ${params.direct_discovery ? '--allow-incomplete' : ''}
     """
 }
 
@@ -102,7 +105,7 @@ process FUNCTIONAL_CONTROLS_AND_COMPARE {
     tag "frozen enrichment and conditional comparisons"
     executor 'local'
     stageInMode 'copy'
-    publishDir "${params.summaries_root}/${params.run_id}", mode: 'copy', overwrite: false
+    publishDir "${params.summaries_root}/${params.run_id}", mode: 'copy', overwrite: true
     input:
     path matched
     path settings
@@ -123,7 +126,7 @@ process FUNCTIONAL_CONTROLS_AND_COMPARE {
 process PLOT_SUMMARIES {
     executor 'local'
     stageInMode 'copy'
-    publishDir "${params.summaries_root}/${params.run_id}", mode: 'copy', overwrite: false
+    publishDir "${params.summaries_root}/${params.run_id}", mode: 'copy', overwrite: true
     input:
     path matched
     path functional
@@ -167,7 +170,10 @@ workflow {
                   file(row.pool_path, checkIfExists: true), file(row.config_path, checkIfExists: true))
         }
         CAAS_POOLED(jobs, file(params.caastools_dir, checkIfExists: true).toAbsolutePath().toString())
-        grouped = CAAS_POOLED.out.groupTuple(by: [0,1,2])
+        // Seed every hypothesis with one validated job metadata file. Even a
+        // hypothesis with zero successful tasks must be reported, not disappear.
+        seeds = jobs.unique { row -> row[0] }.map { row -> tuple(row[0], row[1], row[2], row[4]) }
+        grouped = CAAS_POOLED.out.mix(seeds).groupTuple(by: [0,1,2])
         ASSEMBLE_FILTER_AND_QUERY(grouped, alignments)
         // The cohort comes from declared outputs; no glob of a publishing directory.
         cohort = ASSEMBLE_FILTER_AND_QUERY.out.collect(flat: false).map { items ->

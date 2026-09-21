@@ -8,7 +8,7 @@ from common import ROOT, checked, digest, read_json, read_tsv, require, sha, wri
 from legacy_support import dense_cluster_positions, preferred_position_record, is_primary
 
 
-def summarize(hypothesis_id, alignment_manifest, artifacts, output):
+def summarize(hypothesis_id, alignment_manifest, artifacts, output, allow_incomplete=False):
     inventory = read_tsv(alignment_manifest)
     expected = {r["gene_id"] for r in inventory}
     receipts = {}
@@ -23,12 +23,23 @@ def summarize(hypothesis_id, alignment_manifest, artifacts, output):
                         missing=sorted(expected - receipts.keys()), unexpected=sorted(receipts.keys() - expected),
                         status="complete" if expected == receipts.keys() else "incomplete")
     write_json(output / "execution_completeness.json", completeness)
-    require(completeness["status"] == "complete", f"Incomplete hypothesis: {completeness}; summaries blocked")
+    require(not completeness['unexpected'], f"Unexpected outputs: {completeness}")
+    require(allow_incomplete or completeness["status"] == "complete", f"Incomplete hypothesis: {completeness}; summaries blocked")
     positions, gene_rows = [], []
-    anchor = next(iter(receipts.values()))[1]
+    seeds = list(Path(artifacts).glob('*__*.json'))
+    require(len(seeds) <= 1, 'Multiple hypothesis metadata seeds')
+    anchor = read_json(seeds[0]) if seeds else (next(iter(receipts.values()))[1] if receipts else None)
+    require(anchor is not None and anchor['hypothesis_id'] == hypothesis_id, 'Missing/wrong hypothesis metadata seed')
+    missing_rows = [dict(hypothesis_id=hypothesis_id, strategy_id=anchor['strategy_id'],
+                         replicate_id=anchor['replicate_id'], gene=gene, status='not_completed',
+                         reason='no_successful_task_output; consult Nextflow trace for failure/timeout')
+                    for gene in completeness['missing']]
+    write_tsv(output/'non_completed_genes.tsv', missing_rows,
+              ['hypothesis_id', 'strategy_id', 'replicate_id', 'gene', 'status', 'reason'])
     filt = anchor["settings"]["filter"]
     for a in inventory:
         gene = a["gene_id"]
+        if gene not in receipts: continue
         receipt_path, receipt = receipts[gene]
         require(receipt["status"] == "success", f"Failed output for {gene}")
         require(receipt["alignment_sha256"] == a["sha256"], f"Wrong alignment version for {gene}")
@@ -66,7 +77,11 @@ def summarize(hypothesis_id, alignment_manifest, artifacts, output):
             receipt_sha256=sha(receipt_path), elapsed_seconds=receipt["elapsed_seconds"], cpu_seconds=receipt["cpu_seconds"],
             max_rss_bytes=receipt["max_rss_bytes"], output_bytes=receipt["output_bytes"]))
     write_tsv(output / "positions.tsv", positions, ["hypothesis_id", "strategy_id", "replicate_id", "gene", "position", "event_id", "positional_pvalue", "fg_support_count", "bg_support_count", "balanced_support_count", "total_support_count", "cluster_filter_status", "in_query"])
-    write_tsv(output / "gene_inventory.tsv", gene_rows, list(gene_rows[0]))
+    gene_columns = ['hypothesis_id','gene','completed','coverage_testable','coverage_testable_positions',
+                    'present_fg','present_bg','missing_fg','missing_bg','in_query','significant_positions',
+                    'retained_positions','balanced_retained_positions','alignment_sha256','events_sha256',
+                    'receipt_sha256','elapsed_seconds','cpu_seconds','max_rss_bytes','output_bytes']
+    write_tsv(output / "gene_inventory.tsv", gene_rows, gene_columns)
     for name, key in (("query.tsv", "in_query"), ("background.tsv", "coverage_testable"), ("completed_background.tsv", "completed")):
         write_tsv(output / name, [r for r in gene_rows if r[key]], ["gene"])
     nbg = sum(r["coverage_testable"] for r in gene_rows)
@@ -80,7 +95,9 @@ def summarize(hypothesis_id, alignment_manifest, artifacts, output):
         discovery_filter_sha256=digest({k:anchor['settings'][k] for k in ('discovery','filter')}),
         downstream_sha256=digest({name:sha(ROOT/'scripts'/name) for name in ('summarize_hypothesis.py','legacy_support.py','common.py')}),
         tool_sha256=anchor["tool_sha256"], config_sha256=anchor["config_sha256"], pool_sha256=anchor["pool_sha256"],
-        alignment_manifest_sha256=sha(alignment_manifest), smoke=anchor["smoke"], status="complete")
+        alignment_manifest_sha256=sha(alignment_manifest), smoke=anchor["smoke"],
+        expected_genes=len(expected), non_completed_genes=len(missing_rows),
+        status="complete" if not missing_rows else "partial")
     write_json(output / "summary.json", summary)
     write_json(output / "summary.lock.json", {p.name: sha(p) for p in sorted(output.iterdir()) if p.is_file() and p.name != "summary.lock.json"})
     return summary
@@ -90,4 +107,5 @@ if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--hypothesis", required=True)
     for name in ("alignments", "artifacts", "output"): p.add_argument("--" + name, type=Path, required=True)
-    a = p.parse_args(); summarize(a.hypothesis, a.alignments, a.artifacts, a.output)
+    p.add_argument('--allow-incomplete', action='store_true')
+    a = p.parse_args(); summarize(a.hypothesis, a.alignments, a.artifacts, a.output, a.allow_incomplete)
