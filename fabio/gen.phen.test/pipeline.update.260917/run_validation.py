@@ -12,7 +12,7 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 from common import digest, identifier, read_json, read_tsv, require, sha, tree_hash, verify_design, write_json
 from check_environment import inspect_runtime
 
-STAGES = ['prepare', 'smoke', 'benchmark', 'deterministic', 'r0-pilot', 'r0-complete', 'r1-pilot', 'r1-complete', 'paired', 'summarize', 'reference-rerun', 'auxiliary-p2']
+STAGES = ['prepare', 'smoke', 'benchmark', 'deterministic', 'paired', 'summarize', 'reference-rerun', 'auxiliary-p2']
 
 
 def main():
@@ -68,13 +68,11 @@ def main():
         require(a.alignments is not None and a.alignments.is_file(), '--alignments must name an inventory TSV')
         selected, inventory = read_tsv(selection), read_tsv(a.alignments)
         require(selected and inventory, 'Empty selection or inventory')
+        require(not any(r['strategy_id'] in ('R0', 'R1') for r in selected),
+                'R0/R1 randomized null series have been disabled, including custom selections.')
         allowed = {'deterministic': {'N3', 'N4', 'N5'}, 'paired': {'P1', 'N6'}, 'reference-rerun': {'P0', 'N0', 'N1', 'N2'}, 'auxiliary-p2': {'P2'}}
         if a.stage in allowed:
             require({r['strategy_id'] for r in selected} <= allowed[a.stage], 'Selection contains strategies outside the requested stage')
-        if a.stage.startswith(('r0-', 'r1-')):
-            family = a.stage[:2].upper()
-            require(all(r['strategy_id'] == family for r in selected), 'Wrong random family in selection')
-            if a.stage.endswith('pilot'): require(all(1 <= int(r['replicate_id']) <= 19 for r in selected), 'Pilot includes non-pilot replicate')
     # Bind code, actual selection, annotations, settings and outputs to the run.
     fingerprint = digest(dict(scripts=tree_hash(ROOT / 'scripts'), workflow=sha(ROOT / 'main.nf'),
                               config=sha(ROOT / 'nextflow.config'), cluster=tree_hash(ROOT / 'conf'), launcher=sha(__file__),

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Freeze an explicit multi-strategy CAAS launch; never submit a job.
 
-All new modes means N3/N4/N5, all 99 R0, all 99 R1, and P1/N6.
+All new modes means N3/N4/N5 and P1/N6. Randomized null series are disabled.
 Historical references and P2 are opt-in. Existing launch inputs are reused only
 when the request and their checksums match; no silent regeneration on resume.
 """
@@ -15,13 +15,11 @@ from inventory_alignments import inventory
 
 MODES = {
     'deterministic': ('N3', 'N4', 'N5'),
-    'r0': ('R0',),
-    'r1': ('R1',),
     'paired': ('P1', 'N6'),
     'references': ('P0', 'N0', 'N1', 'N2'),
     'auxiliary-p2': ('P2',),
 }
-NEW_MODES = ('deterministic', 'r0', 'r1', 'paired')
+NEW_MODES = ('deterministic', 'paired')
 
 
 def selected_modes(text, include_references=False, include_p2=False):
@@ -38,10 +36,6 @@ def select_rows(design, modes):
     rows = [r for r in read_tsv(design/'execution_manifest.tsv') if r['strategy_id'] in strategies]
     require(rows and {r['strategy_id'] for r in rows} == strategies, 'Requested strategies missing from frozen design')
     require(len({r['hypothesis_id'] for r in rows}) == len(rows), 'Duplicate frozen hypothesis')
-    for family in ('R0', 'R1'):
-        if family in strategies:
-            require({int(r['replicate_id']) for r in rows if r['strategy_id'] == family} == set(range(1,100)),
-                    family + ' must contain all 99 hypotheses, not a pilot or continuation subset')
     return rows
 
 

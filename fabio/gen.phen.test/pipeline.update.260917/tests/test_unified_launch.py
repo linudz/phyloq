@@ -18,26 +18,26 @@ INVENTORY = ROOT/'tests/fixtures/alignment_manifest.tsv'
 class UnifiedSelection(unittest.TestCase):
     def test_all_new_modes_are_full_and_unique(self):
         rows = select_rows(DESIGN, selected_modes('all'))
-        self.assertEqual(len(rows), 203)
-        self.assertEqual(sum(int(r['selected_cycles']) for r in rows), 20130)
-        self.assertEqual({r['strategy_id'] for r in rows}, {'N3','N4','N5','R0','R1','P1','N6'})
-        self.assertTrue({'R0_099','R1_099'} <= {r['hypothesis_id'] for r in rows})
-        self.assertEqual(len(select_rows(DESIGN, selected_modes('all', True, True))), 208)
-        self.assertEqual(len(select_rows(DESIGN, selected_modes('deterministic,r0'))), 102)
+        self.assertEqual(len(rows), 5)
+        self.assertEqual(sum(int(r['selected_cycles']) for r in rows), 330)
+        self.assertEqual({r['strategy_id'] for r in rows}, {'N3','N4','N5','P1','N6'})
+        self.assertEqual(len(select_rows(DESIGN, selected_modes('all', True, True))), 10)
+        for modes in ('r0', 'r1', 'deterministic,r0'):
+            with self.assertRaises(ValueError): selected_modes(modes)
 
     def test_launch_inputs_reused_not_changed_on_resume(self):
         with tempfile.TemporaryDirectory() as tmp:
             out = Path(tmp)/'launch'
             report = prepare(DESIGN, out, 'unit-direct', list(NEW_MODES), inventory_path=INVENTORY)
             initial = sha(out/'selection.tsv')
-            self.assertEqual(report['expected_caas_tasks'], 406)
+            self.assertEqual(report['expected_caas_tasks'], 10)
             self.assertEqual(prepare(DESIGN, out, 'unit-direct', list(NEW_MODES), inventory_path=INVENTORY, resume=True), report)
             self.assertEqual(initial, sha(out/'selection.tsv'))
             with self.assertRaisesRegex(ValueError, 'changed'):
                 prepare(DESIGN, out, 'unit-direct', ['deterministic'], inventory_path=INVENTORY, resume=True)
 
-    def test_direct_full_null_needs_no_pilot_or_approval(self):
-        rows = [r for r in read_tsv(DESIGN/'execution_manifest.tsv') if r['hypothesis_id'] in ('N3_000','R0_099','R1_099')]
+    def test_retained_analyses_need_no_pilot_or_approval(self):
+        rows = [r for r in read_tsv(DESIGN/'execution_manifest.tsv') if r['hypothesis_id'] in ('N3_000','N4_000','N5_000')]
         with tempfile.TemporaryDirectory() as tmp:
             tmp = Path(tmp)
             write_tsv(tmp/'selection.tsv', rows, list(rows[0]))
@@ -92,6 +92,7 @@ class UnifiedShell(unittest.TestCase):
         bundle = self.base/'project'/'new'; bundle.mkdir(parents=True)
         (bundle/'main.nf').touch(); (bundle/'conf').mkdir()
         (bundle/'conf/conda_helpers.sh').write_bytes((ROOT/'conf/conda_helpers.sh').read_bytes())
+        (bundle/'conf/logging_helpers.sh').write_bytes((ROOT/'conf/logging_helpers.sh').read_bytes())
         legacy = bundle.parent/legacy_name
         (legacy/'conf').mkdir(parents=True)
         (legacy/'conf/cluster.config').write_text('params.alignments = "${projectDir}/inputs/alignments/*.phy"\n')
@@ -118,7 +119,7 @@ class UnifiedShell(unittest.TestCase):
     def test_empty_old_directory_fails_before_launch(self):
         p, _ = self.layout_driver('caas', have_alignment=False)
         self.assertNotEqual(p.returncode, 0)
-        self.assertIn('No alignments match', p.stderr)
+        self.assertIn('No alignments match', (self.base/'project/new/logs/unit-paths/driver-unit.log').read_text())
         self.assertFalse(self.log.exists())
 
     def driver(self, plan_only=False):

@@ -40,12 +40,12 @@ while [[ $# -gt 0 ]]; do
         --cluster-config) caas_launch_extras+=(--cluster-config "${2:?Missing config path}"); shift 2 ;;
         -h|--help)
             echo 'Usage: bash launch_all_caas.sh --run-id NAME [--alignments-dir DIR] [options]'
-            echo 'One SLURM driver runs N3/N4/N5 + all 99 R0 + all 99 R1 + P1/N6 (203 hypotheses).'
+            echo 'One SLURM driver runs N3/N4/N5 + P1/N6 (5 pooled analyses). R0/R1 are disabled.'
             echo 'No pilot or approval JSON. Uses the bundled modified pooled CAAStools.'
             echo 'Sources: --alignments-dir DIR, --alignments-pattern QUOTED_GLOB, or --inventory TSV'
             echo 'Default source in phyloq: ../caas/inputs/alignments/*.phy (the existing pipeline inputs).'
             echo 'In the research project: ../pipeline/inputs/alignments/*.phy; standalone: inputs/alignments/*.phy.'
-            echo 'Options: --modes all|deterministic,r0,r1,paired --include-references --include-p2'
+            echo 'Options: --modes all|deterministic|paired --include-references --include-p2'
             echo '         --resume --plan-only --cluster-config FILE'
             echo 'Historical references/P2 are NOT rerun unless explicitly included.'
             echo 'Outside SLURM, bash submits with sbatch. Direct sbatch use is also supported.'
@@ -55,6 +55,9 @@ while [[ $# -gt 0 ]]; do
 done
 [[ -f "$caas_root/main.nf" ]] || { echo 'Set CAAS_VALIDATION_ROOT to the pipeline directory.' >&2; exit 2; }
 [[ "$caas_run_id" =~ ^[A-Za-z0-9][A-Za-z0-9_-]*$ ]] || { echo 'Supply --run-id using letters, digits, underscores or hyphens.' >&2; exit 2; }
+case ",$caas_modes," in
+    *,r0,*|*,r1,*) echo 'R0/R1 randomized null series are disabled. Use --modes all for the five retained analyses.' >&2; exit 2 ;;
+esac
 source "$caas_root/conf/logging_helpers.sh"
 caas_start_logging
 if [[ ${#caas_source[@]} == 0 ]]; then
