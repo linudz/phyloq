@@ -1,5 +1,9 @@
 # CAAS pooled validation — reduced design
 
+**Stalled assembly recovery:** use [RECOVER_RESULTS.md](RECOVER_RESULTS.md) to
+assemble a stopped run directly from verified successful outputs, without
+Nextflow or any CAAS reruns. Recovery writes a separate output directory.
+
 **Failure handling:** direct benchmark runs continue after failed/timed-out CAAS
 tasks and report missing genes separately. Existing shared-tool runs can resume
 through a reviewed compatibility bridge. See [PARTIAL_RESULTS.md](PARTIAL_RESULTS.md).

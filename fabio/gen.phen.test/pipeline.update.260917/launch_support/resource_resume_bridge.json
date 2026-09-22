@@ -1,5 +1,5 @@
 {
   "description": "Reviewed transition from shared-tool commit 0c55eff to partial-result continuation. CAAS command, input validation, frozen inputs and tool unchanged; failed-task handling and downstream summaries changed. Preserve valid CAAS cache only for this exact implementation.",
-  "source_code_fingerprints": ["0557b68e23314083ab176edb921bafa2144361ee572de8d7ef02651c4d6ab965"],
-  "target_code_fingerprint": "842bb6f6a9516777b8cc9edc4420e086914d4c51c1c39d37b1d04c5c7c50331d"
+  "source_code_fingerprints": ["0557b68e23314083ab176edb921bafa2144361ee572de8d7ef02651c4d6ab965", "842bb6f6a9516777b8cc9edc4420e086914d4c51c1c39d37b1d04c5c7c50331d"],
+  "target_code_fingerprint": "d9f9b4a806d9a25ee7a08875a187c18848dc21f78e9ef8e5837370e719664d56"
 }

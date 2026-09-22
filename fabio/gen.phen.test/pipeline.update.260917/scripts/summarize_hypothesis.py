@@ -8,11 +8,13 @@ from common import ROOT, checked, digest, read_json, read_tsv, require, sha, wri
 from legacy_support import dense_cluster_positions, preferred_position_record, is_primary
 
 
-def summarize(hypothesis_id, alignment_manifest, artifacts, output, allow_incomplete=False):
+def summarize(hypothesis_id, alignment_manifest, artifacts, output, allow_incomplete=False,
+              receipt_paths=None, metadata=None):
     inventory = read_tsv(alignment_manifest)
     expected = {r["gene_id"] for r in inventory}
     receipts = {}
-    for path in sorted(Path(artifacts).rglob("*.receipt.json")):
+    paths = receipt_paths if receipt_paths is not None else Path(artifacts).rglob("*.receipt.json")
+    for path in sorted(paths):
         receipt = read_json(path)
         require(receipt["hypothesis_id"] == hypothesis_id, f"Wrong hypothesis receipt: {path}")
         gene = receipt["gene_id"]
@@ -26,9 +28,9 @@ def summarize(hypothesis_id, alignment_manifest, artifacts, output, allow_incomp
     require(not completeness['unexpected'], f"Unexpected outputs: {completeness}")
     require(allow_incomplete or completeness["status"] == "complete", f"Incomplete hypothesis: {completeness}; summaries blocked")
     positions, gene_rows = [], []
-    seeds = list(Path(artifacts).glob('*__*.json'))
+    seeds = list(Path(artifacts).glob('*__*.json')) if metadata is None else []
     require(len(seeds) <= 1, 'Multiple hypothesis metadata seeds')
-    anchor = read_json(seeds[0]) if seeds else (next(iter(receipts.values()))[1] if receipts else None)
+    anchor = metadata if metadata is not None else (read_json(seeds[0]) if seeds else (next(iter(receipts.values()))[1] if receipts else None))
     require(anchor is not None and anchor['hypothesis_id'] == hypothesis_id, 'Missing/wrong hypothesis metadata seed')
     missing_rows = [dict(hypothesis_id=hypothesis_id, strategy_id=anchor['strategy_id'],
                          replicate_id=anchor['replicate_id'], gene=gene, status='not_completed',
