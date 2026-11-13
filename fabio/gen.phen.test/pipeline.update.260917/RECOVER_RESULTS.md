@@ -51,3 +51,9 @@ python recovery/recover_completed.py --run-id RUN --recovery-id RECOVERY \
 
 `--tables-only` intentionally omits figures and records that in the completion
 receipt; the cluster wrapper always generates figures.
+
+## Runs extended with P3
+
+Recovery reads the additional bundle and its separate run lock from the selected
+launch parameter file. It verifies P3 receipts against its own selection checksum
+and includes P3 in the recovered cohort. Use the log from the extended launch.

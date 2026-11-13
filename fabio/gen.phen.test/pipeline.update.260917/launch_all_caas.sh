@@ -22,6 +22,7 @@ caas_extras=()
 caas_launch_extras=()
 caas_resume=()
 caas_plan_only=0
+caas_add_upper20=auto
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --run-id) caas_run_id="${2:?Missing run ID}"; shift 2 ;;
@@ -36,19 +37,22 @@ while [[ $# -gt 0 ]]; do
             caas_source=("$1" "${2:?Missing alignment source}"); shift 2 ;;
         --include-references|--include-p2) caas_extras+=("$1"); shift ;;
         --resume) caas_resume=(--resume); shift ;;
+        --include-upper20) caas_add_upper20=yes; shift ;;
+        --without-upper20) caas_add_upper20=no; shift ;;
         --plan-only) caas_plan_only=1; shift ;;
         --cluster-config) caas_launch_extras+=(--cluster-config "${2:?Missing config path}"); shift 2 ;;
         --task-time|--task-memory|--task-cpus)
             caas_launch_extras+=("$1" "${2:?Missing resource value}"); shift 2 ;;
         -h|--help)
             echo 'Usage: bash launch_all_caas.sh --run-id NAME [--alignments-dir DIR] [options]'
-            echo 'One SLURM driver runs N3/N4/N5 + P1/N6 (5 pooled analyses). R0/R1 are disabled.'
+            echo 'One SLURM driver runs N3/N4/N5 + P1/N6 + P3 (6 pooled analyses). R0/R1 are disabled.'
             echo 'No pilot or approval JSON. Uses the bundled modified pooled CAAStools.'
             echo 'Sources: --alignments-dir DIR, --alignments-pattern QUOTED_GLOB, or --inventory TSV'
             echo 'Default source in phyloq: ../caas/inputs/alignments/*.phy (the existing pipeline inputs).'
             echo 'In the research project: ../pipeline/inputs/alignments/*.phy; standalone: inputs/alignments/*.phy.'
             echo 'Options: --modes all|deterministic|paired --include-references --include-p2'
             echo '         --resume --plan-only --cluster-config FILE'
+            echo '         --include-upper20 (P3, automatic with all) --without-upper20 (legacy five)'
             echo 'Resources: --task-time 30m --task-memory "2 GB" --task-cpus 1 (resource-only resume allowed).'
             echo 'Historical references/P2 are NOT rerun unless explicitly included.'
             echo 'Outside SLURM, bash submits with sbatch. Direct sbatch use is also supported.'
@@ -59,7 +63,7 @@ done
 [[ -f "$caas_root/main.nf" ]] || { echo 'Set CAAS_VALIDATION_ROOT to the pipeline directory.' >&2; exit 2; }
 [[ "$caas_run_id" =~ ^[A-Za-z0-9][A-Za-z0-9_-]*$ ]] || { echo 'Supply --run-id using letters, digits, underscores or hyphens.' >&2; exit 2; }
 case ",$caas_modes," in
-    *,r0,*|*,r1,*) echo 'R0/R1 randomized null series are disabled. Use --modes all for the five retained analyses.' >&2; exit 2 ;;
+    *,r0,*|*,r1,*) echo 'R0/R1 randomized null series are disabled. Use --modes all for the six retained analyses.' >&2; exit 2 ;;
 esac
 source "$caas_root/conf/logging_helpers.sh"
 caas_start_logging
@@ -109,6 +113,11 @@ caas_run_command=("$CONDA_PREFIX/bin/python" "$caas_root/run_validation.py" benc
     --run-id "$caas_run_id" --selection "$caas_input_dir/selection.tsv" \
     --alignments "$caas_input_dir/alignment_manifest.tsv" --profile cluster \
     --conda-prefix "$CONDA_PREFIX" --conda-init "$CAAS_CONDA_SH")
+# Append P3 separately: do not rewrite the frozen five-analysis selection or
+# launch.request.json. Their old VALIDATE_INPUTS task can stay cached on resume.
+if [[ "$caas_add_upper20" == yes || ( "$caas_add_upper20" == auto && "$caas_modes" == all ) ]]; then
+    caas_run_command+=(--additional-design "$caas_root/inputs/additional/venditti-upper20-261113-v1")
+fi
 if [[ ${#caas_launch_extras[@]} -gt 0 ]]; then caas_run_command+=("${caas_launch_extras[@]}"); fi
 if [[ ${#caas_resume[@]} -gt 0 ]]; then caas_run_command+=("${caas_resume[@]}"); fi
 if [[ "$caas_plan_only" == 0 ]]; then caas_run_command+=(--execute); fi

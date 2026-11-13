@@ -43,6 +43,35 @@ process VALIDATE_INPUTS {
     """
 }
 
+process VALIDATE_ADDITIONAL_INPUTS {
+    tag "bind additional P3 hypothesis to unchanged alignment inventory"
+    executor 'local'
+    stageInMode 'copy'
+    publishDir "${params.results_root}/${params.run_id}/provenance", mode: 'copy', pattern: 'validation/*.json',
+               saveAs: { filename -> 'P3.' + filename.toString().tokenize('/').last() }
+    input:
+    path design
+    path selection
+    path alignments
+    path settings
+    path ready
+    path additional_design
+    output:
+    path 'validation/jobs.tsv', emit: jobs
+    path 'validation/runtime.lock.json', emit: lock
+    path 'validation/input_validation.json', emit: report
+    script:
+    def approvalArg = params.approvals ? "--approvals '${params.approvals}'" : ''
+    def smokeArg = params.stage == 'smoke' || params.synthetic_inputs ? '--smoke' : ''
+    def directArg = params.direct_discovery ? '--direct-discovery' : ''
+    """
+    # implementation ${params.code_fingerprint}
+    "${params.python_command}" "${projectDir}/scripts/validate_inputs.py" \
+      --design "${design}" --selection "${selection}" --alignments "${alignments}" \
+      --settings "${settings}" --run-id "${params.run_id}" --output validation --additional-design "${additional_design}" ${approvalArg} ${smokeArg} ${directArg}
+    """
+}
+
 process CAAS_POOLED {
     // Failed discovery tasks are missing observations, never negative results.
     errorStrategy { params.direct_discovery ? 'ignore' : 'terminate' }
@@ -164,7 +193,15 @@ workflow {
         PREPARE_VALIDATION(design)
         VALIDATE_INPUTS(design, file(params.selection_manifest, checkIfExists: true), alignments,
                         file(params.settings, checkIfExists: true), PREPARE_VALIDATION.out)
-        jobs = VALIDATE_INPUTS.out.jobs.splitCsv(header: true, sep: '\t').map { row ->
+        def jobFiles = VALIDATE_INPUTS.out.jobs
+        if (params.additional_design) {
+            def additionalDesign = file(params.additional_design, checkIfExists: true)
+            VALIDATE_ADDITIONAL_INPUTS(design, file(additionalDesign.resolve('selection.tsv'), checkIfExists: true),
+                                       alignments, file(params.settings, checkIfExists: true), PREPARE_VALIDATION.out,
+                                       additionalDesign)
+            jobFiles = jobFiles.mix(VALIDATE_ADDITIONAL_INPUTS.out.jobs)
+        }
+        jobs = jobFiles.splitCsv(header: true, sep: '\t').map { row ->
             tuple(row.hypothesis_id, row.strategy_id, row.replicate_id, row.gene_id,
                   file(row.job_file, checkIfExists: true), file(row.alignment_path, checkIfExists: true),
                   file(row.pool_path, checkIfExists: true), file(row.config_path, checkIfExists: true))

@@ -1,5 +1,12 @@
 # Continue pooled CAAS after task failures
 
+**13 November 2026 P3 extension:** the six-analysis launcher can append the
+Venditti nonhuman Upper contrast hypothesis to an existing shared-tool run
+with the same run ID and `--resume`. Original selections and locks are retained;
+P3 is validated separately. See [UPPER20_P3.md](UPPER20_P3.md) and the current
+[RUN_ON_CLUSTER.md](RUN_ON_CLUSTER.md). Historical transition instructions
+below do not require a new ID for this supported additive update.
+
 In the direct benchmark launched by `launch_all_caas.sh`, CAAS task failures
 (including SLURM timeouts) use `errorStrategy 'ignore'`, without automatic retries.
 Other tasks continue. The 30-minute limit, 2 GB memory and shared CAAStools path

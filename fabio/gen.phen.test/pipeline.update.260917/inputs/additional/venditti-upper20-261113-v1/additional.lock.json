@@ -1,0 +1,18 @@
+{
+  "additional_id": "venditti-upper20-261113-v1",
+  "base_design_sha256": "a7fa264a091ac7a8f15e98b0296d895fadd28c0cc8d33c1ad47b96b74231b28b",
+  "caastools_sha256": "e5ca882e4c5f7e85029b842a420aa31ee5dee63bf3bbf4060b60227564afc97f",
+  "files": {
+    "configs/P3_000/cycles.cfg": "3e461c261658d61cf89c434fb085fd77e037870e54247430cd95a66a8a7ab712",
+    "configs/P3_000/pool.cfg": "86fb9f7d7a7e2bec12a85588784af88d419b2209acfb0c6874e887b867a8d077",
+    "selection.tsv": "cf62878dc42cd36e84ae6e4afdc59eec81bf6f850aece6093e62a0ab81687c62",
+    "sources/Venditti.pool.tsv": "ec0b2d708a90bf60486ad2e8a514f96061e79dd6eb1e1d442dda07b5672a5756",
+    "sources/Venditti.selected_pairs.tsv": "9785d1d81d8746a74212e33aa656d510ce471413933c01b0a2452d3ed58da55d"
+  },
+  "hypotheses": [
+    "P3_000"
+  ],
+  "schema_version": 1,
+  "seed": 20261113,
+  "selection_rule": "Primate-wide PSS Upper ceil(1%); exclude Homo sapiens pairs; retain 20 largest absolute frozen phenotype contrasts; FG higher and BG lower endpoints; deduplicate; independent 4 versus 4 pooled cycles"
+}

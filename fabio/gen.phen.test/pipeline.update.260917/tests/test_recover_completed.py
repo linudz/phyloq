@@ -50,6 +50,32 @@ class RecoveryTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'already exists'):
                 recover(root,'run','rec',log,tables_only=True)
 
+    def test_recovery_includes_additive_p3_with_its_own_selection_digest(self):
+        from check_additional_design import additional_identity
+        additional=ROOT/'inputs/additional/venditti-upper20-261113-v1'
+        design=ROOT/'inputs/frozen/brain-260917-v1'
+        with tempfile.TemporaryDirectory() as t:
+            root=Path(t);log,pub=self.fixture(root)
+            params=read_json(root/'params.json');params.update(design=str(design),additional_design=str(additional))
+            write_json(root/'params.json',params)
+            lock=read_json(root/'results/run/launch.lock.json');lock['design_sha256']=sha(design/'design.lock.json')
+            write_json(root/'results/run/launch.lock.json',lock)
+            receipt=read_json(pub/'TEST.receipt.json');receipt['design_sha256']=lock['design_sha256']
+            receipt['tool_sha256']=read_json(design/'design.lock.json')['caastools_sha256']
+            write_json(pub/'TEST.receipt.json',receipt)
+            import shutil
+            p3=root/'results/run/P3/000/raw/TEST';p3.parent.mkdir(parents=True);shutil.copytree(pub,p3)
+            row=read_tsv(additional/'selection.tsv')[0]
+            p3_receipt=dict(receipt,**row,selection_sha256=sha(additional/'selection.tsv'))
+            write_json(p3/'TEST.receipt.json',p3_receipt)
+            write_json(root/'results/run/additional_hypotheses.lock.json',additional_identity(design,additional))
+            with log.open('a') as f:
+                f.write('[ab/123456] Cached process > CAAS_POOLED (P3/000:TEST)\n')
+                f.write("[ab/654321] NOTE: Process `CAAS_POOLED (P3/000:MISSING)` terminated with an error exit status (1) -- Error is ignored\n")
+            out=recover(root,'run','p3-recovery',log,tables_only=True)
+            self.assertEqual({r['strategy_id'] for r in read_tsv(out/'matched/strategy_comparison.tsv')},{'TEST','P3'})
+            self.assertEqual(read_json(out/'hypotheses/P3_000/summary.json')['completed_genes'],1)
+
     def test_wrong_receipt_run_fails(self):
         with tempfile.TemporaryDirectory() as t:
             root=Path(t);log,pub=self.fixture(root)

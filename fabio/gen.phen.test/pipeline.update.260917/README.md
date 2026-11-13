@@ -8,7 +8,7 @@ Nextflow or any CAAS reruns. Recovery writes a separate output directory.
 tasks and report missing genes separately. Existing shared-tool runs can resume
 through a reviewed compatibility bridge. See [PARTIAL_RESULTS.md](PARTIAL_RESULTS.md).
 
-The standard launch runs five analyses. R0/R1 randomized null series are disabled.
+The standard launch runs six analyses. P3 is an additive Venditti Upper contrast hypothesis; see [UPPER20_P3.md](UPPER20_P3.md) for the selection and compatible resume. R0/R1 randomized null series are disabled.
 
 | Analysis | Selection | FG/BG pool | Pooled cycles per gene |
 |---|---|---|---:|
@@ -17,10 +17,11 @@ The standard launch runs five analyses. R0/R1 randomized null series are disable
 | N5 | Phenotype extremes matching P0 genus quotas | 9/10 | 100 |
 | P1 | PSS-selected pairs in six genera | 6/6 | 15 |
 | N6 | Phenotype-extreme pairs in those six genera | 6/6 | 15 |
+| P3 | Nonhuman primate Upper PSS pairs with the 20 largest phenotype contrasts | 6/13 | 100 |
 
 One task runs one alignment and one complete pooled analysis using the bundled
 modified CAAStools `pooled-discovery`. The internal cycles are NOT separate jobs.
-For 16,133 alignments: **80,665 tasks**.
+For 16,133 alignments: **96,798 tasks** (16,133 additional P3 tasks).
 
 R0/R1 are rejected by the launcher and custom launch selections. Their frozen
 files remain for provenance only. We retain controlled comparisons, not an
@@ -28,6 +29,11 @@ empirical null distribution across randomized assignments. P0 remains the
 historical reference and is not rerun by default.
 
 ## Launch
+
+**P3 extension:** an existing compatible shared-tool five-analysis run can use
+the same run ID with `--resume`; the original selection and launch locks remain
+unchanged. See [UPPER20_P3.md](UPPER20_P3.md). The staging transition below applies
+only to older releases before the shared-tool fix.
 
 **Shared-tool fix:** CAAS tasks now use the absolute shared CAAStools path, not
 a per-task directory copy. This changes the task definition: start a NEW run ID
@@ -37,7 +43,7 @@ CPU/memory/time flags may change on subsequent same-version resumes.
 See [RESOURCE_RESUME.md](RESOURCE_RESUME.md).
 
 See [RUN_ON_CLUSTER.md](RUN_ON_CLUSTER.md). Nextflow processes, pooled settings
-and frozen species/cycle assignments are unchanged. No pilot, enrichment or
+and historical frozen species/cycle assignments are retained; P3 has a separate frozen bundle. No pilot, enrichment or
 downstream inference is required.
 
 ```bash

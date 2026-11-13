@@ -8,5 +8,9 @@ bash launch_all_caas.sh --run-id caas-five-01
 bash launch_all_caas.sh --run-id caas-five-01 --resume
 ```
 
-Runs N3/N4/N5/P1/N6 only. Stop the old 203-analysis run first; do not reuse its
+Runs N3/N4/N5/P1/N6 plus the additive P3 hypothesis. Stop the old 203-analysis run first; do not reuse its
 run ID. Conda configuration and alignment locations are unchanged.
+
+P3 is now appended automatically with `--modes all`. To add it to a stopped
+compatible shared-tool run, keep the same run ID and use `--resume`.
+See [UPPER20_P3.md](UPPER20_P3.md).

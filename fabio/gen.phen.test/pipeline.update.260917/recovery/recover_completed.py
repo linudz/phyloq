@@ -110,6 +110,15 @@ def recover(root, run_id, recovery_id, log, rscript='Rscript', tables_only=False
     checked(design/'design.lock.json', lock['design_sha256'])
     design_lock = read_json(design/'design.lock.json')
     rows, genes = read_tsv(selection), read_tsv(inventory)
+    additional_hids = set()
+    if params.get('additional_design'):
+        from check_additional_design import check_additional, additional_identity
+        additional_path = Path(params['additional_design'])
+        require(read_json(root/'results'/run_id/'additional_hypotheses.lock.json') ==
+                additional_identity(design, additional_path), 'Additional recovery identity changed')
+        additional_rows = check_additional(design, additional_path)
+        additional_hids = {r['hypothesis_id'] for r in additional_rows}
+        rows += additional_rows
     expected={(r['hypothesis_id'],g['gene_id']) for r in rows for g in genes}
     require(set(outcomes)==expected, 'Log does not account for exactly the selected gene/hypothesis tasks')
     require(all(r['status']!='pending' for r in outcomes.values()), 'Source log still has pending/unresolved tasks')
@@ -131,7 +140,8 @@ def recover(root, run_id, recovery_id, log, rscript='Rscript', tables_only=False
             record=dict(state,receipt_path='',receipt_sha256='')
             if state['status'] in ('completed','cached'):
                 receipt_path=resolve_receipt(root,lock,run_id,row,gene['gene_id'],state,cache)
-                receipt=validate_receipt(receipt_path,run_id,row,gene,lock)
+                row_lock = dict(lock, selection_sha256=sha(additional_path/'selection.tsv')) if hid in additional_hids else lock
+                receipt=validate_receipt(receipt_path,run_id,row,gene,row_lock)
                 require(receipt['tool_sha256']==anchor['tool_sha256'],'Receipt uses a different CAAStools version')
                 require(receipt['settings']==anchor['settings'],'Receipt settings content mismatch')
                 receipts.append(receipt_path)

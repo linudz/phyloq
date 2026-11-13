@@ -139,6 +139,8 @@ class UnifiedShell(unittest.TestCase):
         self.assertIn('prepare_cluster_launch.py', args)
         self.assertIn('\nbenchmark\n', args)
         self.assertIn('\n--execute\n', args)
+        self.assertIn('\n--additional-design\n', args)
+        self.assertIn('venditti-upper20-261113-v1', args)
         self.assertNotIn('--approvals', args)
 
     def test_plan_only_never_submits_or_executes(self):

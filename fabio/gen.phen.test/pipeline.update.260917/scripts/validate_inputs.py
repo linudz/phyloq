@@ -8,7 +8,7 @@ from common import (ROOT, VERSION, checked, cycle_read, digest, identifier, pool
                     write_json, write_tsv)
 
 
-def validate(design, selection, alignments, settings, run_id, output, approvals=None, smoke=False, direct_discovery=False):
+def validate(design, selection, alignments, settings, run_id, output, approvals=None, smoke=False, direct_discovery=False, additional_design=None):
     lock = verify_design(design)
     identifier(run_id)
     settings_data = read_json(settings)
@@ -18,6 +18,11 @@ def validate(design, selection, alignments, settings, run_id, output, approvals=
     tool_hash = tree_hash(ROOT / "bin/caastools")
     require(tool_hash == lock["caastools_sha256"], "CAAStools version changed after freezing")
     canonical = {r["hypothesis_id"]: r for r in read_tsv(design / "execution_manifest.tsv")}
+    config_root = design
+    if additional_design is not None:
+        from check_additional_design import check_additional
+        canonical = {r['hypothesis_id']:r for r in check_additional(design, additional_design)}
+        config_root = additional_design
     rows, inventory = read_tsv(selection), read_tsv(alignments)
     require(rows and inventory, "Empty explicit selection or alignment inventory")
     hids = [r["hypothesis_id"] for r in rows]
@@ -35,10 +40,10 @@ def validate(design, selection, alignments, settings, run_id, output, approvals=
     for r in rows:
         hid = identifier(r["hypothesis_id"])
         require(hid in canonical and r == canonical[hid], f"Selected row differs from frozen design: {hid}")
-        pools = pool_read(checked(design / r["pool_config"], r["pool_sha256"]))
+        pools = pool_read(checked(config_root / r["pool_config"], r["pool_sha256"]))
         require(set(sum(pools.values(), [])) <= sources, f"Unknown phenotype species in {hid}")
         require(not set(pools["FG"]) & set(pools["BG"]), f"Conflicting membership: {hid}")
-        cc = cycle_read(checked(design / r["hypotheses_config"], r["config_sha256"]), pools)
+        cc = cycle_read(checked(config_root / r["hypotheses_config"], r["config_sha256"]), pools)
         require(len(cc) == int(r["selected_cycles"]), f"Cycle count mismatch: {hid}")
     runtime_lock = dict(design_sha256=sha(design / "design.lock.json"), selection_sha256=sha(selection),
                         alignment_manifest_sha256=sha(alignments), settings_sha256=sha(settings),
@@ -70,11 +75,13 @@ def validate(design, selection, alignments, settings, run_id, output, approvals=
                 job_id = r["hypothesis_id"] + "__" + a["gene_id"]
                 job = dict(r, gene_id=a["gene_id"], alignment_path=str(resolve(alignments.parent, a["alignment_path"])),
                            alignment_sha256=a["sha256"], alignment_format=a["format"],
-                           pool_path=str(design / r["pool_config"]), config_path=str(design / r["hypotheses_config"]),
+                           pool_path=str(config_root / r["pool_config"]), config_path=str(config_root / r["hypotheses_config"]),
                            settings=settings_data, settings_sha256=runtime_lock['settings_sha256'], tool_sha256=tool_hash,
                            run_id=run_id, design_sha256=runtime_lock["design_sha256"],
                            selection_sha256=runtime_lock["selection_sha256"], smoke=smoke,
                            direct_discovery=direct_discovery)
+                if additional_design is not None:
+                    job['additional_design_sha256'] = sha(additional_design/'additional.lock.json')
                 job_file = output / "jobs" / f"{job_id}.json"
                 write_json(job_file, job)
                 yield dict(hypothesis_id=r["hypothesis_id"], strategy_id=r["strategy_id"],
@@ -94,6 +101,8 @@ if __name__ == "__main__":
     p.add_argument("--approvals", type=Path)
     p.add_argument("--smoke", action="store_true")
     p.add_argument("--direct-discovery", action="store_true", help="Explicit CAAS-only launch without pilot/statistical approval prerequisites")
+    p.add_argument("--additional-design", type=Path)
     a = p.parse_args()
     validate(a.design.resolve(), a.selection.resolve(), a.alignments.resolve(), a.settings.resolve(),
-             a.run_id, a.output.resolve(), a.approvals, a.smoke, a.direct_discovery)
+             a.run_id, a.output.resolve(), a.approvals, a.smoke, a.direct_discovery,
+             a.additional_design.resolve() if a.additional_design else None)

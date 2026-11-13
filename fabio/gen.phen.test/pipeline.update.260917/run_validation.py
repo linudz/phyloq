@@ -23,6 +23,7 @@ def main():
     p.add_argument('stage', choices=STAGES)
     p.add_argument('--design', type=Path, default=ROOT / 'inputs/frozen/brain-260917-v1')
     p.add_argument('--run-id')
+    p.add_argument('--additional-design', type=Path, help='Checksummed additive P3 hypothesis; preserves historical selection and cache')
     p.add_argument('--selection', type=Path, help='Explicit TSV; default is the frozen selection for this stage')
     p.add_argument('--alignments', type=Path, help='Explicit alignment_manifest.tsv, not an alignment directory')
     p.add_argument('--cohort', type=Path, help='Explicit complete-summary manifest for summarize')
@@ -84,6 +85,16 @@ def main():
         allowed = {'deterministic': {'N3', 'N4', 'N5'}, 'paired': {'P1', 'N6'}, 'reference-rerun': {'P0', 'N0', 'N1', 'N2'}, 'auxiliary-p2': {'P2'}}
         if a.stage in allowed:
             require({r['strategy_id'] for r in selected} <= allowed[a.stage], 'Selection contains strategies outside the requested stage')
+    additional = None
+    if a.additional_design:
+        require(direct_discovery, 'Additional P3 is supported only for direct benchmark discovery')
+        from check_additional_design import additional_identity, check_additional
+        a.additional_design = a.additional_design.resolve()
+        additional = additional_identity(design, a.additional_design)
+        extra_rows = check_additional(design, a.additional_design)
+        require(not {r['hypothesis_id'] for r in selected} & set(additional['hypotheses']), 'Repeated additional hypothesis')
+    else:
+        extra_rows = []
     # Bind code, actual selection, annotations, settings and outputs to the run.
     fingerprint = digest(dict(scripts=tree_hash(ROOT / 'scripts'), workflow=sha(ROOT / 'main.nf'),
                               config=sha(ROOT / 'nextflow.config'), cluster=tree_hash(ROOT / 'conf'), launcher=sha(__file__),
@@ -116,6 +127,12 @@ def main():
     else:
         require(not a.resume, 'Cannot resume a run with no launch lock')
         require(not out.exists(), 'Output directory exists without a run lock; choose a new run ID')
+    # This separate append-only contract leaves launch.lock.json and historical
+    # selection/design checksums unchanged. Once added, P3 cannot be dropped.
+    additional_lock = out/'additional_hypotheses.lock.json'
+    if additional_lock.exists():
+        require(additional is not None and read_json(additional_lock) == additional,
+                'Additional hypothesis changed or omitted; repeat --additional-design with the original bundle')
     if a.execute and a.stage not in ('smoke', 'summarize', 'benchmark'):
         require(a.approvals is not None, 'No production launch without explicit reviewed approvals')
         ap = read_json(a.approvals)
@@ -146,6 +163,7 @@ def main():
         run_id=a.run_id, design=str(design), settings=str(a.settings.resolve()),
         selection_manifest=str(selection) if selection else None, alignment_manifest=str(a.alignments.resolve()) if a.alignments else None,
         cohort_manifest=str(a.cohort.resolve()) if a.cohort else None, approvals=str(a.approvals.resolve()) if a.approvals else None,
+        additional_design=str(a.additional_design) if a.additional_design else None,
         code_fingerprint=fingerprint, python_command=a.python, r_command=a.rscript, runtime_setup=runtime_setup,
         results_root=str(a.results_root.resolve()),
         summaries_root=str(a.summaries_root.resolve()), annotation_input=str(a.annotation.resolve()) if a.annotation else str(ROOT / 'inputs/annotations.disabled.txt'),
@@ -161,18 +179,20 @@ def main():
     if a.cluster_config: cmd += ['-c', str(a.cluster_config.resolve())]
     if a.resume: cmd += ['-resume', 'caas_' + a.run_id.replace('-', '_')]
     else: cmd += ['-name', 'caas_' + a.run_id.replace('-', '_')]
-    plan = dict(identity, run_id=a.run_id, hypotheses=len(selected), alignments=len(inventory),
+    plan = dict(identity, run_id=a.run_id, hypotheses=len(selected)+len(extra_rows), alignments=len(inventory),
+                additional_hypotheses=additional,
                 actual_implementation_fingerprint=implementation_fingerprint,
                 task_resources=dict(time=a.task_time, memory=a.task_memory, cpus=a.task_cpus),
-                expected_tasks=len(selected)*len(inventory), cycles=sum(int(r['selected_cycles']) for r in selected),
+                expected_tasks=(len(selected)+len(extra_rows))*len(inventory), cycles=sum(int(r['selected_cycles']) for r in selected+extra_rows),
                 command=cmd, execute=a.execute, production=a.stage not in ('smoke', 'summarize'),
                 approvals_required_for_execution=a.stage not in ('smoke', 'summarize', 'benchmark'))
     write_json(plan_dir / (launch_id + '.plan.json'), plan)
-    print(f"{a.stage}: {len(selected)} hypotheses × {len(inventory)} alignments = {plan['expected_tasks']} discovery tasks")
+    print(f"{a.stage}: {len(selected)+len(extra_rows)} hypotheses × {len(inventory)} alignments = {plan['expected_tasks']} discovery tasks")
     print(shlex.join(cmd), flush=True)
     if not a.execute:
         print('PLAN ONLY: no discovery tasks submitted. Add --execute to run the selected analysis.'); return
     if not launch_lock.exists(): write_json(launch_lock, identity)
+    if additional is not None and not additional_lock.exists(): write_json(additional_lock, additional)
     write_json(out/'environment.json',runtime)
     env = dict(os.environ, PYTHONDONTWRITEBYTECODE='1', PYTHONHASHSEED='0', NXF_ANSI_LOG='false', NXF_DISABLE_CHECK_LATEST='true')
     env['JAVA_HOME'] = env['NXF_JAVA_HOME'] = runtime['identity']['java_home']

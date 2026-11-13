@@ -6,7 +6,7 @@ if (length(args)<2) stop('Supply strategy_comparison.tsv and output directory')
 x <- read.delim(args[1], check.names=FALSE, stringsAsFactors=FALSE)
 x$smoke <- tolower(as.character(x$smoke)) == 'true'
 dir.create(args[2], recursive=TRUE, showWarnings=FALSE)
-order.ids <- c('P0','N0','N1','N2','N3','N4','N5','R0','R1','P1','N6','P2')
+order.ids <- c('P0','N0','N1','N2','N3','N4','N5','R0','R1','P1','N6','P2','P3')
 x <- x[order(match(x$strategy_id,order.ids), x$hypothesis_id),]
 save.figure <- function(name, draw, width=9, height=5) {
   pdf(file.path(args[2],paste0(name,'.pdf')), width=width,height=height,useDingbats=FALSE)
